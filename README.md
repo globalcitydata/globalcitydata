@@ -1,46 +1,63 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's hello-world starter
-</h1>
+# Global City Data
 
-Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+## Table of Contents
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+1. [Develop](#develop)
+2. [What's Inside](#what's-inside?)
 
-## 🚀 Quick start
+## Develop
 
-1.  **Create a Gatsby site.**
+1. **Clone this repo.**
 
-    Use the Gatsby CLI to create a new site, specifying the hello-world starter.
+   If you don't have [git](https://git-scm.com/) installed, go install that and come back.
 
-    ```sh
-    # create a new Gatsby site using the hello-world starter
-    npx gatsby new my-hello-world-starter https://github.com/gatsbyjs/gatsby-starter-hello-world
-    ```
+   Clone this repo in your terminal with the following command.
 
-1.  **Start developing.**
+   ```sh
+   git clone https://github.com/globalcitydata/globalcitydata.git
+   ```
 
-    Navigate into your new site’s directory and start it up.
+2. **Start up a local instance of the website.**
 
-    ```sh
-    cd my-hello-world-starter/
-    gatsby develop
-    ```
+   Navigate into your new site’s directory, create a local git branch, and start it up. Checkout [this article](https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61) if you are not familiar with Git.
 
-1.  **Open the source code and start editing!**
+   ```sh
+   cd globalcitydata/
+   git checkout -b local-branch
+   gatsby develop
+   ```
 
-    Your site is now running at `http://localhost:8000`!
+3. **Open the source code and start editing!**
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+   Your site is now running at `http://localhost:8000`!
 
-    Open the `my-hello-world-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+   _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-## 🧐 What's inside?
+   Open the `globalcitydata` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+
+4. **Brush up on the tech stack.**
+
+   This website is entirely coded on the frontend, using external resources in place of a backend.
+
+   _Frontend Resources_
+
+   - [React.js](https://reactjs.org/) is a Javascript library used for the view logic.
+
+   - [Gatsby.js](https://www.gatsbyjs.org/) is a static site generator for React.
+
+   If these mean nothing to you, read this [this article](https://www.contentful.com/r/knowledgebase/jamstack-cms/), and then check out those links on React and Gatsby (look at React before Gatsby).
+
+   _Backend Resources_
+
+   - Majority of text and all data on this website queried from [Contentful](https://www.contentful.com/). This is a headless CMS that simply holds data that a website can query and use.
+
+   - [GraphQL](https://graphql.org/) used to query data and pull into website.
+
+   _Other Resources_
+
+   - [Netlify](https://www.netlify.com/) used for hosting.
+
+## What's inside?
 
 A quick look at the top-level files and directories you'll see in a Gatsby project.
 
@@ -80,17 +97,3 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
 12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-hello-world)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
