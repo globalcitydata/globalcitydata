@@ -22,9 +22,12 @@
    Navigate into your new site’s directory, create a local git branch, and start it up. Checkout [this article](https://medium.freecodecamp.org/what-is-git-and-how-to-use-it-c341b049ae61) if you are not familiar with Git.
 
    ```sh
+   # Move into globalcitydata directory
    cd globalcitydata/
-   git checkout -b local-branch
-   gatsby develop
+   # Switch into local branch named "my-branch"
+   git checkout -b my-branch
+   # Start website on local server
+   npm run start
    ```
 
 3. **Open the source code and start editing!**
