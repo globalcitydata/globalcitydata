@@ -1,3 +1,4 @@
 import React from 'react';
+import Layout from '../components/layout';
 
-export default () => <div>Im the story page</div>;
+export default () => <Layout>Im the story page!</Layout>;

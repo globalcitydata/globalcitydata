@@ -6,6 +6,12 @@
       {
         "extensions": [".js"]
       }
+    ],
+    "react/no-unescaped-entities": [
+      "error",
+      {
+        "forbid": [">", "}"]
+      }
     ]
   }
 }

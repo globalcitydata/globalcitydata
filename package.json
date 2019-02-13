@@ -14,8 +14,11 @@
   "dependencies": {
     "gatsby": "^2.0.119",
     "gatsby-cli": "^2.4.10",
+    "gatsby-plugin-typography": "^2.2.7",
     "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "react-dom": "^16.8.1",
+    "react-typography": "^0.16.18",
+    "typography": "^0.16.18"
   },
   "devDependencies": {
     "eslint": "^5.13.0",
