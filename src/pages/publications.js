@@ -6,20 +6,19 @@ export default ({ data }) => {
   console.log(data);
   return (
     <Layout>
-      <div>Data List</div>
+      <div>Publications</div>
     </Layout>
   );
 };
 
 export const query = graphql`
   query {
-    allContentfulData {
+    allContentfulPublication {
       edges {
         node {
-          title
-          slug
-          summary {
-            summary
+          url
+          body {
+            body
           }
         }
       }

@@ -12,13 +12,17 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
+    "dotenv": "^6.2.0",
     "gatsby": "^2.0.119",
     "gatsby-cli": "^2.4.10",
     "gatsby-plugin-typography": "^2.2.7",
+    "gatsby-source-contentful": "^2.0.29",
+    "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-typography": "^0.16.18",
-    "typography": "^0.16.18"
+    "typography": "^0.16.18",
+    "typography-theme-twin-peaks": "^0.16.18"
   },
   "devDependencies": {
     "eslint": "^5.13.0",
