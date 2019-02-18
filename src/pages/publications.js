@@ -11,7 +11,7 @@ export default ({ data }) => {
         const { url, body: bodyOutside } = pub.node;
         const { body } = bodyOutside;
         return (
-          <div>
+          <div key={body}>
             <a href={url}>{body}</a>
             <hr />
           </div>

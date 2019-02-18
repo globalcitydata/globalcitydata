@@ -3,17 +3,16 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 
 export default ({ data }) => {
-  console.log(data);
   const dataList = data.allContentfulData.edges;
   return (
     <Layout>
       <h1>Explore the Data</h1>
       {dataList.map((dataInstance) => {
-        console.log(dataInstance);
         const { title, slug } = dataInstance.node;
         return (
-          <div>
+          <div key={title}>
             <a href={`/data/${slug}/`}>{title}</a>
+            <hr />
           </div>
         );
       })}
