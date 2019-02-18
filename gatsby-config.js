@@ -14,6 +14,7 @@ module.exports = {
       'Thinking in systems to link urban infrastructure and sustainability.',
   },
   plugins: [
+    'gatsby-transformer-remark',
     {
       resolve: 'gatsby-plugin-typography',
       options: {

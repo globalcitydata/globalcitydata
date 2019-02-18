@@ -3,12 +3,13 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 
 export default ({ data }) => {
-  const { name } = data.contentfulOurStoryPage;
-  const { body } = data.contentfulOurStoryPage.body;
+  const { name, body } = data.contentfulOurStoryPage;
+  const { html } = body.childMarkdownRemark;
   return (
     <Layout>
       <h1>{name}</h1>
-      <p>{body}</p>
+      {/* Display Contentful Our Story markdown body as html */}
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );
 };
@@ -18,7 +19,9 @@ export const query = graphql`
     contentfulOurStoryPage {
       name
       body {
-        body
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }
