@@ -24,6 +24,12 @@ module.exports = {
     'gatsby-plugin-sharp', // compress images
     'gatsby-transformer-sharp', // assist gatsby-plugin-sharp in processing images
     {
+      resolve: 'gatsby-plugin-typography', // basic font theming of website
+      options: {
+        pathToConfigModule: 'src/utils/typography',
+      },
+    },
+    {
       resolve: 'gatsby-source-contentful', // get contentful data for graphql queries
       options: contentfulConfig,
     },
