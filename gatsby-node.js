@@ -18,9 +18,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return graphql(`
     {
-      contentfulOurStoryPage {
-        slug
-      }
       allContentfulData {
         edges {
           node {
@@ -35,14 +32,6 @@ exports.createPages = ({ graphql, actions }) => {
     }
     // To see what result looks like in terminal:
     // console.log(JSON.stringify(result, null, 4));
-
-    /* CREATE OUR STORY PAGE */
-    const OurStory = path.resolve('./src/templates/ourStory.js');
-    const { slug: storySlug } = result.data.contentfulOurStoryPage;
-    createPage({
-      path: `/${storySlug}/`,
-      component: OurStory,
-    });
 
     /* CREATE EACH INDIVIDUAL DATA PAGE */
     const DataInstance = path.resolve('./src/templates/dataInstance.js');
