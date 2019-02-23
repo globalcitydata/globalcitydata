@@ -8,7 +8,6 @@ export default ({ data }) => {
   return (
     <Layout>
       <h1>{title}</h1>
-      {/* Display Contentful Our Story markdown body as html */}
       <p>{summary}</p>
     </Layout>
   );

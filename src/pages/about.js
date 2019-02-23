@@ -1,11 +1,10 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import { graphql } from 'gatsby';
 
 // Components
-import { Heading, Text } from "grommet";
-import Container from "../components/container";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Container from '../components/container';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 export default ({ data }) => {
   const { name, body } = data.contentfulOurStoryPage;
@@ -14,9 +13,9 @@ export default ({ data }) => {
     <Layout>
       <SEO title="About" description="About page for Global City Data" />
       <Container>
-        <Heading>{name}</Heading>
+        <h1>{name}</h1>
         {/* Display Contentful Our Story markdown body as html */}
-        <Text dangerouslySetInnerHTML={{ __html: html }} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </Container>
     </Layout>
   );
