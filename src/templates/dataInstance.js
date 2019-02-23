@@ -29,6 +29,25 @@ export const query = graphql`
       summary {
         summary
       }
+      body {
+        body
+      }
+      keyHighlight1
+      keyHighlight2
+      keyHighlight3
+      usesAndVisualizations
+      relatedData
+      dataType
+      spatialScales
+      temporalScales
+      sectors
+      sustainabilityOutcomes
+      determinants
+      worldRegions
+      authors {
+        name
+        email
+      }
     }
   }
 `;
