@@ -19,68 +19,19 @@ const DataList = styled.section`
 
 const Card = styled.div`
   flex: 300px;
-  background: white;
-  border-radius: 20px;
-  padding: 30px 40px;
+  border-radius: 1rem;
+  padding: 0 2rem 1.5rem;
   margin: 25px;
+  background: lightgray;
 `;
-
-/*
-const dataList = [
-    {
-      title: 'Integrated City Sustainability Database (ICSD)',
-      slug: 'another-example',
-      description: `The Integrated City Sustainability Database (ICSD) is a comprehensive
-        data set of U.S. municipal governments and their sustainability programs
-        and policies. Taking advantage of the unique opportunity to combine seven
-        independent data collection efforts, the ICSD provides a valuable resource
-        for scholars in multiple disciplines investigating local environmental and
-        energy sustainability.`,
-    },
-    {
-      title: 'Integrated City Sustainability Database (ICSD)',
-      slug: 'another-example',
-      description: `The Integrated City Sustainability Database (ICSD) is a comprehensive
-        data set of U.S. municipal governments and their sustainability programs
-        and policies. Taking advantage of the unique opportunity to combine seven
-        independent data collection efforts, the ICSD provides a valuable resource
-        for scholars in multiple disciplines investigating local environmental and
-        energy sustainability.`,
-    },
-    {
-      title: 'Integrated City Sustainability Database (ICSD)',
-      slug: 'another-example',
-      description: `The Integrated City Sustainability Database (ICSD) is a comprehensive
-        data set of U.S. municipal governments and their sustainability programs
-        and policies. Taking advantage of the unique opportunity to combine seven
-        independent data collection efforts, the ICSD provides a valuable resource
-        for scholars in multiple disciplines investigating local environmental and
-        energy sustainability.`,
-    },
-    {
-      title: 'Integrated City Sustainability Database (ICSD)',
-      slug: 'another-example',
-      description: `The Integrated City Sustainability Database (ICSD) is a comprehensive
-        data set of U.S. municipal governments and their sustainability programs
-        and policies. Taking advantage of the unique opportunity to combine seven
-        independent data collection efforts, the ICSD provides a valuable resource
-        for scholars in multiple disciplines investigating local environmental and
-        energy sustainability.`,
-    },
-  ];
-*/
 
 export default ({ data }) => {
   const dataList = data.allContentfulData.edges;
   return (
-    <Layout
-      style={{
-        background: 'linear-gradient(to bottom right, white, black)',
-      }}
-    >
+    <Layout>
       <SEO title="Explore Data" />
       <Container>
-        <h1j>Explore the Data</h1j>
+        <h1>Explore the Data</h1>
         <DataList>
           {dataList.map((dataInstance) => {
             const { title, slug } = dataInstance.node;
@@ -92,8 +43,6 @@ export default ({ data }) => {
                 <p margin={{ bottom: '3rem' }}>
                   {`${summary.slice(0, 200)}...`}
                 </p>
-                <br />
-                <br />
                 <TextButton label="View Data" href={`/data/${slug}/`} />
               </Card>
             );
@@ -119,41 +68,3 @@ export const query = graphql`
     }
   }
 `;
-
-// import React from 'react';
-// import { graphql } from 'gatsby';
-// import Layout from '../components/layout';
-
-// export default ({ data }) => {
-//   const dataList = data.allContentfulData.edges;
-//   return (
-//     <Layout>
-//       <h1>Explore the Data</h1>
-//       {dataList.map((dataInstance) => {
-//         const { title, slug } = dataInstance.node;
-//         return (
-//           <div key={title}>
-//             <a href={`/data/${slug}/`}>{title}</a>
-//             <hr />
-//           </div>
-//         );
-//       })}
-//     </Layout>
-//   );
-// };
-
-// export const query = graphql`
-//   query {
-//     allContentfulData {
-//       edges {
-//         node {
-//           title
-//           slug
-//           summary {
-//             summary
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
