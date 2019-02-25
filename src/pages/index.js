@@ -17,7 +17,11 @@ export default ({ data }) => {
       <SEO title="Home" />
       <Layout>
         <Showcase showcaseData={showcaseData} />
-        <TagSections sections={tagSections} />
+        <div style={{ textAlign: 'center' }}>
+          <h2>Will be placing tag sections below</h2>
+          <p>like dis</p>
+        </div>
+        {/* <TagSections sections={tagSections} /> */}
       </Layout>
     </>
   );
@@ -28,13 +32,8 @@ export const query = graphql`
     contentfulHomePage {
       welcomeImages {
         title
-        sizes(
-          maxWidth: 1300
-          maxHeight: 500
-          resizingBehavior: PAD
-          background: "rgb:000000"
-        ) {
-          ...GatsbyContentfulSizes_withWebp
+        fixed(width: 1500, height: 500) {
+          ...GatsbyContentfulFixed_withWebp
         }
       }
       primaryMessage

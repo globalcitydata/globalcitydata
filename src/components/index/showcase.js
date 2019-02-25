@@ -8,31 +8,29 @@ import { ContainedButton } from '../buttons';
 
 const ShowcaseWrapper = style.section`
   position: relative;
-  color: #fff;
   text-align: center;
 `;
 
 const ImagesWrapper = style.div`
-  position: absolute;
-  width: 100%;
-  max-height: 650px;
-  z-index: -1;
-  filter: brightness(70%);
 
-  @media (max-width: 767px) {
-    height: 1500px;
-  }
+  max-height: 500px;
+  filter: brightness(60%);
 `;
 
 const ContentWrapper = style.div`
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, 0);
+  padding: 0 0.5em;
   color: white;
-  padding: 30px 5% 0;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
 
-  @media (max-width: 767px) {
-    padding: 25px 20px;
+  @media(max-width: 1000px) {
+    font-size: 16px;
+  }
+  
+  @media(max-width: 600px) {
+    font-size: 14px;
   }
 `;
 
@@ -40,7 +38,7 @@ const WelcomeImages = ({ images }) => (
   <ImagesWrapper>
     <Carousel fill play={6000}>
       {images.map((img, i) => (
-        <Img sizes={img.sizes} key={i} />
+        <Img fixed={img.fixed} key={i} />
       ))}
     </Carousel>
   </ImagesWrapper>
