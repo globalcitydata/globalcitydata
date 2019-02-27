@@ -15,13 +15,18 @@ const SEO = ({ description, lang, title }) => (
           }}
           title={title}
           titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-          // link={[
-          //   {
-          //     href:
-          //       'https://fonts.googleapis.com/css?family=Crimson+Text|Lato|Rosario',
-          //     rel: 'stylesheet',
-          //   },
-          // ]}
+          link={[
+            // {
+            //   href:
+            //     'https://fonts.googleapis.com/css?family=Crimson+Text|Lato|Rosario',
+            //   rel: 'stylesheet',
+            // },
+            {
+              href:
+                'https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css',
+              rel: 'stylesheet',
+            },
+          ]}
           meta={[
             {
               name: 'description',

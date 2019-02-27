@@ -2,11 +2,14 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-// Components
+// General Components
 import SEO from '../components/seo';
-import { TextButton } from '../components/buttons';
 import Layout from '../components/layout';
+import { TextButton } from '../components/buttons';
 import Container from '../components/container';
+
+// Page Components
+import DataSearch from '../components/data/dataSearch';
 
 const DataList = styled.section`
   display: flex;
@@ -32,6 +35,7 @@ export default ({ data }) => {
       <SEO title="Explore Data" />
       <Container>
         <h1>Explore the Data</h1>
+        <DataSearch />
         <DataList>
           {dataList.map((dataInstance) => {
             const { title, slug } = dataInstance.node;
