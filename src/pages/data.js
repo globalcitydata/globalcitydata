@@ -28,15 +28,21 @@ const Card = styled.div`
   background: lightgray;
 `;
 
+const DataContainer = styled.div`
+  margin: 3rem auto;
+  max-width: 1300px;
+  padding: 0 1rem;
+`;
+
 export default ({ data }) => {
   const dataList = data.allContentfulData.edges;
   return (
     <Layout>
       <SEO title="Explore Data" />
-      <Container>
-        <h1>Explore the Data</h1>
+      <DataContainer>
+        <h1 style={{ marginBottom: '3.5rem' }}>Explore the Data</h1>
         <DataSearch />
-        <DataList>
+        {/* <DataList>
           {dataList.map((dataInstance) => {
             const { title, slug } = dataInstance.node;
             // const { title, slug, description: summary } = dataInstance;
@@ -51,8 +57,8 @@ export default ({ data }) => {
               </Card>
             );
           })}
-        </DataList>
-      </Container>
+        </DataList> */}
+      </DataContainer>
     </Layout>
   );
 };

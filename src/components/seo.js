@@ -21,6 +21,18 @@ const SEO = ({ description, lang, title }) => (
             //     'https://fonts.googleapis.com/css?family=Crimson+Text|Lato|Rosario',
             //   rel: 'stylesheet',
             // },
+            // {
+            //   href:
+            //     'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
+            //   rel: 'stylesheet',
+            // },
+
+            // Materialize Font Icons
+            {
+              href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
+              rel: 'stylesheet',
+            },
+            // Algolia Search CSS
             {
               href:
                 'https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css',

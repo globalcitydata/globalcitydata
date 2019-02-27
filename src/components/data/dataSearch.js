@@ -1,12 +1,19 @@
 import React from 'react';
+
+// General Components
+import styled from 'styled-components';
+import { Grid } from '@material-ui/core';
 import {
   InstantSearch,
   Hits,
   SearchBox,
-  RefinementList,
+  Pagination,
 } from 'react-instantsearch-dom';
 
-import { startCase } from 'lodash';
+// Page Components
+import RefinementMenu from './dataSearch/RefinementMenu';
+
+// Utils
 
 const tagNames = [
   'dataType',
@@ -17,55 +24,46 @@ const tagNames = [
   'worldRegions',
 ];
 
-const DataCard = ({ hit }) => {
-  // console.log(hit);
-
-  // Get Tags from hit
+const getDataObjFromHit = (hit) => {
   const tags = {};
-
+  // Get Tags from hit
   tagNames.forEach((tag) => {
     tags[tag] = hit.fields[tag]['en-US'];
   });
-
   // Create data object
   const dataObj = {
     tags,
     title: hit.fields.title['en-US'],
     slug: hit.fields.slug['en-US'],
   };
-  // console.log(dataObj);
+  return dataObj;
+};
 
+const DataCard = ({ hit }) => {
+  const dataObj = getDataObjFromHit(hit);
   return (
-    <div style={{ marginTop: '10px' }}>
-      <h3>{dataObj.title}</h3>
-    </div>
+    // <Grid item xs={12} md={6} xl={4}>
+    // <Paper>
+    <h3>{dataObj.title}</h3>
+    // </Paper>
+    // </Grid>
   );
 };
 
-const Refinement = ({ tagName }) => {
-  const attribute = `fields.${tagName}.en-US`;
-  return (
-    <>
-      <h4>{startCase(tagName)}</h4>
-      <RefinementList attribute={attribute} />
-    </>
-  );
-};
-
-const RefineBar = () => (
-  <>
-    {tagNames.map(tag => (
-      <Refinement tagName={tag} />
-    ))}
-  </>
-);
+const DataList = styled(Hits)``;
 
 const Search = () => (
-  <div className="container">
-    <SearchBox />
-    <RefineBar />
-    <Hits hitComponent={DataCard} />
-  </div>
+  <Grid container>
+    <Grid item xs={12} md={3}>
+      <RefinementMenu tagNames={tagNames} />
+    </Grid>
+    <Grid item md={1} />
+    <Grid item xs={12} md={7}>
+      <SearchBox />
+      <DataList hitComponent={DataCard} />
+      {/* <Pagination /> */}
+    </Grid>
+  </Grid>
 );
 
 const DataSearch = () => (
