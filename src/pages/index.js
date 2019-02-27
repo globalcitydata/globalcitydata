@@ -7,11 +7,12 @@ import SEO from '../components/seo';
 
 // Page Components
 import Showcase from '../components/index/showcase';
-import TagSections from '../components/index/tagSections';
+// import TagSections from '../components/index/tagSections';
+// import Sponsors from '../components/index/sponsors';
 
 export default ({ data }) => {
   const showcaseData = data.contentfulHomePage;
-  const tagSections = data.allContentfulHomeTagSection.edges;
+  // const tagSections = data.allContentfulHomeTagSection.edges;
   return (
     <>
       <SEO title="Home" />
@@ -38,6 +39,9 @@ export const query = graphql`
       }
       primaryMessage
       secondaryMessage
+      sponsors {
+        title
+      }
     }
     allContentfulHomeTagSection {
       edges {
