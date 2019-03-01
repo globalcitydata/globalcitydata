@@ -1,20 +1,28 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 // General Components
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
+import {
+  Grid,
+  Card,
+  CardHeader,
+  CardActions,
+  CardContent,
+  Button,
+} from '@material-ui/core';
 import {
   InstantSearch,
-  Hits,
+  connectHits,
   SearchBox,
   Pagination,
 } from 'react-instantsearch-dom';
+import { TextButton } from '../buttons';
 
 // Page Components
 import RefinementMenu from './dataSearch/RefinementMenu';
 
 // Utils
-
 const tagNames = [
   'dataType',
   'determinants',
@@ -39,18 +47,36 @@ const getDataObjFromHit = (hit) => {
   return dataObj;
 };
 
-const DataCard = ({ hit }) => {
+const Hit = ({ hit }) => {
   const dataObj = getDataObjFromHit(hit);
   return (
-    // <Grid item xs={12} md={6} xl={4}>
-    // <Paper>
-    <h3>{dataObj.title}</h3>
-    // </Paper>
+    // <Grid container spacing={24}>
+    <Grid item xs={12} md={6} xl={4}>
+      <Card style={{ height: '100%' }}>
+        <CardHeader title={dataObj.title} />
+        {/* <CardContent>
+          <h3>{dataObj.title}</h3>
+        </CardContent> */}
+        <CardActions>
+          <TextButton label="View Data" href={`/data/${dataObj.slug}/`} />
+          {/* <Link to={`/data/${dataObj.slug}/`}>View Data</Link> */}
+        </CardActions>
+      </Card>
+    </Grid>
     // </Grid>
   );
 };
 
-const DataList = styled(Hits)``;
+const Hits = ({ hits }) => (
+  <Grid container spacing={24}>
+    {hits.map(hit => (
+      <Hit key={hit.objectID} hit={hit} />
+    ))}
+  </Grid>
+);
+
+// 2. Connect the component using the connector
+const CustomHits = connectHits(Hits);
 
 const Search = () => (
   <Grid container>
@@ -60,7 +86,7 @@ const Search = () => (
     <Grid item md={1} />
     <Grid item xs={12} md={7}>
       <SearchBox />
-      <DataList hitComponent={DataCard} />
+      <CustomHits />
       {/* <Pagination /> */}
     </Grid>
   </Grid>
