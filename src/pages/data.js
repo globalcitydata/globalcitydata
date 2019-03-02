@@ -13,8 +13,13 @@ import PageTitle from '../components/pageTitle';
 import DataSearch from '../components/data/dataSearch';
 
 const styles = {
+  container: {
+    margin: '0 auto',
+    maxWidth: '900px',
+    padding: '0 1rem',
+  },
   data: {
-    margin: '3rem auto',
+    margin: '0 auto',
     maxWidth: '1300px',
     padding: '0 1rem',
   },
@@ -23,9 +28,9 @@ const styles = {
 const Data = ({ classes }) => (
   <Layout>
     <SEO title="Explore Data" />
-    <Container>
+    <div className={classes.container}>
       <PageTitle>Explore the Data</PageTitle>
-    </Container>
+    </div>
     <div className={classes.data}>
       <DataSearch />
     </div>

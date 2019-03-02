@@ -13,6 +13,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import {
   InstantSearch,
+  Configure,
   connectHits,
   SearchBox,
   Pagination,
@@ -71,8 +72,9 @@ const Search = () => (
     <Grid item md={1} />
     <Grid item xs={12} md={7}>
       <SearchBox />
+      <Configure hitsPerPage={8} />
       <CustomHits />
-      {/* <Pagination /> */}
+      <Pagination />
     </Grid>
   </Grid>
 );

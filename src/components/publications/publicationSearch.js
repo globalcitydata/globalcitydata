@@ -2,40 +2,45 @@ import React from 'react';
 
 // General Components
 import styled from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography, List, ListItem } from '@material-ui/core';
 import {
   InstantSearch,
+  Configure,
   connectHits,
   SearchBox,
   Pagination,
 } from 'react-instantsearch-dom';
 import { TextButton } from '../buttons';
 
+const styles = {};
+
 const Hit = ({ hit }) => {
   console.log(hit.fields.relatedData['en-US'].sys);
   return (
-    <>
-      <li>{hit.fields.body['en-US']}</li>
+    <ListItem>
+      <Typography variant="body2">{hit.fields.body['en-US']}</Typography>
       <hr />
-    </>
+    </ListItem>
   );
 };
 
 const Hits = ({ hits }) => (
-  <ul style={{ listStyle: 'none' }}>
+  <List>
     {hits.map(hit => (
       <Hit key={hit.objectID} hit={hit} />
     ))}
-  </ul>
+  </List>
 );
 
-// 2. Connect the component using the connector
 const CustomHits = connectHits(Hits);
 
 const Search = () => (
   <>
     <SearchBox />
+    <Configure hitsPerPage={8} />
     <CustomHits />
-    {/* <Pagination /> */}
+    <Pagination />
   </>
 );
 
@@ -49,4 +54,4 @@ const DataSearch = () => (
   </InstantSearch>
 );
 
-export default DataSearch;
+export default withStyles(styles)(DataSearch);
