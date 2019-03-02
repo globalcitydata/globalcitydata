@@ -21,11 +21,11 @@ const SEO = ({ description, lang, title }) => (
             //     'https://fonts.googleapis.com/css?family=Crimson+Text|Lato|Rosario',
             //   rel: 'stylesheet',
             // },
-            // {
-            //   href:
-            //     'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
-            //   rel: 'stylesheet',
-            // },
+            {
+              href:
+                'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
+              rel: 'stylesheet',
+            },
 
             // Materialize Font Icons
             {

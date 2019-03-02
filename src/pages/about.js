@@ -1,30 +1,31 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
-// Components
-import Container from '../components/container';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import withRoot from '../withRoot';
+import Markdown from '../components/markdown';
+import Container from '../components/container';
 
-export default ({ data }) => {
-  const { name, body } = data.contentfulOurStoryPage;
+const About = ({ data }) => {
+  const { body } = data.contentfulOurStoryPage;
   const { html } = body.childMarkdownRemark;
   return (
     <Layout>
       <SEO title="About" description="About page for Global City Data" />
       <Container>
-        <h1>{name}</h1>
         {/* Display Contentful Our Story markdown body as html */}
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
+        <Markdown>{html}</Markdown>
       </Container>
     </Layout>
   );
 };
 
+export default withRoot(About);
+
 export const query = graphql`
   query {
     contentfulOurStoryPage {
-      name
       body {
         childMarkdownRemark {
           html
