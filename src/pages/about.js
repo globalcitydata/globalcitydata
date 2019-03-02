@@ -14,8 +14,8 @@ const About = ({ data }) => {
       <SEO title="About" description="About page for Global City Data" />
       <Container>
         {/* Display Contentful Our Story markdown body as html */}
-        {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
         <Markdown>{html}</Markdown>
+        {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
       </Container>
     </Layout>
   );
