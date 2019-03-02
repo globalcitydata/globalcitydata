@@ -1,61 +1,66 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import style from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import { Carousel } from 'grommet';
-import { ContainedButton } from '../buttons';
+import { Typography } from '@material-ui/core';
+import ButtonLink from '../buttons';
 
-const ShowcaseWrapper = style.section`
-  position: relative;
-  text-align: center;
-`;
+const styles = {
+  showcaseWrapper: {
+    position: 'relative',
+    textAlign: 'center',
+  },
+  imagesWrapper: {
+    maxHeight: '500px',
+    filter: 'brightness(40%)',
+  },
+  contentWrapper: {
+    position: 'absolute',
+    left: '50%',
+    top: '20%',
+    transform: 'translate(-50%, 0)',
+    padding: '0 0.5rem',
+    color: 'white',
+    '@media(max-width: 1000px': {
+      fontSize: '16px',
+    },
+    '@media(maxWidth: 600px)': {
+      fontSize: '14px',
+    },
+  },
+};
 
-const ImagesWrapper = style.div`
-
-  max-height: 500px;
-  filter: brightness(60%);
-`;
-
-const ContentWrapper = style.div`
-  position: absolute;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, 0);
-  padding: 0 0.5em;
-  color: white;
-
-  @media(max-width: 1000px) {
-    font-size: 16px;
-  }
-  
-  @media(max-width: 600px) {
-    font-size: 14px;
-  }
-`;
-
-const WelcomeImages = ({ images }) => (
-  <ImagesWrapper>
+const WelcomeImages = ({ images, classes }) => (
+  <div className={classes.imagesWrapper}>
     <Carousel fill play={6000}>
       {images.map((img, i) => (
         <Img fixed={img.fixed} key={i} />
       ))}
     </Carousel>
-  </ImagesWrapper>
+  </div>
 );
 
-const Showcase = ({ showcaseData }) => {
+const Showcase = ({ showcaseData, classes }) => {
   const { primaryMessage, secondaryMessage, welcomeImages } = showcaseData;
   return (
-    <ShowcaseWrapper>
-      <WelcomeImages images={welcomeImages} />
-      <ContentWrapper>
-        <h1 style={{ color: '#fff' }}>{primaryMessage}</h1>
-        <p>{secondaryMessage}</p>
-        <ContainedButton label="Explore Data" href="/data/" />
-      </ContentWrapper>
-    </ShowcaseWrapper>
+    <div className={classes.showcaseWrapper}>
+      <WelcomeImages images={welcomeImages} classes={classes} />
+      <div className={classes.contentWrapper}>
+        <Typography variant="h4" color="inherit" gutterBottom>
+          {primaryMessage}
+        </Typography>
+        <Typography variant="body2" color="inherit" gutterBottom>
+          {secondaryMessage}
+        </Typography>
+        {/* <ContainedButton label="Explore Data" href="/data/" /> */}
+        <ButtonLink variant="contained" to="/data/">
+          Explore Data
+        </ButtonLink>
+      </div>
+    </div>
   );
 };
 
-export default Showcase;
+export default withStyles(styles)(Showcase);

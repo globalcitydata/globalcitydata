@@ -31,6 +31,7 @@ const theme = createMuiTheme({
     htmlFontSize: 10,
     fontSize: 11,
     useNextVariants: true,
+    fontFamily: ['Lato', 'Rosario', 'Roboto', 'Arial', 'sans-serif'].join(','),
   },
   overrides: {},
   props: {},

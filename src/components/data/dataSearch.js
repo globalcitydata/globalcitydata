@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 // General Components
-import styled from 'styled-components';
 import {
   Grid,
   Card,
@@ -11,46 +10,27 @@ import {
   CardContent,
   Button,
 } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import {
   InstantSearch,
   connectHits,
   SearchBox,
   Pagination,
 } from 'react-instantsearch-dom';
-import { TextButton } from '../buttons';
+import ButtonLink from '../buttons';
 
-// Page Components
 import RefinementMenu from './dataSearch/RefinementMenu';
 
-// Utils
-const tagNames = [
-  'dataType',
-  'determinants',
-  'sectors',
-  'spatialScales',
-  'temporalScales',
-  'worldRegions',
-];
+import { getDataObjFromHit, tagNames } from './dataUtils';
 
-const getDataObjFromHit = (hit) => {
-  const tags = {};
-  // Get Tags from hit
-  tagNames.forEach((tag) => {
-    tags[tag] = hit.fields[tag]['en-US'];
-  });
-  // Create data object
-  const dataObj = {
-    tags,
-    title: hit.fields.title['en-US'],
-    slug: hit.fields.slug['en-US'],
-  };
-  return dataObj;
-};
+const styles = {};
+
+// Utils
 
 const Hit = ({ hit }) => {
   const dataObj = getDataObjFromHit(hit);
+  console.log(hit);
   return (
-    // <Grid container spacing={24}>
     <Grid item xs={12} md={6} xl={4}>
       <Card style={{ height: '100%' }}>
         <CardHeader title={dataObj.title} />
@@ -58,8 +38,9 @@ const Hit = ({ hit }) => {
           <h3>{dataObj.title}</h3>
         </CardContent> */}
         <CardActions>
-          <TextButton label="View Data" href={`/data/${dataObj.slug}/`} />
-          {/* <Link to={`/data/${dataObj.slug}/`}>View Data</Link> */}
+          <Button component={Link} to={`/data/${dataObj.slug}/`}>
+            View Data
+          </Button>
         </CardActions>
       </Card>
     </Grid>
@@ -102,4 +83,4 @@ const DataSearch = () => (
   </InstantSearch>
 );
 
-export default DataSearch;
+export default withStyles(styles)(DataSearch);

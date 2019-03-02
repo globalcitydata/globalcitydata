@@ -1,35 +1,29 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import { Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
-const StyledContainedLink = styled(Link)`
-  background: white;
-  color: red;
-  border-radius: 0.25rem;
-  padding: 0.25rem 1rem;
-
-  position: relative;
-  top: 0;
-  transition: top ease 0.2s;
-  :hover {
-    top: -2px;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
-  }
-`;
-
-const StyledTextLink = styled(Link)`
-  background: white;
-  color: red;
-  border-radius: 0.25rem;
-  padding: 0.25rem 1rem;
-`;
-
-export const ContainedButton = (props) => {
-  const { label, href } = props;
-  return <StyledContainedLink to={href}>{label}</StyledContainedLink>;
+const styles = {
+  btn: {
+    marginTop: '1rem',
+    position: 'relative',
+    top: '0',
+    transition: 'top ease 0.2s',
+    '&:hover': {
+      top: '-3px',
+      // boxShadow: '0 6px 20px 0 rgba(0, 0, 0, 0.25)',
+      boxShadow: '0 10px 10px -6px rgba(0, 0, 0, 0.25)',
+    },
+  },
 };
 
-export const TextButton = (props) => {
-  const { label, href } = props;
-  return <StyledTextLink to={href}>{label}</StyledTextLink>;
+const ButtonLink = (props) => {
+  const { children, to, classes } = props;
+  return (
+    <Button component={Link} to={to} {...props} className={classes.btn}>
+      {children}
+    </Button>
+  );
 };
+
+export default withStyles(styles)(ButtonLink);

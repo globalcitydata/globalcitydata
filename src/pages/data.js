@@ -2,30 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 
 // General Components
+import { withStyles } from '@material-ui/core/styles';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
+import withRoot from '../withRoot';
 import Container from '../components/container';
+import PageTitle from '../components/pageTitle';
 
 // Page Components
 import DataSearch from '../components/data/dataSearch';
 
-const DataContainer = styled.div`
-  margin: 3rem auto;
-  max-width: 1300px;
-  padding: 0 1rem;
-`;
+const styles = {
+  data: {
+    margin: '3rem auto',
+    maxWidth: '1300px',
+    padding: '0 1rem',
+  },
+};
 
-export default () => (
+const Data = ({ classes }) => (
   <Layout>
     <SEO title="Explore Data" />
-    <DataContainer>
-      <Container>
-        <h1>Explore the Data</h1>
-      </Container>
+    <Container>
+      <PageTitle>Explore the Data</PageTitle>
+    </Container>
+    <div className={classes.data}>
       <DataSearch />
-    </DataContainer>
+    </div>
   </Layout>
 );
+
+export default withRoot(withStyles(styles)(Data));
 
 // export const query = graphql`
 //   query {

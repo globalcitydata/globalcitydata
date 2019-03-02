@@ -16,17 +16,12 @@ const SEO = ({ description, lang, title }) => (
           title={title}
           titleTemplate={`%s | ${data.site.siteMetadata.title}`}
           link={[
-            // {
-            //   href:
-            //     'https://fonts.googleapis.com/css?family=Crimson+Text|Lato|Rosario',
-            //   rel: 'stylesheet',
-            // },
+            // Font Families
             {
               href:
-                'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
+                'https://fonts.googleapis.com/css?family=Lato|Rosario|Roboto:300,400,500',
               rel: 'stylesheet',
             },
-
             // Materialize Font Icons
             {
               href: 'https://fonts.googleapis.com/icon?family=Material+Icons',

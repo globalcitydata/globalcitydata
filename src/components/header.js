@@ -1,40 +1,3 @@
-// import React from 'react';
-// import { Link, StaticQuery, graphql } from 'gatsby';
-
-// // Components
-// import Container from "./container";
-
-// export default () => (
-//   <StaticQuery
-//     query={graphql`
-//       query {
-//         site {
-//           siteMetadata {
-//             title
-//           }
-//         }
-//       }
-//     `}
-//     render={data => (
-//       <Container>
-//         <header style={{ marginBottom: '1.5rem' }}>
-//           <Link to="/" style={{ textShadow: 'none', backgroundImage: 'none' }}>
-//             <h3 style={{ display: 'inline' }}>
-//               {data.site.siteMetadata.title}
-//             </h3>
-//           </Link>
-//           <ul style={{ listStyle: 'none', float: 'right' }}>
-//             <ListLink to="/data">Data</ListLink>
-//             <ListLink to="/publications">Publications</ListLink>
-//             <ListLink to="/about/">About</ListLink>
-//             <ListLink to="/contact/">Contact</ListLink>
-//           </ul>
-//         </header>
-//       </Container>
-//     )}
-//   />
-// );
-
 import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
@@ -51,7 +14,7 @@ import withRoot from '../withRoot';
 const NavLink = (props) => {
   const { to, children } = props;
   return (
-    <Button component={Link} to={to}>
+    <Button component={Link} to={to} {...props}>
       {children}
     </Button>
   );
@@ -64,35 +27,43 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+  headerTitle: {
+    fontSize: '1.5rem',
+    textTransform: 'none',
+    textDecoration: 'none',
   },
-  toolbar: {
-    // maxWidth: 1300,
+  link: {
+    fontSize: '1.3rem',
+    textTransform: 'none',
   },
 };
 
 const ButtonAppBar = ({ classes }) => (
   <div className={classes.root}>
-    <AppBar position="static" color="white">
+    <AppBar position="fixed" color="white">
       <Toolbar className={classes.toolbar}>
-        {/* <IconButton
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="Menu"
-        >
-          <MenuIcon />
-        </IconButton> */}
-        <Typography variant="h6" color="inherit" className={classes.grow}>
-          Global City Data
-        </Typography>
-        {/* <Button color="inherit">Login</Button> */}
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/data">Data</NavLink>
-        <NavLink to="/publications">Publications</NavLink>
-        <NavLink to="/about/">About</NavLink>
-        <NavLink to="/contact/">Contact</NavLink>
+        <div className={classes.grow}>
+          <NavLink to="/" className={classes.headerTitle}>
+            Global City Data
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="/" className={classes.link}>
+            Home
+          </NavLink>
+          <NavLink to="/data" className={classes.link}>
+            Data
+          </NavLink>
+          <NavLink to="/publications" className={classes.link}>
+            Publications
+          </NavLink>
+          <NavLink to="/about/" className={classes.link}>
+            About
+          </NavLink>
+          <NavLink to="/contact/" className={classes.link}>
+            Contact
+          </NavLink>
+        </div>
       </Toolbar>
     </AppBar>
   </div>

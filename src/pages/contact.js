@@ -2,16 +2,20 @@ import React from 'react';
 
 // Components
 import Container from '../components/container';
+import PageTitle from '../components/pageTitle';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import withRoot from '../withRoot';
 
-export default () => (
+const Contact = () => (
   <>
     <SEO title="Contact" />
     <Layout>
       <Container>
-        <h1>Contact us</h1>
+        <PageTitle>Contact us</PageTitle>
       </Container>
     </Layout>
   </>
 );
+
+export default withRoot(Contact);
