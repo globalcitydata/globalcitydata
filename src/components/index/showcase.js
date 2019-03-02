@@ -23,11 +23,14 @@ const styles = {
     transform: 'translate(-50%, 0)',
     padding: '0 0.5rem',
     color: 'white',
-    '@media(max-width: 1000px': {
-      fontSize: '16px',
+    fontSize: '1rem',
+    '@media(max-width: 1400px': {
+      top: '10%',
+      fontSize: '0.8rem',
     },
-    '@media(maxWidth: 600px)': {
-      fontSize: '14px',
+    '@media(maxWidth: 1000px)': {
+      top: '5%',
+      fontSize: '0.6rem',
     },
   },
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { withStyles } from '@material-ui/core/styles';
 
 // General Components
 import {
@@ -10,28 +11,30 @@ import {
   CardContent,
   Button,
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+
 import {
   InstantSearch,
   Configure,
   connectHits,
-  SearchBox,
   Pagination,
 } from 'react-instantsearch-dom';
-import ButtonLink from '../buttons';
-import CustomSearchBox from '../customSearchBox';
 
+import CustomSearchBox from '../customSearchBox';
 import RefinementMenu from './dataSearch/RefinementMenu';
 
 import { getDataObjFromHit, tagNames } from './dataUtils';
 
-const styles = {};
+const styles = {
+  pagination: {
+    margin: '0 auto',
+    paddingTop: '2rem',
+  },
+};
 
 // Utils
 
 const Hit = ({ hit }) => {
   const dataObj = getDataObjFromHit(hit);
-  console.log(hit);
   return (
     <Grid item xs={12} md={6} xl={4}>
       <Card style={{ height: '100%' }}>
@@ -41,7 +44,7 @@ const Hit = ({ hit }) => {
         </CardContent> */}
         <CardActions>
           <Button
-            color="secondary"
+            color="primary"
             component={Link}
             to={`/data/${dataObj.slug}/`}
           >
@@ -54,7 +57,7 @@ const Hit = ({ hit }) => {
   );
 };
 
-const Hits = ({ hits }) => (
+const Hits = ({ hits, classes }) => (
   <Grid container spacing={24}>
     {hits.map(hit => (
       <Hit key={hit.objectID} hit={hit} />
@@ -65,7 +68,7 @@ const Hits = ({ hits }) => (
 // 2. Connect the component using the connector
 const CustomHits = connectHits(Hits);
 
-const Search = () => (
+const Search = ({ classes }) => (
   <Grid container>
     <Grid item xs={12} md={3}>
       <RefinementMenu tagNames={tagNames} />
@@ -73,20 +76,22 @@ const Search = () => (
     <Grid item md={1} />
     <Grid item xs={12} md={7}>
       <CustomSearchBox />
-      <Configure hitsPerPage={8} />
-      <CustomHits />
-      <Pagination />
+      <Configure hitsPerPage={6} />
+      <CustomHits classes={classes} />
     </Grid>
+    <div className={classes.pagination}>
+      <Pagination />
+    </div>
   </Grid>
 );
 
-const DataSearch = () => (
+const DataSearch = ({ classes }) => (
   <InstantSearch
     appId="S8S302ERM8"
     apiKey="cc2815f16dd85b0b135372395b8fed44"
     indexName="dataList"
   >
-    <Search />
+    <Search classes={classes} />
   </InstantSearch>
 );
 

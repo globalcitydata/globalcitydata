@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   RefinementList,
-  CurrentRefinements,
+  // CurrentRefinements,
   ClearRefinements,
 } from 'react-instantsearch-dom';
 
