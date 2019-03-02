@@ -38,7 +38,11 @@ const Hit = ({ hit }) => {
           <h3>{dataObj.title}</h3>
         </CardContent> */}
         <CardActions>
-          <Button component={Link} to={`/data/${dataObj.slug}/`}>
+          <Button
+            color="secondary"
+            component={Link}
+            to={`/data/${dataObj.slug}/`}
+          >
             View Data
           </Button>
         </CardActions>
