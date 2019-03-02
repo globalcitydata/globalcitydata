@@ -19,6 +19,7 @@ import {
   Pagination,
 } from 'react-instantsearch-dom';
 import ButtonLink from '../buttons';
+import CustomSearchBox from '../customSearchBox';
 
 import RefinementMenu from './dataSearch/RefinementMenu';
 
@@ -71,7 +72,7 @@ const Search = () => (
     </Grid>
     <Grid item md={1} />
     <Grid item xs={12} md={7}>
-      <SearchBox />
+      <CustomSearchBox />
       <Configure hitsPerPage={8} />
       <CustomHits />
       <Pagination />
