@@ -28,15 +28,17 @@ const Index = ({ data, classes }) => {
   return (
     <>
       <SEO title="Home" />
-      <Header />
-      <div className={classes.main}>
+      {/* <Header /> */}
+      {/* <div className={classes.main}> */}
+      <Layout>
         <Showcase showcaseData={showcaseData} />
         <div className={classes.tagSection}>
           <h2>Will be placing tag sections below</h2>
           <p>like dis</p>
         </div>
-        {/* <TagSections sections={tagSections} /> */}
-      </div>
+      </Layout>
+      {/* <TagSections sections={tagSections} /> */}
+      {/* </div> */}
     </>
   );
 };

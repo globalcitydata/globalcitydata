@@ -5,11 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 // General Components
 import {
   Grid,
-  Card,
-  CardHeader,
-  CardActions,
-  CardContent,
+  Paper,
+  Divider,
   Button,
+  Typography,
+  Grow,
 } from '@material-ui/core';
 
 import {
@@ -29,20 +29,38 @@ const styles = {
     margin: '0 auto',
     paddingTop: '2rem',
   },
+  card: {
+    height: '100%',
+    padding: '1rem',
+    position: 'relative',
+  },
+  title: {
+    paddingBottom: '2rem',
+  },
+  content: {
+    paddingBottom: '4.5rem',
+  },
+  action: {
+    position: 'absolute',
+    bottom: '1rem',
+    width: '100%',
+  },
 };
 
 // Utils
-
-const Hit = ({ hit }) => {
+const Hit = ({ hit, classes }) => {
   const dataObj = getDataObjFromHit(hit);
   return (
     <Grid item xs={12} md={6} xl={4}>
-      <Card style={{ height: '100%' }}>
-        <CardHeader title={dataObj.title} />
-        {/* <CardContent>
-          <h3>{dataObj.title}</h3>
-        </CardContent> */}
-        <CardActions>
+      <Paper className={`${classes.card} lift`}>
+        <Typography variant="h5" className={classes.title}>
+          {dataObj.title}
+        </Typography>
+        <div className={classes.content}>
+          <Typography variant="caption">tags will go here</Typography>
+        </div>
+        <div className={classes.action}>
+          {/* <Divider variant="insent" /> */}
           <Button
             color="primary"
             component={Link}
@@ -50,22 +68,20 @@ const Hit = ({ hit }) => {
           >
             View Data
           </Button>
-        </CardActions>
-      </Card>
+        </div>
+      </Paper>
     </Grid>
-    // </Grid>
   );
 };
 
 const Hits = ({ hits, classes }) => (
   <Grid container spacing={24}>
-    {hits.map(hit => (
-      <Hit key={hit.objectID} hit={hit} />
+    {hits.map((hit, i) => (
+      <Hit key={hit.objectID} hit={hit} classes={classes} />
     ))}
   </Grid>
 );
 
-// 2. Connect the component using the connector
 const CustomHits = connectHits(Hits);
 
 const Search = ({ classes }) => (

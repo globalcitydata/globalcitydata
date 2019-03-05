@@ -1,16 +1,21 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import { Carousel } from 'grommet';
-import { Typography } from '@material-ui/core';
-import ButtonLink from '../buttons';
+import { Typography, Button } from '@material-ui/core';
+// import ButtonLink from '../buttons';
 
 const styles = {
   showcaseWrapper: {
     position: 'relative',
     textAlign: 'center',
+    marginTop: '60px',
+  },
+  helloButton: {
+    marginTop: '1rem',
   },
   imagesWrapper: {
     maxHeight: '500px',
@@ -58,9 +63,14 @@ const Showcase = ({ showcaseData, classes }) => {
           {secondaryMessage}
         </Typography>
         {/* <ContainedButton label="Explore Data" href="/data/" /> */}
-        <ButtonLink variant="contained" to="/data/">
+        <Button
+          variant="contained"
+          component={Link}
+          to="/data/"
+          className={`${classes.helloButton} lift`}
+        >
           Explore Data
-        </ButtonLink>
+        </Button>
       </div>
     </div>
   );

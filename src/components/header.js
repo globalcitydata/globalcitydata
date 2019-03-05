@@ -23,34 +23,29 @@ const NavLink = (props) => {
 const styles = {
   root: {
     flexGrow: 0,
+    backgroundColor: 'white',
   },
   grow: {
     flexGrow: 1,
   },
   headerTitle: {
-    fontSize: '1.5rem',
-    textTransform: 'none',
-    textDecoration: 'none',
+    fontSize: '1.6rem',
   },
   link: {
     fontSize: '1.3rem',
-    textTransform: 'none',
   },
 };
 
 const ButtonAppBar = ({ classes }) => (
   <div className={classes.root}>
-    <AppBar position="fixed" color="white">
-      <Toolbar className={classes.toolbar}>
+    <AppBar position="fixed" color="inherit">
+      <Toolbar>
         <div className={classes.grow}>
           <NavLink to="/" className={classes.headerTitle}>
             Global City Data
           </NavLink>
         </div>
         <div>
-          <NavLink to="/" className={classes.link}>
-            Home
-          </NavLink>
           <NavLink to="/data" className={classes.link}>
             Data
           </NavLink>

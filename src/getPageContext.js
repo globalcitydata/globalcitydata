@@ -1,41 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 
 import { SheetsRegistry } from 'jss';
-import {
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import { blue, green, red } from '@material-ui/core/colors';
-
-// A theme with custom primary and secondary color.
-// It's optional.
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: blue[300],
-      main: blue[500],
-      dark: blue[700],
-    },
-    secondary: {
-      light: green[300],
-      main: green[500],
-      dark: green[700],
-    },
-    error: {
-      light: red[300],
-      main: red[500],
-      dark: red[700],
-    },
-  },
-  typography: {
-    htmlFontSize: 10,
-    fontSize: 11,
-    useNextVariants: true,
-    fontFamily: ['Lato', 'Rosario', 'Roboto', 'Arial', 'sans-serif'].join(','),
-  },
-  overrides: {},
-  props: {},
-});
+import { createGenerateClassName } from '@material-ui/core/styles';
+import theme from './theme';
 
 function createPageContext() {
   return {

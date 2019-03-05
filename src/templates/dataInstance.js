@@ -9,7 +9,6 @@ import SEO from '../components/seo';
 import Container from '../components/container';
 import withRoot from '../withRoot';
 import Markdown from '../components/markdown';
-import PageTitle from '../components/pageTitle';
 
 const AttributeTitle = ({ children, classes }) => (
   <Typography variant="h5" className={classes.attributeTitle}>
@@ -83,8 +82,8 @@ const Data = ({ data, classes }) => {
     <>
       <SEO title={title} />
       <Layout>
-        <Container>
-          <PageTitle>{title}</PageTitle>
+        <Container className="wrapper">
+          <Typography variant="h3">{title}</Typography>
           <Markdown className={classes.body}>{body}</Markdown>
           <KeyHighlights highlights={highlights} classes={classes} />
           <Authors authors={authors} classes={classes} />

@@ -33,6 +33,7 @@ const options = {
       ),
     },
     p: { component: props => <Typography paragraph {...props} /> },
+    span: { component: props => <Typography paragraph {...props} /> },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (
         <li className={classes.listItem}>

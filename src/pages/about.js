@@ -1,11 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Typography } from '@material-ui/core';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import withRoot from '../withRoot';
 import Markdown from '../components/markdown';
 import Container from '../components/container';
-import PageTitle from '../components/pageTitle';
 
 const About = ({ data }) => {
   const { body } = data.contentfulOurStoryPage;
@@ -13,9 +13,9 @@ const About = ({ data }) => {
   return (
     <Layout>
       <SEO title="About" description="About page for Global City Data" />
-      <Container>
+      <Container className="wrapper">
+        <Typography variant="h3">Our Story</Typography>
         {/* Display Contentful Our Story markdown body as html */}
-        <PageTitle>Our Story</PageTitle>
         <Markdown>{html}</Markdown>
         {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
       </Container>
