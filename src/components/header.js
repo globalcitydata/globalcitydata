@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Drawer } from '@material-ui/core';
-import withRoot from '../withRoot';
 
 const NavLink = (props) => {
   const { to, children } = props;
@@ -68,4 +67,4 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(ButtonAppBar));
+export default withStyles(styles)(ButtonAppBar);
