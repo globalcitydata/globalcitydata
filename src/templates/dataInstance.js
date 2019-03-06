@@ -82,7 +82,7 @@ const Data = ({ data, classes }) => {
     <>
       <SEO title={title} />
       <Layout>
-        <Container className="wrapper">
+        <Container>
           <Typography variant="h3">{title}</Typography>
           <Markdown className={classes.body}>{body}</Markdown>
           <KeyHighlights highlights={highlights} classes={classes} />
