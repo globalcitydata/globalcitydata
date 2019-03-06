@@ -32,6 +32,12 @@ const theme = createMuiTheme({
       h3: {
         paddingBottom: '3rem',
       },
+      h4: {
+        paddingBottom: '2rem',
+      },
+      subtitle2: {
+        paddingBottom: '1.5rem',
+      },
     },
   },
   props: {},

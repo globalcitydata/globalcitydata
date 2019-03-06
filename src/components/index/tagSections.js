@@ -1,36 +1,106 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import style from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography, Grid } from '@material-ui/core';
 
-const TagInstance = ({ instance }) => {
-  const { title, description, fluid } = instance;
+/**
+ * Transform title of picture from contentful title
+ * to title we actually want.
+ *
+ * Example:
+ *
+ * Outcome_Cities -> Cities
+ */
+const transformText = (oldTitle) => {
+  const arr = oldTitle.split('_'); //
+  arr.shift();
+  return arr.join(' ');
+};
+
+const styles = {
+  section: {
+    padding: '3rem 0',
+  },
+  container: {
+    margin: '0 auto',
+    maxWidth: '1000px',
+  },
+  heroWrapper: {
+    position: 'relative',
+    textAlign: 'center',
+    margin: '1rem 1rem 0',
+  },
+  imgWrapper: {
+    maxHeight: '200px',
+    filter: 'brightness(70%)',
+    borderRadius: '4px',
+  },
+  img: {
+    borderRadius: '4px',
+  },
+  contentWrapper: {
+    position: 'absolute',
+    left: '5%',
+    bottom: '10%',
+    padding: '0 0.5rem',
+    color: 'white',
+    fontSize: '1rem',
+    '@media(max-width: 1400px': {
+      top: '10%',
+      fontSize: '0.8rem',
+    },
+    '@media(maxWidth: 1000px)': {
+      top: '5%',
+      fontSize: '0.6rem',
+    },
+  },
+};
+
+const TagPicture = ({ instance, classes }) => {
+  const { title, fixed } = instance;
   return (
-    <>
-      <h5>{title}</h5>
-      {description && <p>description</p>}
-      <Img fluid={fluid} />
-    </>
+    <Grid item s={12} m={6} l={4} xl={3}>
+      <div className={`${classes.heroWrapper} lift`}>
+        <div className={classes.imgWrapper}>
+          <Img fixed={fixed} className={classes.img} />
+        </div>
+        <div className={classes.contentWrapper}>
+          <Typography variant="body1" color="inherit">
+            {transformText(title)}
+          </Typography>
+        </div>
+      </div>
+    </Grid>
   );
 };
 
-const TagSection = ({ tag }) => {
-  const { title: tagTitle, associatedPictures } = tag;
+const TagSection = ({ tag, classes }) => {
+  const { title, description, associatedPictures } = tag;
   return (
-    <>
-      <h3>{tagTitle}</h3>
-      {associatedPictures.map(instance => (
-        <TagInstance instance={instance} key={instance.title} />
-      ))}
-    </>
+    <div className={classes.section}>
+      <div className={classes.container}>
+        <Typography variant="h4">{title}</Typography>
+        <Typography variant="subtitle2">{description}</Typography>
+        <Grid container>
+          {associatedPictures.map(instance => (
+            <TagPicture
+              instance={instance}
+              key={instance.title}
+              classes={classes}
+            />
+          ))}
+        </Grid>
+      </div>
+    </div>
   );
 };
 
-const TagSections = ({ sections }) => (
+const TagSections = ({ sections, classes }) => (
+  // console.log(sections);
   <>
     {sections.map(({ node: tag }) => (
-      <TagSection tag={tag} key={tag.title} />
+      <TagSection key={tag.title} tag={tag} classes={classes} />
     ))}
   </>
 );
-
-export default TagSections;
+export default withStyles(styles)(TagSections);

@@ -1,9 +1,16 @@
-import styled from 'styled-components';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-const Container = styled.div`
-  margin: 3rem auto;
-  max-width: 900px;
-  padding: 0 1rem;
-`;
+const styles = {
+  root: {
+    margin: '3rem auto',
+    maxWidth: '900px',
+    padding: '0 1rem',
+  },
+};
 
-export default Container;
+const Container = ({ children, classes }) => (
+  <div className={classes.root}>{children}</div>
+);
+
+export default withStyles(styles)(Container);

@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 // Components
 import { Carousel } from 'grommet';
 import { Typography, Button } from '@material-ui/core';
-// import ButtonLink from '../buttons';
 
 const styles = {
   showcaseWrapper: {

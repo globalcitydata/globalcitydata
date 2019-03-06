@@ -4,40 +4,29 @@ import { graphql } from 'gatsby';
 // General Components
 import { withStyles } from '@material-ui/core';
 import Layout from '../components/layout';
-import Header from '../components/header';
+import Container from '../components/container';
 import SEO from '../components/seo';
 
 // Page Components
 import Showcase from '../components/index/showcase';
 import withRoot from '../withRoot';
-// import TagSections from '../components/index/tagSections';
-// import Sponsors from '../components/index/sponsors';
+import TagSections from '../components/index/tagSections';
+import Sponsors from '../components/index/sponsors';
 
-const styles = {
-  main: {
-    marginTop: '65px',
-  },
-  tagSection: {
-    textAlign: 'center',
-  },
-};
+const styles = {};
 
 const Index = ({ data, classes }) => {
   const showcaseData = data.contentfulHomePage;
-  // const tagSections = data.allContentfulHomeTagSection.edges;
+  const tagSections = data.allContentfulHomeTagSection.edges;
+  const { sponsors } = data.contentfulHomePage;
   return (
     <>
       <SEO title="Home" />
-      {/* <Header /> */}
-      {/* <div className={classes.main}> */}
       <Layout>
         <Showcase showcaseData={showcaseData} />
-        <div className={classes.tagSection}>
-          <h2>Will be placing tag sections below</h2>
-          <p>like dis</p>
-        </div>
+        <TagSections sections={tagSections} />
+        <Sponsors sponsors={sponsors} />
       </Layout>
-      {/* <TagSections sections={tagSections} /> */}
       {/* </div> */}
     </>
   );
@@ -58,17 +47,21 @@ export const query = graphql`
       secondaryMessage
       sponsors {
         title
+        fixed(width: 265, height: 200) {
+          ...GatsbyContentfulFixed_withWebp
+        }
       }
     }
     allContentfulHomeTagSection {
       edges {
         node {
           title
+          description
           associatedPictures {
             title
             description
-            fluid {
-              ...GatsbyContentfulFluid_withWebp
+            fixed(width: 265, height: 200) {
+              ...GatsbyContentfulFixed_withWebp
             }
           }
         }
