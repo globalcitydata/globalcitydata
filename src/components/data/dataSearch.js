@@ -66,7 +66,7 @@ const Hit = ({ hit, classes }) => {
             component={Link}
             to={`/data/${dataObj.slug}/`}
           >
-            View Data
+            View Details
           </Button>
         </div>
       </Paper>
