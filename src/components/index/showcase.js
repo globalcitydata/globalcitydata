@@ -55,7 +55,11 @@ const Showcase = ({ showcaseData, classes }) => {
     <div className={classes.showcaseWrapper}>
       <WelcomeImages images={welcomeImages} classes={classes} />
       <div className={classes.contentWrapper}>
-        <Typography variant="h4" color="inherit" gutterBottom>
+        <Typography
+          variant="h4"
+          color="inherit"
+          style={{ marginBottom: '1rem' }}
+        >
           {primaryMessage}
         </Typography>
         <Typography variant="body2" color="inherit" gutterBottom>

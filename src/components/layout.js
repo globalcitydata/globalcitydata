@@ -17,9 +17,9 @@ const styles = {
         // boxShadow: '0 10px 10px -6px rgb(169,169,169)',
       },
     },
-    '.wrapper': {
-      marginTop: '100px',
-    },
+    // '.wrapper': {
+    //   marginTop: '100px',
+    // },
   },
   // Layout styles
   contentWrap: {

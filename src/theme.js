@@ -30,13 +30,13 @@ const theme = createMuiTheme({
     },
     MuiTypography: {
       h3: {
-        paddingBottom: '3rem',
+        marginBottom: '3rem',
       },
       h4: {
-        paddingBottom: '2rem',
+        marginBottom: '2rem',
       },
       subtitle2: {
-        paddingBottom: '1.5rem',
+        marginBottom: '1.5rem',
       },
     },
   },

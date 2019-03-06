@@ -23,17 +23,15 @@ const styles = {
   },
   container: {
     margin: '0 auto',
-    maxWidth: '1000px',
+    padding: '0 1rem',
+    maxWidth: '900px',
   },
   heroWrapper: {
     position: 'relative',
-    textAlign: 'center',
-    margin: '1rem 1rem 0',
   },
   imgWrapper: {
     maxHeight: '200px',
     filter: 'brightness(70%)',
-    borderRadius: '4px',
   },
   img: {
     borderRadius: '4px',
@@ -80,8 +78,10 @@ const TagSection = ({ tag, classes }) => {
     <div className={classes.section}>
       <div className={classes.container}>
         <Typography variant="h4">{title}</Typography>
-        <Typography variant="subtitle2">{description}</Typography>
-        <Grid container>
+        <Typography variant="subtitle2" style={{ maxWidth: '800px' }}>
+          {description}
+        </Typography>
+        <Grid container spacing={24}>
           {associatedPictures.map(instance => (
             <TagPicture
               instance={instance}
@@ -103,4 +103,5 @@ const TagSections = ({ sections, classes }) => (
     ))}
   </>
 );
+
 export default withStyles(styles)(TagSections);

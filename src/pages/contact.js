@@ -11,7 +11,7 @@ const Contact = () => (
   <>
     <SEO title="Contact" />
     <Layout>
-      <Container className="wrapper">
+      <Container>
         <Typography variant="h3">Contact us</Typography>
       </Container>
     </Layout>

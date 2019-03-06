@@ -12,7 +12,7 @@ const Publications = () => (
   <>
     <SEO title="Publications" />
     <Layout>
-      <Container className="wrapper">
+      <Container>
         <Typography variant="h3">Publications</Typography>
         <PublicationSearch />
       </Container>

@@ -3,14 +3,19 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
-    margin: '3rem auto',
+    margin: '0 auto',
     maxWidth: '900px',
-    padding: '0 1rem',
+    padding: '3rem 1rem',
   },
 };
 
-const Container = ({ children, classes }) => (
-  <div className={classes.root}>{children}</div>
-);
+const Container = (props) => {
+  const { children, classes } = props;
+  return (
+    <div className={classes.root} {...props}>
+      {children}
+    </div>
+  );
+};
 
 export default withStyles(styles)(Container);

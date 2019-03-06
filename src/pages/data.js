@@ -6,16 +6,12 @@ import { Typography } from '@material-ui/core';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import withRoot from '../withRoot';
+import Container from '../components/container';
 
 // Page Components
 import DataSearch from '../components/data/dataSearch';
 
 const styles = {
-  container: {
-    margin: '100px auto 0',
-    maxWidth: '900px',
-    padding: '0 1rem',
-  },
   data: {
     margin: '0 auto',
     maxWidth: '1300px',
@@ -27,9 +23,9 @@ const Data = ({ classes }) => (
   <>
     <SEO title="Explore Data" />
     <Layout>
-      <div className={classes.container}>
+      <Container style={{ paddingBottom: 0 }}>
         <Typography variant="h3">Explore the Data</Typography>
-      </div>
+      </Container>
       <div className={classes.data}>
         <DataSearch />
       </div>

@@ -35,7 +35,7 @@ const styles = {
     position: 'relative',
   },
   title: {
-    paddingBottom: '2rem',
+    marginBottom: '1rem',
   },
   content: {
     paddingBottom: '4.5rem',

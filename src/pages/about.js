@@ -13,7 +13,7 @@ const About = ({ data }) => {
   return (
     <Layout>
       <SEO title="About" description="About page for Global City Data" />
-      <Container className="wrapper">
+      <Container>
         <Typography variant="h3">Our Story</Typography>
         {/* Display Contentful Our Story markdown body as html */}
         <Markdown>{html}</Markdown>
