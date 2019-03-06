@@ -17,9 +17,6 @@ const AttributeTitle = ({ children, classes }) => (
 );
 
 const styles = {
-  body: {
-    paddingTop: '1rem',
-  },
   section: {
     paddingTop: '2rem',
   },
@@ -84,7 +81,7 @@ const Data = ({ data, classes }) => {
       <Layout>
         <Container>
           <Typography variant="h3">{title}</Typography>
-          <Markdown className={classes.body}>{body}</Markdown>
+          <Markdown>{body}</Markdown>
           <KeyHighlights highlights={highlights} classes={classes} />
           <Authors authors={authors} classes={classes} />
         </Container>
