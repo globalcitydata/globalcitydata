@@ -18,13 +18,14 @@ const styles = {};
 const Index = ({ data, classes }) => {
   const showcaseData = data.contentfulHomePage;
   const tagSections = data.allContentfulHomeTagSection.edges;
-  const { sponsors } = data.contentfulHomePage;
+  const { sponsors, tagsIntro } = data.contentfulHomePage;
+  const { html: intro } = tagsIntro.childMarkdownRemark;
   return (
     <>
       <SEO title="Home" />
       <Layout>
         <Showcase showcaseData={showcaseData} />
-        <Tags sections={tagSections} />
+        <Tags sections={tagSections} intro={intro} />
         {/* <Sponsors sponsors={sponsors} /> */}
       </Layout>
       {/* </div> */}
@@ -45,6 +46,11 @@ export const query = graphql`
       }
       primaryMessage
       secondaryMessage
+      tagsIntro {
+        childMarkdownRemark {
+          html
+        }
+      }
       sponsors {
         title
         fixed(width: 265, height: 200) {
@@ -52,7 +58,9 @@ export const query = graphql`
         }
       }
     }
-    allContentfulHomeTagSection {
+
+    allContentfulHomeTagSection(sort: { fields: [order], order: ASC }) {
+      totalCount
       edges {
         node {
           title

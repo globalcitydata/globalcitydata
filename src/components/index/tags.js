@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import {
  Typography, Grid, Tabs, Tab 
 } from '@material-ui/core';
+import Container from '../container';
+import Markdown from '../markdown';
 
 /**
  * Transform title of picture from contentful title
@@ -20,6 +22,9 @@ const transformText = (oldTitle) => {
 };
 
 const styles = {
+  intro: {
+    paddingTop: '4rem',
+  },
   section: {
     padding: '3rem 0',
   },
@@ -138,10 +143,10 @@ class TagSections extends Component {
   }
 }
 
-const Tags = ({ sections, classes }) => (
+const Tags = ({ sections, intro, classes }) => (
   <>
-    <div className={classes.sections}>
-      <Typography variant="body2">hello</Typography>
+    <div className={classes.container}>
+      <Markdown className={classes.intro}>{intro}</Markdown>
     </div>
     <TagSections sections={sections} classes={classes} />
   </>
