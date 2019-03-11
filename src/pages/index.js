@@ -10,7 +10,7 @@ import SEO from '../components/seo';
 // Page Components
 import Showcase from '../components/index/showcase';
 import withRoot from '../withRoot';
-import TagSections from '../components/index/tagSections';
+import Tags from '../components/index/tags';
 import Sponsors from '../components/index/sponsors';
 
 const styles = {};
@@ -24,7 +24,7 @@ const Index = ({ data, classes }) => {
       <SEO title="Home" />
       <Layout>
         <Showcase showcaseData={showcaseData} />
-        <TagSections sections={tagSections} />
+        <Tags sections={tagSections} />
         {/* <Sponsors sponsors={sponsors} /> */}
       </Layout>
       {/* </div> */}

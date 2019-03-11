@@ -20,9 +20,6 @@ const transformText = (oldTitle) => {
 };
 
 const styles = {
-  tabs: {
-    paddingTop: '3rem',
-  },
   section: {
     padding: '3rem 0',
   },
@@ -114,7 +111,7 @@ class TagSections extends Component {
     const { tab } = this.state;
     return (
       <>
-        <div className={classes.tabs}>
+        <div className={classes.section}>
           <Tabs
             indicatorColor="primary"
             textColor="primary"
@@ -141,4 +138,13 @@ class TagSections extends Component {
   }
 }
 
-export default withStyles(styles)(TagSections);
+const Tags = ({ sections, classes }) => (
+  <>
+    <div className={classes.sections}>
+      <Typography variant="body2">hello</Typography>
+    </div>
+    <TagSections sections={sections} classes={classes} />
+  </>
+);
+
+export default withStyles(styles)(Tags);
