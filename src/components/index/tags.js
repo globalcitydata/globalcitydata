@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import {
  Typography, Grid, Tabs, Tab 
 } from '@material-ui/core';
+import Container from '../container';
+import Markdown from '../markdown';
 
 /**
  * Transform title of picture from contentful title
@@ -20,8 +22,8 @@ const transformText = (oldTitle) => {
 };
 
 const styles = {
-  tabs: {
-    paddingTop: '3rem',
+  intro: {
+    paddingTop: '4rem',
   },
   section: {
     padding: '3rem 0',
@@ -114,7 +116,7 @@ class TagSections extends Component {
     const { tab } = this.state;
     return (
       <>
-        <div className={classes.tabs}>
+        <div className={classes.section}>
           <Tabs
             indicatorColor="primary"
             textColor="primary"
@@ -141,4 +143,13 @@ class TagSections extends Component {
   }
 }
 
-export default withStyles(styles)(TagSections);
+const Tags = ({ sections, intro, classes }) => (
+  <>
+    <div className={classes.container}>
+      <Markdown className={classes.intro}>{intro}</Markdown>
+    </div>
+    <TagSections sections={sections} classes={classes} />
+  </>
+);
+
+export default withStyles(styles)(Tags);

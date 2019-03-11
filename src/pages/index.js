@@ -10,7 +10,7 @@ import SEO from '../components/seo';
 // Page Components
 import Showcase from '../components/index/showcase';
 import withRoot from '../withRoot';
-import TagSections from '../components/index/tagSections';
+import Tags from '../components/index/tags';
 import Sponsors from '../components/index/sponsors';
 
 const styles = {};
@@ -18,13 +18,14 @@ const styles = {};
 const Index = ({ data, classes }) => {
   const showcaseData = data.contentfulHomePage;
   const tagSections = data.allContentfulHomeTagSection.edges;
-  const { sponsors } = data.contentfulHomePage;
+  const { sponsors, tagsIntro } = data.contentfulHomePage;
+  const { html: intro } = tagsIntro.childMarkdownRemark;
   return (
     <>
       <SEO title="Home" />
       <Layout>
         <Showcase showcaseData={showcaseData} />
-        <TagSections sections={tagSections} />
+        <Tags sections={tagSections} intro={intro} />
         {/* <Sponsors sponsors={sponsors} /> */}
       </Layout>
       {/* </div> */}
@@ -45,6 +46,11 @@ export const query = graphql`
       }
       primaryMessage
       secondaryMessage
+      tagsIntro {
+        childMarkdownRemark {
+          html
+        }
+      }
       sponsors {
         title
         fixed(width: 265, height: 200) {
@@ -52,7 +58,9 @@ export const query = graphql`
         }
       }
     }
-    allContentfulHomeTagSection {
+
+    allContentfulHomeTagSection(sort: { fields: [order], order: ASC }) {
+      totalCount
       edges {
         node {
           title
