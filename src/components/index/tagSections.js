@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import {
+ Typography, Grid, Tabs, Tab 
+} from '@material-ui/core';
 
 /**
  * Transform title of picture from contentful title
@@ -18,6 +20,9 @@ const transformText = (oldTitle) => {
 };
 
 const styles = {
+  tabs: {
+    paddingTop: '3rem',
+  },
   section: {
     padding: '3rem 0',
   },
@@ -95,13 +100,45 @@ const TagSection = ({ tag, classes }) => {
   );
 };
 
-const TagSections = ({ sections, classes }) => (
-  // console.log(sections);
-  <>
-    {sections.map(({ node: tag }) => (
-      <TagSection key={tag.title} tag={tag} classes={classes} />
-    ))}
-  </>
-);
+class TagSections extends Component {
+  state = {
+    tab: 0,
+  };
+
+  handleChange = (e, value) => {
+    this.setState({ tab: value });
+  };
+
+  render() {
+    const { sections, classes } = this.props;
+    const { tab } = this.state;
+    return (
+      <>
+        <div className={classes.tabs}>
+          <Tabs
+            indicatorColor="primary"
+            textColor="primary"
+            value={tab}
+            onChange={this.handleChange}
+            centered
+          >
+            {sections.map(({ node: tag }) => (
+              <Tab key={tag.title} label={tag.title} />
+            ))}
+          </Tabs>
+        </div>
+        <>
+          {sections.map(({ node: tag }, i) => (
+            <>
+              {i === tab && (
+                <TagSection key={tag.title} tag={tag} classes={classes} />
+              )}
+            </>
+          ))}
+        </>
+      </>
+    );
+  }
+}
 
 export default withStyles(styles)(TagSections);
