@@ -24,6 +24,9 @@ const styles = {
     flexGrow: 0,
     backgroundColor: 'white',
   },
+  toolbar: {
+    padding: '0 8%',
+  },
   grow: {
     flexGrow: 1,
   },
@@ -38,7 +41,7 @@ const styles = {
 const ButtonAppBar = ({ classes }) => (
   <div className={classes.root}>
     <AppBar position="fixed" color="inherit">
-      <Toolbar>
+      <Toolbar className={classes.toolbar}>
         <div className={classes.grow}>
           <NavLink to="/" className={classes.headerTitle}>
             Global City Data
