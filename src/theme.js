@@ -35,6 +35,9 @@ const theme = createMuiTheme({
       h4: {
         marginBottom: '2rem',
       },
+      h5: {
+        marginBottom: '1.5rem',
+      },
       subtitle2: {
         marginBottom: '1.5rem',
       },

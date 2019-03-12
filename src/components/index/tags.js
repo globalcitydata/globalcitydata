@@ -23,15 +23,14 @@ const transformText = (oldTitle) => {
 
 const styles = {
   intro: {
-    paddingTop: '4rem',
+    padding: '1rem 0',
+    fontSize: '1.2rem',
+  },
+  tagSections: {
+    background: 'rgb(230,246,254)',
   },
   section: {
     padding: '3rem 0',
-  },
-  container: {
-    margin: '0 auto',
-    padding: '0 1rem',
-    maxWidth: '900px',
   },
   heroWrapper: {
     position: 'relative',
@@ -83,21 +82,19 @@ const TagSection = ({ tag, classes }) => {
   const { title, description, associatedPictures } = tag;
   return (
     <div className={classes.section}>
-      <div className={classes.container}>
-        <Typography variant="h4">{title}</Typography>
-        <Typography variant="subtitle2" style={{ maxWidth: '800px' }}>
-          {description}
-        </Typography>
-        <Grid container spacing={24}>
-          {associatedPictures.map(instance => (
-            <TagPicture
-              instance={instance}
-              key={instance.title}
-              classes={classes}
-            />
-          ))}
-        </Grid>
-      </div>
+      <Typography variant="h4">{title}</Typography>
+      <Typography variant="subtitle2" style={{ maxWidth: '800px' }}>
+        {description}
+      </Typography>
+      <Grid container spacing={24}>
+        {associatedPictures.map(instance => (
+          <TagPicture
+            instance={instance}
+            key={instance.title}
+            classes={classes}
+          />
+        ))}
+      </Grid>
     </div>
   );
 };
@@ -115,39 +112,40 @@ class TagSections extends Component {
     const { sections, classes } = this.props;
     const { tab } = this.state;
     return (
-      <>
-        <div className={classes.section}>
+      <div className={classes.tagSections}>
+        <Container>
           <Tabs
             indicatorColor="primary"
             textColor="primary"
             value={tab}
             onChange={this.handleChange}
             centered
+            gutterBottom
           >
             {sections.map(({ node: tag }) => (
               <Tab key={tag.title} label={tag.title} />
             ))}
           </Tabs>
-        </div>
-        <>
-          {sections.map(({ node: tag }, i) => (
-            <>
-              {i === tab && (
-                <TagSection key={tag.title} tag={tag} classes={classes} />
-              )}
-            </>
-          ))}
-        </>
-      </>
+          <>
+            {sections.map(({ node: tag }, i) => (
+              <>
+                {i === tab && (
+                  <TagSection key={tag.title} tag={tag} classes={classes} />
+                )}
+              </>
+            ))}
+          </>
+        </Container>
+      </div>
     );
   }
 }
 
 const Tags = ({ sections, intro, classes }) => (
   <>
-    <div className={classes.container}>
+    <Container>
       <Markdown className={classes.intro}>{intro}</Markdown>
-    </div>
+    </Container>
     <TagSections sections={sections} classes={classes} />
   </>
 );

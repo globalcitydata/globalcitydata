@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import Header from './header';
+import Footer from './footer';
 
 const styles = {
   // global styles
@@ -24,13 +25,15 @@ const styles = {
   // Layout styles
   contentWrap: {
     marginTop: '65px',
+    minHeight: '70vh',
   },
 };
 
 const Layout = ({ children, classes }) => (
   <>
     <Header />
-    <div className={classes.contentWrap}>{children}</div>
+    <main className={classes.contentWrap}>{children}</main>
+    <Footer />
   </>
 );
 

@@ -26,7 +26,7 @@ const Index = ({ data, classes }) => {
       <Layout>
         <Showcase showcaseData={showcaseData} />
         <Tags sections={tagSections} intro={intro} />
-        {/* <Sponsors sponsors={sponsors} /> */}
+        <Sponsors sponsors={sponsors} />
       </Layout>
       {/* </div> */}
     </>
