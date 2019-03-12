@@ -5,7 +5,7 @@ const styles = {
   root: {
     margin: '0 auto',
     maxWidth: '900px',
-    padding: '3rem 1rem',
+    padding: '4rem 1rem',
   },
 };
 

@@ -1,45 +1,30 @@
 import React from 'react';
+import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
+import Container from '../container';
 
 const styles = {
-  showcaseWrapper: {
-    position: 'relative',
-    textAlign: 'center',
-    marginTop: '60px',
-  },
-  helloButton: {
-    marginTop: '1rem',
-  },
-  imagesWrapper: {
-    maxHeight: '500px',
-    filter: 'brightness(40%)',
-  },
-  contentWrapper: {
-    position: 'absolute',
-    left: '50%',
-    top: '20%',
-    transform: 'translate(-50%, 0)',
-    padding: '0 0.5rem',
-    color: 'white',
-    fontSize: '1rem',
-    '@media(max-width: 1400px': {
-      top: '10%',
-      fontSize: '0.8rem',
-    },
-    '@media(maxWidth: 1000px)': {
-      top: '5%',
-      fontSize: '0.6rem',
-    },
+  title: {
+    paddingBottom: '1rem',
   },
 };
 
 const Sponsors = ({ sponsors, classes }) => {
   console.log(sponsors);
   return (
-    <div className={classes.root}>
-      <Typography variant="h4">Sponsors</Typography>
-    </div>
+    <Container>
+      <Typography variant="h4" className={classes.title}>
+        Sponsors
+      </Typography>
+      <Grid container spacing={24}>
+        {sponsors.map(img => (
+          <Grid item>
+            <Img fixed={img.fixed} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 
