@@ -19,6 +19,31 @@ module.exports = {
       'Thinking in systems to link urban infrastructure and sustainability.',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-136748497-1',
+        // Puts tracking script in the head instead of the body
+        // head: false,
+        // // Setting this parameter is optional
+        // anonymize: true,
+        // // Setting this parameter is also optional
+        // respectDNT: true,
+        // // Avoids sending pageview hits from custom paths
+        // exclude: ['/preview/**', '/do-not-track/me/too/'],
+        // // Enables Google Optimize using your container Id
+        // optimizeId: 'YOUR_GOOGLE_OPTIMIZE_TRACKING_ID',
+        // // Enables Google Optimize Experiment ID
+        // experimentId: 'YOUR_GOOGLE_EXPERIMENT_ID',
+        // // Set Variation ID. 0 for original 1,2,3....
+        // variationId: 'YOUR_GOOGLE_OPTIMIZE_VARIATION_ID',
+        // // Any additional create only fields (optional)
+        // sampleRate: 5,
+        // siteSpeedSampleRate: 10,
+        // cookieDomain: 'example.com',
+      },
+    },
+    'gatsby-plugin-sitemap', // generates sitemap with build
     'gatsby-transformer-remark', // transforming markdown to html
     'gatsby-plugin-styled-components', // styled-components (css-in-js)
     'gatsby-plugin-sharp', // compress images
@@ -40,7 +65,7 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Global City Data',
-        short_name: 'GlobalCityData',
+        short_name: 'GCD',
         start_url: '/',
         background_color: '#2196f3',
         theme_color: '#2196f3',
