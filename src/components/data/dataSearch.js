@@ -10,6 +10,7 @@ import {
   Button,
   Typography,
   Grow,
+  Hidden,
 } from '@material-ui/core';
 
 import {
@@ -86,9 +87,11 @@ const CustomHits = connectHits(Hits);
 
 const Search = ({ classes }) => (
   <Grid container>
-    <Grid item xs={12} md={3}>
-      <RefinementMenu tagNames={tagNames} />
-    </Grid>
+    <Hidden smDown>
+      <Grid item xs={12} md={3}>
+        <RefinementMenu tagNames={tagNames} />
+      </Grid>
+    </Hidden>
     <Grid item md={1} />
     <Grid item xs={12} md={7}>
       <CustomSearchBox />
