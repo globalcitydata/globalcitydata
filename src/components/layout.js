@@ -26,6 +26,9 @@ const styles = {
   contentWrap: {
     marginTop: '65px',
     minHeight: '70vh',
+    '@media (max-width: 720px)': {
+      marginTop: '50px',
+    },
   },
 };
 

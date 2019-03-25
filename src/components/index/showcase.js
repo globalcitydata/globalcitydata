@@ -11,7 +11,10 @@ const styles = {
   showcaseWrapper: {
     position: 'relative',
     textAlign: 'center',
-    marginTop: '60px',
+    marginTop: '65px',
+    '@media (max-width: 720px)': {
+      marginTop: '55px',
+    },
   },
   helloButton: {
     marginTop: '1rem',
@@ -25,16 +28,35 @@ const styles = {
     left: '50%',
     top: '20%',
     transform: 'translate(-50%, 0)',
-    padding: '0 0.5rem',
     color: 'white',
-    fontSize: '1rem',
-    '@media(max-width: 1400px': {
-      top: '10%',
-      fontSize: '0.8rem',
+    '@media (max-width: 1400px)': {
+      top: '15%',
     },
-    '@media(maxWidth: 1000px)': {
-      top: '5%',
-      fontSize: '0.6rem',
+    '@media (max-width: 1000px)': {
+      top: '12%',
+      width: '60%',
+    },
+    '@media (max-width: 720px)': {
+      top: '10%',
+      width: '80%',
+    },
+  },
+  welcomeHeader: {
+    paddingBottom: '10px',
+    '@media (max-width: 1000px)': {
+      fontSize: '30px',
+    },
+    '@media (max-width: 720px)': {
+      fontSize: '25px',
+    },
+  },
+  welcomeMessage: {
+    paddingBottom: '15px',
+    '@media (max-width: 1000px)': {
+      fontSize: '22px',
+    },
+    '@media (max-width: 720px)': {
+      fontSize: '18px',
     },
   },
 };
@@ -58,14 +80,18 @@ const Showcase = ({ showcaseData, classes }) => {
         <Typography
           variant="h4"
           color="inherit"
-          style={{ marginBottom: '1rem' }}
+          // style={{ marginBottom: '1rem' }}
+          className={classes.welcomeHeader}
         >
           {primaryMessage}
         </Typography>
-        <Typography variant="body2" color="inherit" gutterBottom>
+        <Typography
+          variant="body2"
+          color="inherit"
+          className={classes.welcomeMessage}
+        >
           {secondaryMessage}
         </Typography>
-        {/* <ContainedButton label="Explore Data" href="/data/" /> */}
         <Button
           variant="contained"
           component={Link}
