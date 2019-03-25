@@ -1,73 +1,154 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import classNames from 'classnames';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Drawer } from '@material-ui/core';
-
-const NavLink = (props) => {
-  const { to, children } = props;
-  return (
-    <Button component={Link} to={to} {...props}>
-      {children}
-    </Button>
-  );
-};
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import {
+  Hidden,
+  Drawer,
+  List,
+  ListItem,
+  Divider,
+  AppBar,
+  Toolbar,
+  Button,
+  IconButton,
+} from '@material-ui/core';
 
 const styles = {
   root: {
     flexGrow: 0,
     backgroundColor: 'white',
   },
+  menuButton: {
+    marginRight: 15,
+  },
+  hide: {
+    display: 'none',
+  },
   toolbar: {
-    padding: '0 8%',
+    padding: '0 6%',
+  },
+  drawer: {
+    width: 240,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: 240,
   },
   grow: {
     flexGrow: 1,
   },
   headerTitle: {
     fontSize: '1.6rem',
+    '@media (max-width: 540px)': {
+      fontSize: '1.4rem',
+    },
   },
   link: {
     fontSize: '1.3rem',
   },
 };
 
-const ButtonAppBar = ({ classes }) => (
-  <div className={classes.root}>
-    <AppBar position="fixed" color="inherit">
-      <Toolbar className={classes.toolbar}>
-        <div className={classes.grow}>
-          <NavLink to="/" className={classes.headerTitle}>
-            Global City Data
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/data" className={classes.link}>
-            Data
-          </NavLink>
-          <NavLink to="/publications" className={classes.link}>
-            Publications
-          </NavLink>
-          <NavLink to="/about/" className={classes.link}>
-            About
-          </NavLink>
-          <NavLink to="/contact/" className={classes.link}>
-            Contact
-          </NavLink>
-        </div>
-      </Toolbar>
-    </AppBar>
-  </div>
+const NavLink = (props) => {
+  const { to, children, list } = props;
+  return (
+    <>
+      {list ? (
+        <ListItem>
+          <Button component={Link} to={to} {...props}>
+            {children}
+          </Button>
+        </ListItem>
+      ) : (
+        <Button component={Link} to={to} {...props}>
+          {children}
+        </Button>
+      )}
+    </>
+  );
+};
+
+const NavLinkList = ({ classes, list }) => (
+  <List>
+    {list && (
+      <>
+        <NavLink to="/" className={classes.headerTitle} list={list}>
+          Global City Data
+        </NavLink>
+        <Divider />
+      </>
+    )}
+    <NavLink to="/data" className={classes.link} list={list}>
+      Data
+    </NavLink>
+    <NavLink to="/publications" className={classes.link} list={list}>
+      Publications
+    </NavLink>
+    <NavLink to="/about/" className={classes.link} list={list}>
+      About
+    </NavLink>
+    <NavLink to="/contact/" className={classes.link} list={list}>
+      Contact
+    </NavLink>
+  </List>
 );
 
-ButtonAppBar.propTypes = {
+const Header = ({ classes }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="fixed" color="inherit">
+        <Toolbar className={classes.toolbar}>
+          <Hidden mdUp>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={() => setOpen(true)}
+              className={classNames(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+          <div className={classes.grow}>
+            <NavLink
+              to="/"
+              className={classNames(classes.headerTitle, open && classes.hide)}
+            >
+              Global City Data
+            </NavLink>
+          </div>
+          <Hidden smDown>
+            <NavLinkList classes={classes} list={false} />
+          </Hidden>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        anchor="left"
+        open={open}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={() => setOpen(false)}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <NavLinkList classes={classes} list />
+      </Drawer>
+    </div>
+  );
+};
+
+Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(Header);
