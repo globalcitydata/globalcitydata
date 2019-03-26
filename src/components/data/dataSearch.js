@@ -11,6 +11,10 @@ import {
   Typography,
   Grow,
   Hidden,
+  Card,
+  CardContent,
+  CardActions,
+  Chip,
 } from '@material-ui/core';
 
 import {
@@ -32,19 +36,21 @@ const styles = {
   },
   card: {
     height: '100%',
-    padding: '1rem',
     position: 'relative',
   },
   title: {
     marginBottom: '1rem',
   },
   content: {
-    paddingBottom: '4.5rem',
+    paddingTop: '1rem',
+    paddingBottom: '4rem',
+  },
+  chip: {
+    margin: '0 10px 10px 0',
   },
   action: {
     position: 'absolute',
-    bottom: '1rem',
-    width: '100%',
+    bottom: '0.6rem',
   },
 };
 
@@ -53,24 +59,33 @@ const Hit = ({ hit, classes }) => {
   const dataObj = getDataObjFromHit(hit);
   return (
     <Grid item xs={12} md={6} xl={4}>
-      <Paper className={`${classes.card} lift`}>
-        <Typography variant="h5" className={classes.title}>
-          {dataObj.title}
-        </Typography>
-        <div className={classes.content}>
-          <Typography variant="caption">tags will go here</Typography>
-        </div>
-        <div className={classes.action}>
-          {/* <Divider variant="insent" /> */}
+      <Card className={`${classes.card} lift`}>
+        <CardContent>
+          <Typography variant="h5" className={classes.title}>
+            {dataObj.title}
+          </Typography>
+          <Divider />
+          <div className={classes.content}>
+            <Chip label="Example tag" className={classes.chip} />
+            <Chip
+              color="primary"
+              label="Another one"
+              className={classes.chip}
+            />
+            <Chip color="secondary" label="one more baby" />
+          </div>
+        </CardContent>
+        <CardActions>
           <Button
             color="primary"
             component={Link}
             to={`/data/${dataObj.slug}/`}
+            className={classes.action}
           >
             View Details
           </Button>
-        </div>
-      </Paper>
+        </CardActions>
+      </Card>
     </Grid>
   );
 };
