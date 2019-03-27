@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 import {
- Typography, Grid, Tabs, Tab 
+ Typography, Grid, Tabs, Tab, Hidden 
 } from '@material-ui/core';
 import Container from '../container';
 import Markdown from '../markdown';
@@ -21,16 +21,15 @@ const transformText = (oldTitle) => {
   return arr.join(' ');
 };
 
-const styles = {
+const styles = theme => ({
   intro: {
     padding: '1rem 0',
     fontSize: '1.2rem',
   },
   tagSections: {
-    background: 'rgb(230,246,254)',
+    background: theme.palette.background.paper,
   },
   tabs: {
-    alignItems: 'center',
     justifyContent: 'center',
   },
   section: {
@@ -41,7 +40,7 @@ const styles = {
   },
   imgWrapper: {
     maxHeight: '200px',
-    filter: 'brightness(70%)',
+    filter: 'brightness(60%)',
   },
   img: {
     borderRadius: '4px',
@@ -62,20 +61,32 @@ const styles = {
       fontSize: '0.6rem',
     },
   },
-};
+});
 
 const TagPicture = ({ instance, classes }) => {
-  const { title, fixed } = instance;
+  const [hover, setHover] = useState(false);
+  const { title, description, fixed } = instance;
+  console.log(instance);
   return (
     <Grid item s={12} m={6} l={4} xl={3}>
-      <div className={`${classes.heroWrapper} lift`}>
+      <div
+        className={`${classes.heroWrapper} lift`}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
         <div className={classes.imgWrapper}>
           <Img fixed={fixed} className={classes.img} />
         </div>
         <div className={classes.contentWrapper}>
-          <Typography variant="body1" color="inherit">
-            {transformText(title)}
-          </Typography>
+          {hover && description ? (
+            <Typography variant="body2" color="inherit">
+              {description}
+            </Typography>
+          ) : (
+            <Typography variant="body1" color="inherit">
+              {transformText(title)}
+            </Typography>
+          )}
         </div>
       </div>
     </Grid>
@@ -118,18 +129,34 @@ class TagSections extends Component {
     return (
       <div className={classes.tagSections}>
         <Container>
-          <Tabs
-            indicatorColor="primary"
-            // textColor="primary"
-            variant="scrollable"
-            value={tab}
-            onChange={this.handleChange}
-            className={classes.tabs}
-          >
-            {sections.map(({ node: tag }) => (
-              <Tab key={tag.title} label={tag.title} />
-            ))}
-          </Tabs>
+          {/* Dumb Trick to display responsive tabs */}
+          <Hidden smUp>
+            <Tabs
+              indicatorColor="primary"
+              variant="scrollable"
+              value={tab}
+              onChange={this.handleChange}
+              className={classes.tabs}
+            >
+              {sections.map(({ node: tag }) => (
+                <Tab key={tag.title} label={tag.title} />
+              ))}
+            </Tabs>
+          </Hidden>
+          <Hidden xsDown>
+            <Tabs
+              indicatorColor="primary"
+              centered
+              value={tab}
+              onChange={this.handleChange}
+              className={classes.tabs}
+            >
+              {sections.map(({ node: tag }) => (
+                <Tab key={tag.title} label={tag.title} />
+              ))}
+            </Tabs>
+          </Hidden>
+          {/* End really dumb tab trick */}
           <>
             {sections.map(({ node: tag }, i) => (
               <div key={tag.title}>
