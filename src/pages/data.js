@@ -34,19 +34,3 @@ const Data = ({ classes }) => (
 );
 
 export default withRoot(withStyles(styles)(Data));
-
-// export const query = graphql`
-//   query {
-//     allContentfulData {
-//       edges {
-//         node {
-//           title
-//           slug
-//           summary {
-//             summary
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;

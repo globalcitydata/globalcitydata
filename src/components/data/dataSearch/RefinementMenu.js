@@ -25,7 +25,7 @@ const Refinement = ({ tagName }) => {
 const RefineBar = ({ tagNames }) => (
   <>
     {tagNames.map(tag => (
-      <Refinement tagName={tag} />
+      <Refinement tagName={tag} key={tag} />
     ))}
   </>
 );
