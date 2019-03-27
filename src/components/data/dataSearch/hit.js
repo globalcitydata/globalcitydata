@@ -43,7 +43,6 @@ const Tags = ({ classes, tags }) => (
   <div>
     {Object.entries(tags).map((tag, i) => (
       <>
-        {console.log(tag[1])}
         {Object.entries(tag[1]).map(attribute => (
           <Chip
             color={colors[i % 4]}

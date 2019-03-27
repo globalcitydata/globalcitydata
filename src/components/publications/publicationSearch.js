@@ -30,17 +30,15 @@ const styles = {
   },
 };
 
-const Hit = ({ hit, classes }) => {
-  console.log(hit.fields.relatedData['en-US'].sys);
-  return (
-    <ListItem>
-      <Paper className={`${classes.hit} lift`}>
-        <Typography variant="body2">{hit.fields.body['en-US']}</Typography>
-      </Paper>
-      <hr />
-    </ListItem>
-  );
-};
+const Hit = ({ hit, classes }) => (
+  // console.log(hit.fields.relatedData['en-US'].sys);
+  <ListItem>
+    <Paper className={`${classes.hit} lift`}>
+      <Typography variant="body2">{hit.fields.body['en-US']}</Typography>
+    </Paper>
+    <hr />
+  </ListItem>
+);
 
 const Hits = ({ hits, classes }) => (
   <List className={classes.hits}>
