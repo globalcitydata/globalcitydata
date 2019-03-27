@@ -18,8 +18,8 @@ const Sponsors = ({ sponsors, classes }) => {
         Sponsors
       </Typography>
       <Grid container spacing={24}>
-        {sponsors.map(img => (
-          <Grid item>
+        {sponsors.map((img, i) => (
+          <Grid item key={i}>
             <Img fixed={img.fixed} />
           </Grid>
         ))}

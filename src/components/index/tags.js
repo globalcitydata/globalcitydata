@@ -29,6 +29,10 @@ const styles = {
   tagSections: {
     background: 'rgb(230,246,254)',
   },
+  tabs: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   section: {
     padding: '3rem 0',
   },
@@ -116,11 +120,11 @@ class TagSections extends Component {
         <Container>
           <Tabs
             indicatorColor="primary"
-            textColor="primary"
+            // textColor="primary"
+            variant="scrollable"
             value={tab}
             onChange={this.handleChange}
-            centered
-            gutterBottom
+            className={classes.tabs}
           >
             {sections.map(({ node: tag }) => (
               <Tab key={tag.title} label={tag.title} />
@@ -128,11 +132,9 @@ class TagSections extends Component {
           </Tabs>
           <>
             {sections.map(({ node: tag }, i) => (
-              <>
-                {i === tab && (
-                  <TagSection key={tag.title} tag={tag} classes={classes} />
-                )}
-              </>
+              <div key={tag.title}>
+                {i === tab && <TagSection tag={tag} classes={classes} />}
+              </div>
             ))}
           </>
         </Container>
@@ -141,6 +143,9 @@ class TagSections extends Component {
   }
 }
 
+/**
+ * High level tag section that displays tags intro message along with actual tag sections
+ */
 const Tags = ({ sections, intro, classes }) => (
   <>
     <Container>
