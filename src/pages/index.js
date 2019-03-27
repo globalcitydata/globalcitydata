@@ -40,7 +40,7 @@ export const query = graphql`
     contentfulHomePage {
       welcomeImages {
         title
-        fixed(width: 1500, height: 500) {
+        fixed(width: 2000, height: 600) {
           ...GatsbyContentfulFixed_withWebp
         }
       }
@@ -53,7 +53,7 @@ export const query = graphql`
       }
       sponsors {
         title
-        fixed(width: 265, height: 200) {
+        fixed(width: 200, height: 150) {
           ...GatsbyContentfulFixed_withWebp
         }
       }

@@ -20,7 +20,9 @@ const styles = {
     marginTop: '1rem',
   },
   imagesWrapper: {
-    maxHeight: '500px',
+    maxHeight: '600px',
+    maxWidth: '2000px',
+    margin: '0 auto',
     filter: 'brightness(40%)',
   },
   contentWrapper: {
