@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import React, { useState } from "react";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import {
   Hidden,
   Drawer,
@@ -15,21 +15,21 @@ import {
   Toolbar,
   Button,
   IconButton,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const styles = {
   root: {
     flexGrow: 0,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   menuButton: {
     marginRight: 15,
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   toolbar: {
-    padding: '0 6%',
+    padding: "0 6%",
   },
   drawer: {
     width: 240,
@@ -42,17 +42,17 @@ const styles = {
     flexGrow: 1,
   },
   headerTitle: {
-    fontSize: '1.6rem',
-    '@media (max-width: 540px)': {
-      fontSize: '1.4rem',
+    fontSize: "1.6rem",
+    "@media (max-width: 540px)": {
+      fontSize: "1.4rem",
     },
   },
   link: {
-    fontSize: '1.3rem',
+    fontSize: "1.3rem",
   },
 };
 
-const NavLink = (props) => {
+const NavLink = props => {
   const { to, children, list } = props;
   return (
     <>
@@ -128,7 +128,7 @@ const Header = ({ classes }) => {
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
+        variant="temporary"
         anchor="left"
         open={open}
         classes={{
