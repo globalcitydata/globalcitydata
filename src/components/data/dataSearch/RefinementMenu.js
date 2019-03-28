@@ -1,41 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  RefinementList,
+  // RefinementList,
   // CurrentRefinements,
+  connectRefinementList,
   ClearRefinements,
 } from 'react-instantsearch-dom';
-
-import { Paper } from '@material-ui/core';
+import {
+  Paper,
+  Typography,
+  List,
+  ListItem,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import { startCase, orderBy } from 'lodash';
 
-const Refinement = ({ tagName }) => {
-  const attribute = `fields.${tagName}.en-US`;
+const styles = {};
+
+const MyFormGroup = ({ items, refine }) => {
+  const checked = [];
+  // items.forEach((item) => {
+  //   checked[item.label] = false;
+  // });
+  // checked = items.map(_ => false);
+  // const [checkedItems, setCheckedItems] = useState(checked);
+  return (
+    <FormGroup>
+      {items.map((item, i) => (
+        <>
+          {/* {console.log(item)} */}
+          <FormControlLabel
+            control={(
+<Checkbox
+                color="primary"
+                onClick={e => {
+                  e.preventDefault();
+                  refine(item.value);
+                }}
+                checked={false}
+              />
+)}
+            label={`${item.label} (${item.count})`}
+          />
+        </>
+      ))}
+    </FormGroup>
+  );
+};
+
+const RefinementList = (props) => {
+  const { items, tagName, refine } = props;
+  // console.log(props);
   return (
     <>
-      <h4>{startCase(tagName)}</h4>
-      <RefinementList
-        transformItems={items => orderBy(items, ['label', 'count'], ['asc', 'desc'])
-        }
-        attribute={attribute}
-      />
+      <Typography variant="h6" gutterBottom>
+        {startCase(tagName)}
+      </Typography>
+      <MyFormGroup items={items} refine={refine} />
     </>
   );
 };
 
-const RefineBar = ({ tagNames }) => (
+const CustomRefinement = connectRefinementList(RefinementList);
+
+const RefineBar = ({ tagNames, classes }) => (
   <>
-    {tagNames.map(tag => (
-      <Refinement tagName={tag} key={tag} />
-    ))}
+    {tagNames.map((tag) => {
+      const attribute = `fields.${tag}.en-US`;
+      return (
+        <CustomRefinement
+          classes={classes}
+          attribute={attribute}
+          transformItems={items => orderBy(items, ['label', 'count'], ['asc', 'desc'])
+          }
+          tagName={tag}
+          key={tag}
+        />
+      );
+    })}
   </>
 );
 
-const RefinementMenu = ({ tagNames }) => (
+const RefinementMenu = ({ tagNames, classes }) => (
   <Paper style={{ padding: '1rem' }}>
     {/* <CurrentRefinements /> */}
     <ClearRefinements />
-    <RefineBar tagNames={tagNames} />
+    <RefineBar tagNames={tagNames} classes={classes} />
   </Paper>
 );
 
-export default RefinementMenu;
+export default withStyles(styles)(RefinementMenu);
