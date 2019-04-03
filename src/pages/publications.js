@@ -7,13 +7,13 @@ import Container from '../components/container';
 import Hero from '../components/hero';
 import PublicationSearch from '../components/publications/publicationSearch';
 
-const Publications = ({ data }) => {
+const Publications = ({ data, showProgress }) => {
   const dataList = {};
   data.allContentfulData.edges.forEach(({ node }) => {
     dataList[node.contentful_id] = node.slug;
   });
   return (
-    <Layout>
+    <Layout showProgress={showProgress}>
       <SEO title="Publications" />
       <Hero title="Publications" />
       <Container>

@@ -65,7 +65,7 @@ const Authors = ({ authors, classes }) => (
   </div>
 );
 
-const Data = ({ data, classes }) => {
+const Data = ({ data, classes, showProgress }) => {
   const attributes = data.contentfulData;
   const {
     title,
@@ -78,7 +78,7 @@ const Data = ({ data, classes }) => {
   const { body } = attributes.body;
   const highlights = [keyHighlight1, keyHighlight2, keyHighlight3];
   return (
-    <Layout>
+    <Layout showProgress={showProgress}>
       <SEO title={title} />
       <Hero title={title} />
       <Container>

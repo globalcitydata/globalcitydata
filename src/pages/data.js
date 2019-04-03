@@ -20,9 +20,9 @@ const styles = {
   },
 };
 
-const Data = ({ classes }) => (
+const Data = ({ classes, showProgress }) => (
   <>
-    <Layout>
+    <Layout showProgress={showProgress}>
       <SEO title="Explore Data" />
       <Hero title="Explore the Data" />
       {/* <Container style={{ paddingBottom: 0 }}>
