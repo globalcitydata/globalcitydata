@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
   root: {
     margin: '0 auto',
-    maxWidth: '900px',
+    maxWidth: '1000px',
     padding: '4rem 1rem',
   },
 };

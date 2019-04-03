@@ -9,6 +9,8 @@ import SEO from '../components/seo';
 import Container from '../components/container';
 import withRoot from '../withRoot';
 import Markdown from '../components/markdown';
+import ContentPaper from '../components/contentPaper';
+import Hero from '../components/hero';
 
 const AttributeTitle = ({ children, classes }) => (
   <Typography variant="h5" className={classes.attributeTitle}>
@@ -76,17 +78,17 @@ const Data = ({ data, classes }) => {
   const { body } = attributes.body;
   const highlights = [keyHighlight1, keyHighlight2, keyHighlight3];
   return (
-    <>
+    <Layout>
       <SEO title={title} />
-      <Layout>
-        <Container>
-          <Typography variant="h3">{title}</Typography>
+      <Hero title={title} />
+      <Container>
+        <ContentPaper>
           <Markdown>{body}</Markdown>
           <KeyHighlights highlights={highlights} classes={classes} />
           <Authors authors={authors} classes={classes} />
-        </Container>
-      </Layout>
-    </>
+        </ContentPaper>
+      </Container>
+    </Layout>
   );
 };
 

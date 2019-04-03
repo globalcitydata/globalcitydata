@@ -66,7 +66,7 @@ const styles = theme => ({
 const TagPicture = ({ instance, classes }) => {
   const [hover, setHover] = useState(false);
   const { title, description, fixed } = instance;
-  console.log(instance);
+  // console.log(instance);
   return (
     <Grid item s={12} m={6} l={4} xl={3}>
       <div

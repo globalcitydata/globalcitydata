@@ -10,7 +10,8 @@ const styles = {
   root: {
     padding: '0.5rem 1rem',
     width: '100%',
-    marginBottom: '2rem',
+    maxWidth: '900px',
+    margin: '0 auto 2rem',
     display: 'flex',
   },
   input: {
@@ -19,6 +20,7 @@ const styles = {
   },
   iconButton: {
     padding: 10,
+    color: 'dimgrey',
   },
 };
 
@@ -30,19 +32,12 @@ const SearchBox = ({ currentRefinement, refine, classes }) => (
       onChange={e => refine(e.target.value)}
       style={{ width: '100%' }}
     />
-    <IconButton className={classes.iconButton} aria-label="Search">
+    <div className={classes.iconButton} aria-label="Search">
       <Search />
-    </IconButton>
+    </div>
   </Paper>
-  // <Paper>
-  //   <div className={{ width: '100%' }}>
-  //     <InputBase className={classes.input} placeholder="Search Google Maps" />
-
-  //   </div>
-  // </Paper>
 );
 
 const CustomSearchBox = connectSearchBox(withStyles(styles)(SearchBox));
 
-// export default withStyles(styles)(CustomSearchBox);
 export default CustomSearchBox;

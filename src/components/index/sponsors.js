@@ -10,22 +10,19 @@ const styles = {
   },
 };
 
-const Sponsors = ({ sponsors, classes }) => {
-  console.log(sponsors);
-  return (
-    <Container>
-      <Typography variant="h4" className={classes.title}>
-        Sponsors
-      </Typography>
-      <Grid container spacing={24}>
-        {sponsors.map((img, i) => (
-          <Grid item key={i}>
-            <Img fixed={img.fixed} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  );
-};
-
+const Sponsors = ({ sponsors, classes }) => (
+  // console.log(sponsors);
+  <Container>
+    <Typography variant="h4" className={classes.title}>
+      Sponsors
+    </Typography>
+    <Grid container spacing={24}>
+      {sponsors.map((img, i) => (
+        <Grid item key={i}>
+          <Img fixed={img.fixed} />
+        </Grid>
+      ))}
+    </Grid>
+  </Container>
+);
 export default withStyles(styles)(Sponsors);
