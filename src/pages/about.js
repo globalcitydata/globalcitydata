@@ -19,12 +19,12 @@ const styles = theme => ({
   // },
 });
 
-const About = ({ data, classes }) => {
+const About = ({ data, classes, showProgress }) => {
   const { body } = data.contentfulOurStoryPage;
   const { html } = body.childMarkdownRemark;
   const { backgroundImage } = data.contentfulOurStoryPage;
   return (
-    <Layout>
+    <Layout showProgress={showProgress}>
       <SEO title="About" description="About page for Global City Data" />
       <Hero title="Our Story" />
       <Container>

@@ -8,8 +8,8 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import withRoot from '../withRoot';
 
-const Contact = () => (
-  <Layout>
+const Contact = ({ showProgress }) => (
+  <Layout showProgress={showProgress}>
     <SEO title="Contact" />
     <Hero title="Contact us" />
     <Container>

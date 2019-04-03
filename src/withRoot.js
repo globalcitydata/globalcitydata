@@ -9,6 +9,15 @@ function withRoot(Component) {
     constructor(props) {
       super(props);
       this.muiPageContext = getPageContext();
+      this.state = { showProgress: false };
+    }
+
+    componentWillMount() {
+      this.setState({ showProgress: true });
+      setTimeout(() => {
+        // Start the timer
+        this.setState({ showProgress: false }); // After 1 second, set render to true
+      }, 1000);
     }
 
     componentDidMount() {
@@ -20,6 +29,7 @@ function withRoot(Component) {
     }
 
     render() {
+      const { showProgress } = this.state;
       return (
         <JssProvider generateClassName={this.muiPageContext.generateClassName}>
           {/* MuiThemeProvider makes the theme available down the React
@@ -30,7 +40,7 @@ function withRoot(Component) {
           >
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <Component {...this.props} />
+            <Component {...this.props} showProgress={showProgress} />
           </MuiThemeProvider>
         </JssProvider>
       );

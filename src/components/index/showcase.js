@@ -11,10 +11,6 @@ const styles = {
   showcaseWrapper: {
     position: 'relative',
     textAlign: 'center',
-    marginTop: '65px',
-    '@media (max-width: 720px)': {
-      marginTop: '55px',
-    },
   },
   helloButton: {
     marginTop: '1rem',

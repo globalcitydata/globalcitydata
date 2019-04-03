@@ -15,7 +15,7 @@ import Sponsors from '../components/index/sponsors';
 
 const styles = {};
 
-const Index = ({ data, classes }) => {
+const Index = ({ data, classes, showProgress }) => {
   const showcaseData = data.contentfulHomePage;
   const tagSections = data.allContentfulHomeTagSection.edges;
   const { sponsors, tagsIntro } = data.contentfulHomePage;
@@ -23,7 +23,7 @@ const Index = ({ data, classes }) => {
   return (
     <>
       <SEO title="Home" />
-      <Layout>
+      <Layout showProgress={showProgress}>
         <Showcase showcaseData={showcaseData} />
         <Tags sections={tagSections} intro={intro} />
         <Sponsors sponsors={sponsors} />

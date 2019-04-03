@@ -6,10 +6,6 @@ import { Typography } from '@material-ui/core';
 const styles = theme => ({
   root: {
     position: 'relative',
-    marginTop: '65px',
-    '@media (max-width: 720px)': {
-      marginTop: '55px',
-    },
   },
   background: {
     filter: 'brightness(30%)',
