@@ -8,18 +8,15 @@ import {
   List,
   ListItem,
   Paper,
-  OutlinedInput,
   Link as MuiLink,
 } from '@material-ui/core';
 import {
   InstantSearch,
   Configure,
   connectHits,
-  connectSearchBox,
   Pagination,
 } from 'react-instantsearch-dom';
 import CustomSearchBox from '../customSearchBox';
-import { TextButton } from '../buttons';
 
 const styles = {
   hits: {
