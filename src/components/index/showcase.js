@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import { Carousel } from 'grommet';
-import { Typography, Button } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import DownButton from '../downButton';
 
 const styles = {
   showcaseWrapper: {
@@ -16,10 +16,11 @@ const styles = {
     marginTop: '1rem',
   },
   imagesWrapper: {
-    maxHeight: '600px',
+    // height: '610px',
+    // width: '100%',
     maxWidth: '2000px',
     margin: '0 auto',
-    filter: 'brightness(40%)',
+    filter: 'brightness(50%)',
   },
   contentWrapper: {
     position: 'absolute',
@@ -78,7 +79,6 @@ const Showcase = ({ showcaseData, classes }) => {
         <Typography
           variant="h4"
           color="inherit"
-          // style={{ marginBottom: '1rem' }}
           className={classes.welcomeHeader}
         >
           {primaryMessage}
@@ -90,14 +90,7 @@ const Showcase = ({ showcaseData, classes }) => {
         >
           {secondaryMessage}
         </Typography>
-        <Button
-          variant="contained"
-          component={Link}
-          to="/data/"
-          className={`${classes.helloButton} lift`}
-        >
-          Explore Data
-        </Button>
+        <DownButton id="description" />
       </div>
     </div>
   );

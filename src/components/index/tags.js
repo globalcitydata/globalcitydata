@@ -22,10 +22,6 @@ const transformText = (oldTitle) => {
 };
 
 const styles = theme => ({
-  intro: {
-    padding: '1rem 0',
-    fontSize: '1.2rem',
-  },
   tagSections: {
     background: theme.palette.background.paper,
   },
@@ -33,7 +29,7 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   section: {
-    padding: '3rem 0',
+    padding: '3rem 1rem',
   },
   heroWrapper: {
     position: 'relative',
@@ -68,7 +64,7 @@ const TagPicture = ({ instance, classes }) => {
   const { title, description, fixed } = instance;
   // console.log(instance);
   return (
-    <Grid item s={12} m={6} l={4} xl={3}>
+    <Grid item s={12} m={6} l={4}>
       <div
         className={`${classes.heroWrapper} lift`}
         onMouseEnter={() => setHover(true)}
@@ -101,7 +97,7 @@ const TagSection = ({ tag, classes }) => {
       <Typography variant="subtitle2" style={{ maxWidth: '800px' }}>
         {description}
       </Typography>
-      <Grid container spacing={24}>
+      <Grid container spacing={32}>
         {associatedPictures.map(instance => (
           <TagPicture
             instance={instance}
@@ -170,16 +166,4 @@ class TagSections extends Component {
   }
 }
 
-/**
- * High level tag section that displays tags intro message along with actual tag sections
- */
-const Tags = ({ sections, intro, classes }) => (
-  <>
-    <Container>
-      <Markdown className={classes.intro}>{intro}</Markdown>
-    </Container>
-    <TagSections sections={sections} classes={classes} />
-  </>
-);
-
-export default withStyles(styles)(Tags);
+export default withStyles(styles)(TagSections);

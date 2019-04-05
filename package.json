@@ -43,6 +43,7 @@
     "react-helmet": "^5.2.0",
     "react-instantsearch-dom": "^5.4.0",
     "react-jss": "^8.6.1",
+    "react-scroll": "^1.7.11",
     "react-typography": "^0.16.19",
     "styled-components": "^4.2.0",
     "typography": "^0.16.19",
