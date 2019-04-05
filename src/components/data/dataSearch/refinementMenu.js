@@ -32,7 +32,6 @@ const RefineBar = ({ tagNames }) => (
 
 const RefinementMenu = ({ tagNames }) => (
   <Paper style={{ padding: '1rem' }}>
-    {/* <CurrentRefinements /> */}
     <ClearRefinements />
     <RefineBar tagNames={tagNames} />
   </Paper>
