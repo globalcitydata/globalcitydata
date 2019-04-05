@@ -10,14 +10,7 @@ import Container from '../components/container';
 import Hero from '../components/hero';
 import ContentPaper from '../components/contentPaper';
 
-const styles = theme => ({
-  // paper: {
-  //   padding: '3rem',
-  //   [theme.breakpoints.down('sm')]: {
-  //     padding: '1.5rem',
-  //   },
-  // },
-});
+const styles = theme => ({});
 
 const About = ({ data, classes, showProgress }) => {
   const { name, body, backgroundImage } = data.contentfulPage;
