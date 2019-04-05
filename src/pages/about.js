@@ -20,18 +20,16 @@ const styles = theme => ({
 });
 
 const About = ({ data, classes, showProgress }) => {
-  const { body } = data.contentfulOurStoryPage;
+  const { name, body, backgroundImage } = data.contentfulPage;
   const { html } = body.childMarkdownRemark;
-  const { backgroundImage } = data.contentfulOurStoryPage;
   return (
     <Layout showProgress={showProgress}>
       <SEO title="About" description="About page for Global City Data" />
-      <Hero title="Our Story" />
+      <Hero title={name} img={backgroundImage} />
       <Container>
         <ContentPaper>
           {/* Display Contentful Our Story markdown body as html */}
           <Markdown>{html}</Markdown>
-          {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
         </ContentPaper>
       </Container>
     </Layout>
@@ -42,14 +40,15 @@ export default withRoot(withStyles(styles)(About));
 
 export const query = graphql`
   query {
-    contentfulOurStoryPage {
+    contentfulPage(identifier: { eq: "about" }) {
+      name
       body {
         childMarkdownRemark {
           html
         }
       }
       backgroundImage {
-        fixed(width: 2000, height: 300) {
+        fixed(width: 2000, height: 200) {
           ...GatsbyContentfulFixed_withWebp
         }
       }
