@@ -37,20 +37,21 @@ const styles = {
   },
 };
 
-const colors = ['primary', 'secondary', 'default', 'error'];
+const colors = ['primary', 'secondary', 'default'];
 
 const Tags = ({ classes, tags }) => (
   <div>
     {Object.entries(tags).map((tag, i) => (
-      <>
+      <div key={i}>
         {Object.entries(tag[1]).map(attribute => (
           <Chip
-            color={colors[i % 4]}
+            color={colors[i % colors.length]}
             label={attribute[1]}
             className={classes.chip}
+            key={attribute[1]}
           />
         ))}
-      </>
+      </div>
     ))}
     {/* <Chip label="Example tag" className={classes.chip} />
     <Chip color="primary" label="Another one" className={classes.chip} />
@@ -62,10 +63,10 @@ const Hit = ({ hit, classes }) => {
   const dataObj = getDataObjFromHit(hit);
   // console.log(dataObj.tags);
   return (
-    <Grid item xs={12} md={6} xl={4}>
+    <Grid item xs={12} md={6}>
       <Card className={`${classes.card} lift`}>
         <CardContent>
-          <Typography variant="h5" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             {dataObj.title}
           </Typography>
           <Divider />
