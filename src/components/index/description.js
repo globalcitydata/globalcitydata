@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
-import { Fab } from '@material-ui/core';
-import { Element } from 'react-scroll';
 import Container from '../container';
 import Markdown from '../markdown';
+import DownButton from '../downButton';
 
 const styles = {
   root: {
@@ -23,22 +21,12 @@ const styles = {
 };
 
 const Description = ({ intro, classes }) => (
-  <Element name="description">
-    <div className={classes.root}>
-      <Container>
-        <Markdown className={classes.intro}>{intro}</Markdown>
-        <Fab
-          color="primary"
-          variant="extended"
-          component={Link}
-          to="/data/"
-          className={`${classes.btn} lift`}
-        >
-          Explore Data
-        </Fab>
-      </Container>
-    </div>
-  </Element>
+  <div className={classes.root}>
+    <Container>
+      <Markdown className={classes.intro}>{intro}</Markdown>
+      <DownButton id="tagSections" />
+    </Container>
+  </div>
 );
 
 export default withStyles(styles)(Description);

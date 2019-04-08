@@ -28,6 +28,11 @@ const theme = createMuiTheme({
         textTransform: 'none',
       },
     },
+    MuiFab: {
+      label: {
+        textTransform: 'none',
+      },
+    },
     MuiTypography: {
       h3: {
         marginBottom: '3rem',
@@ -37,6 +42,10 @@ const theme = createMuiTheme({
       },
       h5: {
         marginBottom: '1.5rem',
+      },
+      h6: {
+        fontWeight: '550',
+        lineHeight: '1.4',
       },
       subtitle2: {
         marginBottom: '1.5rem',

@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import { Carousel } from 'grommet';
-import { Typography } from '@material-ui/core';
-import DownButton from '../downButton';
+import { Typography, Fab } from '@material-ui/core';
 
 const styles = {
   showcaseWrapper: {
@@ -28,6 +28,7 @@ const styles = {
     top: '20%',
     transform: 'translate(-50%, 0)',
     color: 'white',
+    maxWidth: '800px',
     '@media (max-width: 1400px)': {
       top: '15%',
     },
@@ -57,6 +58,9 @@ const styles = {
     '@media (max-width: 720px)': {
       fontSize: '18px',
     },
+  },
+  btn: {
+    marginTop: '1.5rem',
   },
 };
 
@@ -90,7 +94,15 @@ const Showcase = ({ showcaseData, classes }) => {
         >
           {secondaryMessage}
         </Typography>
-        <DownButton id="description" />
+        <Fab
+          color="primary"
+          variant="extended"
+          component={Link}
+          to="/data/"
+          className={`${classes.btn} lift`}
+        >
+          Explore Data
+        </Fab>
       </div>
     </div>
   );
