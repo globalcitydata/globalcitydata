@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import {
  Typography, Grid, Tabs, Tab, Hidden 
 } from '@material-ui/core';
+import { Element } from 'react-scroll';
 import Container from '../container';
-import Markdown from '../markdown';
 
 /**
  * Transform title of picture from contentful title
@@ -123,45 +123,47 @@ class TagSections extends Component {
     const { sections, classes } = this.props;
     const { tab } = this.state;
     return (
-      <div className={classes.tagSections}>
-        <Container>
-          {/* Dumb Trick to display responsive tabs */}
-          <Hidden smUp>
-            <Tabs
-              indicatorColor="primary"
-              variant="scrollable"
-              value={tab}
-              onChange={this.handleChange}
-              className={classes.tabs}
-            >
-              {sections.map(({ node: tag }) => (
-                <Tab key={tag.title} label={tag.title} />
+      <Element name="tagSections">
+        <div className={classes.tagSections}>
+          <Container>
+            {/* Dumb Trick to display responsive tabs */}
+            <Hidden smUp>
+              <Tabs
+                indicatorColor="primary"
+                variant="scrollable"
+                value={tab}
+                onChange={this.handleChange}
+                className={classes.tabs}
+              >
+                {sections.map(({ node: tag }) => (
+                  <Tab key={tag.title} label={tag.title} />
+                ))}
+              </Tabs>
+            </Hidden>
+            <Hidden xsDown>
+              <Tabs
+                indicatorColor="primary"
+                centered
+                value={tab}
+                onChange={this.handleChange}
+                className={classes.tabs}
+              >
+                {sections.map(({ node: tag }) => (
+                  <Tab key={tag.title} label={tag.title} />
+                ))}
+              </Tabs>
+            </Hidden>
+            {/* End really dumb tab trick */}
+            <>
+              {sections.map(({ node: tag }, i) => (
+                <div key={tag.title}>
+                  {i === tab && <TagSection tag={tag} classes={classes} />}
+                </div>
               ))}
-            </Tabs>
-          </Hidden>
-          <Hidden xsDown>
-            <Tabs
-              indicatorColor="primary"
-              centered
-              value={tab}
-              onChange={this.handleChange}
-              className={classes.tabs}
-            >
-              {sections.map(({ node: tag }) => (
-                <Tab key={tag.title} label={tag.title} />
-              ))}
-            </Tabs>
-          </Hidden>
-          {/* End really dumb tab trick */}
-          <>
-            {sections.map(({ node: tag }, i) => (
-              <div key={tag.title}>
-                {i === tab && <TagSection tag={tag} classes={classes} />}
-              </div>
-            ))}
-          </>
-        </Container>
-      </div>
+            </>
+          </Container>
+        </div>
+      </Element>
     );
   }
 }

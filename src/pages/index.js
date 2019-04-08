@@ -27,7 +27,6 @@ const Index = ({ data, classes, showProgress }) => {
         <Tags sections={tagSections} />
         <Sponsors sponsors={sponsors} />
       </Layout>
-      {/* </div> */}
     </>
   );
 };

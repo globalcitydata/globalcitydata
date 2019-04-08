@@ -6,7 +6,7 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 
 const styles = {
   fab: {
-    marginTop: '2rem',
+    marginTop: '1rem',
   },
 };
 
