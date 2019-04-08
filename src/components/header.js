@@ -53,7 +53,9 @@ const styles = {
 };
 
 const NavLink = (props) => {
-  const { to, children, list } = props;
+  const {
+ to, children, list, external 
+} = props;
   return (
     <>
       {list ? (
@@ -81,6 +83,9 @@ const NavLinkList = ({ classes, list }) => (
         <Divider />
       </>
     )}
+    <NavLink to="/" className={classes.link} list={list}>
+      Home
+    </NavLink>
     <NavLink to="/data" className={classes.link} list={list}>
       Data
     </NavLink>
@@ -93,6 +98,14 @@ const NavLinkList = ({ classes, list }) => (
     <NavLink to="/contact/" className={classes.link} list={list}>
       Contact
     </NavLink>
+    {/* <NavLink
+      to="https://forms.gle/Jmzy3WNU2twitsmG8"
+      className={classes.link}
+      list={list}
+      external
+    >
+      Submit Data
+    </NavLink> */}
   </List>
 );
 

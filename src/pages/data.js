@@ -7,6 +7,7 @@ import SEO from '../components/seo';
 import Layout from '../components/layout';
 import withRoot from '../withRoot';
 import Container from '../components/container';
+import Hero from '../components/hero';
 
 // Page Components
 import DataSearch from '../components/data/dataSearch';
@@ -15,17 +16,18 @@ const styles = {
   data: {
     margin: '0 auto',
     maxWidth: '1300px',
-    padding: '0 1rem 3rem',
+    padding: '3rem 1rem 3rem',
   },
 };
 
-const Data = ({ classes }) => (
+const Data = ({ classes, showProgress }) => (
   <>
-    <SEO title="Explore Data" />
-    <Layout>
-      <Container style={{ paddingBottom: 0 }}>
+    <Layout showProgress={showProgress}>
+      <SEO title="Explore Data" />
+      <Hero title="Explore the Data" />
+      {/* <Container style={{ paddingBottom: 0 }}>
         <Typography variant="h3">Explore the Data</Typography>
-      </Container>
+      </Container> */}
       <div className={classes.data}>
         <DataSearch />
       </div>

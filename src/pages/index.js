@@ -1,21 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
-// General Components
 import { withStyles } from '@material-ui/core';
-import Layout from '../components/layout';
-import Container from '../components/container';
+import withRoot from '../withRoot';
 import SEO from '../components/seo';
+import Layout from '../components/layout';
 
 // Page Components
 import Showcase from '../components/index/showcase';
-import withRoot from '../withRoot';
+import Description from '../components/index/description';
 import Tags from '../components/index/tags';
 import Sponsors from '../components/index/sponsors';
 
 const styles = {};
 
-const Index = ({ data, classes }) => {
+const Index = ({ data, classes, showProgress }) => {
   const showcaseData = data.contentfulHomePage;
   const tagSections = data.allContentfulHomeTagSection.edges;
   const { sponsors, tagsIntro } = data.contentfulHomePage;
@@ -23,12 +21,12 @@ const Index = ({ data, classes }) => {
   return (
     <>
       <SEO title="Home" />
-      <Layout>
+      <Layout showProgress={showProgress}>
         <Showcase showcaseData={showcaseData} />
-        <Tags sections={tagSections} intro={intro} />
+        <Description intro={intro} />
+        <Tags sections={tagSections} />
         <Sponsors sponsors={sponsors} />
       </Layout>
-      {/* </div> */}
     </>
   );
 };

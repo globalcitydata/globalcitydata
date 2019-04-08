@@ -5,25 +5,22 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import { Carousel } from 'grommet';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Fab } from '@material-ui/core';
 
 const styles = {
   showcaseWrapper: {
     position: 'relative',
     textAlign: 'center',
-    marginTop: '65px',
-    '@media (max-width: 720px)': {
-      marginTop: '55px',
-    },
   },
   helloButton: {
     marginTop: '1rem',
   },
   imagesWrapper: {
-    maxHeight: '600px',
+    // height: '610px',
+    // width: '100%',
     maxWidth: '2000px',
     margin: '0 auto',
-    filter: 'brightness(40%)',
+    filter: 'brightness(50%)',
   },
   contentWrapper: {
     position: 'absolute',
@@ -31,6 +28,7 @@ const styles = {
     top: '20%',
     transform: 'translate(-50%, 0)',
     color: 'white',
+    maxWidth: '800px',
     '@media (max-width: 1400px)': {
       top: '15%',
     },
@@ -61,6 +59,9 @@ const styles = {
       fontSize: '18px',
     },
   },
+  btn: {
+    marginTop: '1.5rem',
+  },
 };
 
 const WelcomeImages = ({ images, classes }) => (
@@ -82,7 +83,6 @@ const Showcase = ({ showcaseData, classes }) => {
         <Typography
           variant="h4"
           color="inherit"
-          // style={{ marginBottom: '1rem' }}
           className={classes.welcomeHeader}
         >
           {primaryMessage}
@@ -94,14 +94,15 @@ const Showcase = ({ showcaseData, classes }) => {
         >
           {secondaryMessage}
         </Typography>
-        <Button
-          variant="contained"
+        <Fab
+          color="primary"
+          variant="extended"
           component={Link}
           to="/data/"
-          className={`${classes.helloButton} lift`}
+          className={`${classes.btn} lift`}
         >
           Explore Data
-        </Button>
+        </Fab>
       </div>
     </div>
   );
