@@ -29,8 +29,10 @@ const styles = {
   },
   sidebar: {
     width: '25%',
+    height: '75vh',
+    overflow: 'auto',
     position: 'sticky',
-    top: 0,
+    top: '100px',
     '@media (max-width: 1000px)': {
       width: '60%',
     },

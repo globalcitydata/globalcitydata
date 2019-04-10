@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  // RefinementList,
-  // CurrentRefinements,
   connectRefinementList,
   ClearRefinements,
 } from 'react-instantsearch-dom';
@@ -17,20 +15,9 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import { startCase, orderBy } from 'lodash';
 
-const drawerWidth = '300px';
-
 const styles = {
   root: {
     padding: '1rem',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    top: '310px',
-    left: '8%',
   },
   clearBtn: {
     marginBottom: '1rem',
@@ -119,12 +106,10 @@ const RefineBar = ({ tagNames, classes }) => (
 );
 
 const RefinementMenu = ({ tagNames, classes }) => (
-  <div className={classes.drawer}>
-    <Paper className={classes.root}>
-      {/* <ClearRefinements className={classes.clearBtn} /> */}
-      <RefineBar tagNames={tagNames} classes={classes} />
-    </Paper>
-  </div>
+  <Paper className={classes.root}>
+    {/* <ClearRefinements className={classes.clearBtn} /> */}
+    <RefineBar tagNames={tagNames} classes={classes} />
+  </Paper>
 );
 
 export default withStyles(styles)(RefinementMenu);
