@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
-  // RefinementList,
-  // CurrentRefinements,
   connectRefinementList,
   ClearRefinements,
 } from 'react-instantsearch-dom';
 import {
   Paper,
   Typography,
-  Drawer,
   Checkbox,
   FormControl,
   FormLabel,
@@ -30,6 +27,9 @@ const styles = {
     color: 'black',
     paddingTop: '1rem',
     marginBottom: '0.5rem',
+  },
+  checkbox: {
+    padding: '8px',
   },
 };
 
@@ -58,6 +58,7 @@ const RefinementList = (props) => {
                 /* eslint-disable */
                 <Checkbox
                   color="primary"
+                  className={classes.checkbox}
                   onClick={e => {
                     e.preventDefault();
                     refine(item.value);
@@ -70,7 +71,11 @@ const RefinementList = (props) => {
                 />
                 /* eslint-disable */
               }
-              label={`${item.label} (${item.count})`}
+              label={
+                <Typography variant="caption">{`${item.label} (${
+                  item.count
+                })`}</Typography>
+              }
             />
           </div>
         ))}
@@ -101,19 +106,10 @@ const RefineBar = ({ tagNames, classes }) => (
 );
 
 const RefinementMenu = ({ tagNames, classes }) => (
-  // <Drawer
-  //   variant="permanent"
-  //   anchor="left"
-  //   className={classes.refinementDrawer}
-  //   classes={{
-  //     paper: classes.drawerPaper,
-  //   }}
-  // >
   <Paper className={classes.root}>
     {/* <ClearRefinements className={classes.clearBtn} /> */}
     <RefineBar tagNames={tagNames} classes={classes} />
   </Paper>
-  // </Drawer>
 );
 
 export default withStyles(styles)(RefinementMenu);

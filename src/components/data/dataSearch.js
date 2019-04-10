@@ -18,6 +18,25 @@ import Hit from './dataSearch/hit';
 import { tagNames } from './dataUtils';
 
 const styles = {
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  main: {
+    width: '70%',
+    maxWidth: '900px',
+    paddingLeft: '15px',
+  },
+  sidebar: {
+    width: '25%',
+    height: '75vh',
+    overflow: 'auto',
+    position: 'sticky',
+    top: '100px',
+    '@media (max-width: 1000px)': {
+      width: '60%',
+    },
+  },
   pagination: {
     margin: '0 auto',
     paddingTop: '2rem',
@@ -35,22 +54,33 @@ const Hits = ({ hits, classes }) => (
 const CustomHits = connectHits(Hits);
 
 const Search = ({ classes }) => (
-  <Grid container>
+  <>
     <Hidden smDown>
-      <Grid item xs={12} md={3}>
-        <RefinementMenu tagNames={tagNames} />
-      </Grid>
+      <div className={classes.root}>
+        <div className={classes.sidebar}>
+          <RefinementMenu tagNames={tagNames} />
+        </div>
+        <div className={classes.main}>
+          <CustomSearchBox />
+          <Configure hitsPerPage={6} />
+          <CustomHits classes={classes} />
+        </div>
+      </div>
+      <div className={classes.pagination}>
+        <Pagination />
+      </div>
     </Hidden>
-    <Grid item md={1} />
-    <Grid item xs={12} md={7}>
-      <CustomSearchBox />
-      <Configure hitsPerPage={6} />
-      <CustomHits classes={classes} />
-    </Grid>
-    <div className={classes.pagination}>
-      <Pagination />
-    </div>
-  </Grid>
+    <Hidden mdUp>
+      <div>
+        <CustomSearchBox />
+        <Configure hitsPerPage={6} />
+        <CustomHits classes={classes} />
+      </div>
+      <div className={classes.pagination}>
+        <Pagination />
+      </div>
+    </Hidden>
+  </>
 );
 
 const DataSearch = ({ classes }) => (
