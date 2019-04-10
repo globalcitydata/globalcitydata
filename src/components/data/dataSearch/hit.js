@@ -12,21 +12,22 @@ import {
   CardContent,
   CardActions,
   Chip,
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-  Link as MuiLink,
+  IconButton,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import classnames from 'classnames';
 import { getDataObjFromHit } from '../dataUtils';
 
 const styles = theme => ({
-  ep: {
-    margin: 0,
-    borderRadius: 'inherit',
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
-  epDetail: {
-    display: 'inherit',
+  expandOpen: {
+    transform: 'rotate(180deg)',
   },
   expandBtn: {
     color: 'red',
@@ -58,27 +59,39 @@ const colors = {
   worldRegions: 'default',
 };
 
-// const Tags = ({ classes, tags }) => (
-//   <ExpansionPanel className={classes.ep}>
-//     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-//       <Typography variant="subtitle1">Tags</Typography>
-//     </ExpansionPanelSummary>
-//     <ExpansionPanelDetails className={classes.epDetail}>
-//       {Object.entries(tags).map((tag, i) => (
-//         <Fragment key={i}>
-//           {Object.entries(tag[1]).map(attribute => (
-//             <Chip
-//               color={colors[i % colors.length]}
-//               label={attribute[1]}
-//               className={classes.chip}
-//               key={attribute[1]}
-//             />
-//           ))}
-//         </Fragment>
-//       ))}
-//     </ExpansionPanelDetails>
-//   </ExpansionPanel>
-// );
+// <Button
+//   onClick={() => setExpanded(prev => !prev)}
+//   className={classes.expandBtn}
+//   disableRipple
+// >
+//   {msg}
+// </Button>
+
+const ExpandBtn = ({ expanded, setExpanded, classes }) => (
+  <IconButton
+    className={classnames(classes.expand, {
+      [classes.expandOpen]: expanded,
+    })}
+    onClick={() => setExpanded(prev => !prev)}
+    aria-expanded={expanded}
+    aria-label="Show more"
+  >
+    <ExpandMoreIcon />
+  </IconButton>
+);
+
+const Title = ({
+ title, expanded, setExpanded, classes 
+}) => (
+  <Typography variant="subtitle1">
+    {title}
+    <ExpandBtn
+      setExpanded={setExpanded}
+      classes={classes}
+      expanded={expanded}
+    />
+  </Typography>
+);
 
 const Tags = ({ classes, tags }) => {
   const [expanded, setExpanded] = useState(false);
@@ -86,14 +99,14 @@ const Tags = ({ classes, tags }) => {
   Object.entries(tags).forEach(tag => Object.entries(tag[1]).forEach(
       attribute => tagList.push([tag[0], attribute[1]]), // ex: ['determinants', 'environment']
     ),);
-  const btnMsg = `${expanded ? '-' : '+'}`;
   return (
     <CardContent>
-      <Typography variant="subtitle1">
-        Tags
-        {'  '}
-        <ExpandBtn msg={btnMsg} setExpanded={setExpanded} classes={classes} />
-      </Typography>
+      <Title
+        title="Tags"
+        setExpanded={setExpanded}
+        classes={classes}
+        expanded={expanded}
+      />
       {!expanded ? (
         <>
           {tagList.slice(0, 3).map(chipTag => (
@@ -121,37 +134,17 @@ const Tags = ({ classes, tags }) => {
   );
 };
 
-// const Summary = ({ classes, summary }) => (
-//   <ExpansionPanel className={classes.ep}>
-//     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-//       <Typography variant="subtitle1">Summary</Typography>
-//     </ExpansionPanelSummary>
-//     <ExpansionPanelDetails className={classes.epDetail}>
-//       <Typography paragraph>{summary}</Typography>
-//     </ExpansionPanelDetails>
-//   </ExpansionPanel>
-// );
-
-const ExpandBtn = ({ msg, setExpanded, classes }) => (
-  <Button
-    onClick={() => setExpanded(prev => !prev)}
-    className={classes.expandBtn}
-    disableRipple
-  >
-    {msg}
-  </Button>
-);
-
 const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   const btnMsg = `${expanded ? '-' : '+'}`;
   return (
     <CardContent>
-      <Typography variant="subtitle1">
-        Summary
-        {'  '}
-        <ExpandBtn msg={btnMsg} setExpanded={setExpanded} classes={classes} />
-      </Typography>
+      <Title
+        title="Summary"
+        setExpanded={setExpanded}
+        classes={classes}
+        expanded={expanded}
+      />
       {!expanded ? (
         <>
           <Typography variant="caption">
