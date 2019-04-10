@@ -58,6 +58,7 @@ const RefinementList = (props) => {
                 /* eslint-disable */
                 <Checkbox
                   color="primary"
+                  style={{ padding: "8px" }}
                   onClick={e => {
                     e.preventDefault();
                     refine(item.value);
@@ -70,7 +71,11 @@ const RefinementList = (props) => {
                 />
                 /* eslint-disable */
               }
-              label={`${item.label} (${item.count})`}
+              label={
+                <Typography variant="caption">{`${item.label} (${
+                  item.count
+                })`}</Typography>
+              }
             />
           </div>
         ))}
