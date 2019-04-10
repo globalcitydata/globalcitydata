@@ -13,6 +13,7 @@ import {
   CardActions,
   Chip,
   IconButton,
+  Collapse,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import classnames from 'classnames';
@@ -59,14 +60,6 @@ const colors = {
   worldRegions: 'default',
 };
 
-// <Button
-//   onClick={() => setExpanded(prev => !prev)}
-//   className={classes.expandBtn}
-//   disableRipple
-// >
-//   {msg}
-// </Button>
-
 const ExpandBtn = ({ expanded, setExpanded, classes }) => (
   <IconButton
     className={classnames(classes.expand, {
@@ -107,36 +100,22 @@ const Tags = ({ classes, tags }) => {
         classes={classes}
         expanded={expanded}
       />
-      {!expanded ? (
-        <>
-          {tagList.slice(0, 3).map(chipTag => (
-            <Chip
-              color={colors[chipTag[0]]}
-              label={chipTag[1]}
-              className={classes.chip}
-              key={chipTag[1]}
-            />
-          ))}
-        </>
-      ) : (
-        <>
-          {tagList.map(chipTag => (
-            <Chip
-              color={colors[chipTag[0]]}
-              label={chipTag[1]}
-              className={classes.chip}
-              key={chipTag[1]}
-            />
-          ))}
-        </>
-      )}
+      <Collapse in={expanded} collapsedHeight="80px">
+        {tagList.map(chipTag => (
+          <Chip
+            color={colors[chipTag[0]]}
+            label={chipTag[1]}
+            className={classes.chip}
+            key={chipTag[1]}
+          />
+        ))}
+      </Collapse>
     </CardContent>
   );
 };
 
 const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
-  const btnMsg = `${expanded ? '-' : '+'}`;
   return (
     <CardContent>
       <Title
@@ -145,17 +124,9 @@ const Summary = ({ classes, summary }) => {
         classes={classes}
         expanded={expanded}
       />
-      {!expanded ? (
-        <>
-          <Typography variant="caption">
-            {`${summary.slice(0, 150)} ...`}
-          </Typography>
-        </>
-      ) : (
-        <>
-          <Typography variant="caption">{summary}</Typography>
-        </>
-      )}
+      <Collapse in={expanded} collapsedHeight="100px">
+        <Typography variant="caption">{summary}</Typography>
+      </Collapse>
     </CardContent>
   );
 };
