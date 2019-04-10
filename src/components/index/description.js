@@ -13,7 +13,7 @@ const styles = {
     textAlign: 'center',
   },
   intro: {
-    paddingBottom: '1.5rem',
+    paddingBottom: '1rem',
   },
   btn: {
     margin: '0 auto',

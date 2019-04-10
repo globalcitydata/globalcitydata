@@ -18,6 +18,7 @@ export const getDataObjFromHit = (hit) => {
     tags,
     title: hit.fields.title['en-US'],
     slug: hit.fields.slug['en-US'],
+    summary: hit.fields.summary['en-US'],
   };
   return dataObj;
 };
