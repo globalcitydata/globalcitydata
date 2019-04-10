@@ -25,6 +25,10 @@ const styles = theme => ({
   tagSections: {
     background: theme.palette.background.paper,
   },
+  tagDescription: {
+    maxWidth: '800px',
+    paddingBottom: '1.5rem',
+  },
   tabs: {
     justifyContent: 'center',
   },
@@ -94,7 +98,7 @@ const TagSection = ({ tag, classes }) => {
   return (
     <div className={classes.section}>
       <Typography variant="h4">{title}</Typography>
-      <Typography variant="subtitle2" style={{ maxWidth: '800px' }}>
+      <Typography variant="subtitle2" className={classes.tagDescription}>
         {description}
       </Typography>
       <Grid container spacing={32}>

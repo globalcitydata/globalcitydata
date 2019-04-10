@@ -8,12 +8,12 @@ import DownButton from '../downButton';
 
 const styles = {
   root: {
-    padding: '1rem 0',
+    padding: '10px 0',
     fontSize: '1.2rem',
     textAlign: 'center',
   },
   intro: {
-    paddingBottom: '1rem',
+    paddingBottom: '8px',
   },
   btn: {
     margin: '0 auto',
