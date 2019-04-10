@@ -25,7 +25,7 @@ const styles = {
   contentWrapper: {
     position: 'absolute',
     left: '50%',
-    top: '20%',
+    top: '15%',
     transform: 'translate(-50%, 0)',
     color: 'white',
     maxWidth: '800px',
