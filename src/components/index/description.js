@@ -2,9 +2,11 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
-import Container from '../container';
+import { IconButton } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Link } from 'react-scroll';
 import Markdown from '../markdown';
-import DownButton from '../downButton';
+import Container from '../container';
 
 const styles = {
   root: {
@@ -20,11 +22,28 @@ const styles = {
   },
 };
 
+const DownButton = ({ id, classes }) => (
+  <div>
+    <IconButton
+      component={Link}
+      to={id}
+      spy
+      smooth
+      offset={-50}
+      duration={700}
+      color="white"
+      aria-label="Down"
+    >
+      <ExpandMoreIcon fontSize="large" />
+    </IconButton>
+  </div>
+);
+
 const Description = ({ intro, classes }) => (
   <div className={classes.root}>
     <Container>
       <Markdown className={classes.intro}>{intro}</Markdown>
-      <DownButton id="tagSections" />
+      <DownButton id="tagSections" classes={classes} />
     </Container>
   </div>
 );
