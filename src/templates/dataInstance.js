@@ -12,70 +12,72 @@ import Markdown from '../components/markdown';
 import ContentPaper from '../components/contentPaper';
 import Hero from '../components/hero';
 
-const AttributeTitle = ({ children, classes }) => (
-  <Typography variant="h5" className={classes.attributeTitle}>
-    {children}
-  </Typography>
-);
-
 const styles = {
   section: {
     paddingTop: '2rem',
   },
-  attributeTitle: {
-    paddingBottom: '1rem',
+  title: {
+    // paddingBottom: '0',
   },
-  attributeBody: {
+  body: {
     paddingLeft: '1rem',
+  },
+  listItem: {
+    paddingBottom: 0,
   },
 };
 
+const Title = ({ children, classes }) => (
+  <Typography variant="h6" className={classes.title}>
+    {children}
+  </Typography>
+);
+
+const Body = ({ children, classes }) => (
+  <Typography paragraph className={classes.body}>
+    {children}
+  </Typography>
+);
+
 const KeyHighlights = ({ highlights, classes }) => (
   <div className={classes.section}>
-    <AttributeTitle classes={classes}>Key Highlights</AttributeTitle>
-    <div className={classes.attributeBody}>
+    <Title classes={classes}>Key Highlights</Title>
+    <List>
       {highlights.map((h, i) => (
-        <List key={i}>
-          {h && (
-            <Typography variant="body2" gutterBottom>
-              {`${i + 1}. ${h}`}
-            </Typography>
-          )}
-        </List>
+        <ListItem key={i} className={classes.listItem}>
+          {h && <Body classes={classes}>{`${i + 1}. ${h}`}</Body>}
+        </ListItem>
       ))}
-    </div>
+    </List>
   </div>
 );
 
 const Authors = ({ authors, classes }) => (
   <div className={classes.section}>
-    <AttributeTitle classes={classes}>Authors</AttributeTitle>
-    <div>
+    <Title classes={classes}>Authors</Title>
+    <List style={{ margin: 0 }}>
       {authors.map(({ name, email }) => {
         const item = `${name}: ${email}`;
         return (
-          <List key={name}>
-            <ListItem>
-              <Typography variant="body2">{item}</Typography>
-            </ListItem>
-          </List>
+          <ListItem key={name} className={classes.listItem}>
+            <Body classes={classes}>{item}</Body>
+          </ListItem>
         );
       })}
-    </div>
+    </List>
   </div>
 );
 
 const Data = ({ data, classes, showProgress }) => {
-  const attributes = data.contentfulData;
   const {
     title,
+    longTitle,
+    body,
     keyHighlight1,
     keyHighlight2,
     keyHighlight3,
     authors,
-  } = attributes;
-  const { summary } = attributes.summary;
-  const { body } = attributes.body;
+  } = data.contentfulData;
   const highlights = [keyHighlight1, keyHighlight2, keyHighlight3];
   return (
     <Layout showProgress={showProgress}>
@@ -83,7 +85,8 @@ const Data = ({ data, classes, showProgress }) => {
       <Hero title={title} />
       <Container>
         <ContentPaper>
-          <Markdown>{body}</Markdown>
+          <Typography variant="h5">{longTitle}</Typography>
+          <Markdown>{body.childMarkdownRemark.html}</Markdown>
           <KeyHighlights highlights={highlights} classes={classes} />
           <Authors authors={authors} classes={classes} />
         </ContentPaper>
@@ -98,17 +101,53 @@ export const query = graphql`
   query DataInstanceBySlug($slug: String!) {
     contentfulData(slug: { eq: $slug }) {
       title
-      summary {
-        summary
+      longTitle
+      authors {
+        name
+        email
       }
-      body {
-        body
+      summaryImage {
+        fixed {
+          base64
+        }
+      }
+      summary {
+        childMarkdownRemark {
+          html
+        }
       }
       keyHighlight1
       keyHighlight2
       keyHighlight3
+      body {
+        childMarkdownRemark {
+          html
+        }
+      }
+      citation {
+        childMarkdownRemark {
+          html
+        }
+      }
       usesAndVisualizations
+      sampleUsevisualization {
+        fixed {
+          base64
+        }
+      }
+      technicalDetails {
+        childMarkdownRemark {
+          html
+        }
+      }
       relatedData
+      publications {
+        body {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
       dataType
       spatialScales
       temporalScales
@@ -116,10 +155,6 @@ export const query = graphql`
       sustainabilityOutcomes
       determinants
       worldRegions
-      authors {
-        name
-        email
-      }
     }
   }
 `;
