@@ -31,6 +31,9 @@ const styles = {
     paddingTop: '1rem',
     marginBottom: '0.5rem',
   },
+  checkbox: {
+    padding: '8px',
+  },
 };
 
 const RefinementList = (props) => {
@@ -58,7 +61,7 @@ const RefinementList = (props) => {
                 /* eslint-disable */
                 <Checkbox
                   color="primary"
-                  style={{ padding: "8px" }}
+                  className={classes.checkbox}
                   onClick={e => {
                     e.preventDefault();
                     refine(item.value);
