@@ -8,7 +8,6 @@ import {
 import {
   Paper,
   Typography,
-  Drawer,
   Checkbox,
   FormControl,
   FormLabel,
@@ -18,9 +17,20 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import { startCase, orderBy } from 'lodash';
 
+const drawerWidth = '300px';
+
 const styles = {
   root: {
     padding: '1rem',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    top: '310px',
+    left: '8%',
   },
   clearBtn: {
     marginBottom: '1rem',
@@ -109,19 +119,12 @@ const RefineBar = ({ tagNames, classes }) => (
 );
 
 const RefinementMenu = ({ tagNames, classes }) => (
-  // <Drawer
-  //   variant="permanent"
-  //   anchor="left"
-  //   className={classes.refinementDrawer}
-  //   classes={{
-  //     paper: classes.drawerPaper,
-  //   }}
-  // >
-  <Paper className={classes.root}>
-    {/* <ClearRefinements className={classes.clearBtn} /> */}
-    <RefineBar tagNames={tagNames} classes={classes} />
-  </Paper>
-  // </Drawer>
+  <div className={classes.drawer}>
+    <Paper className={classes.root}>
+      {/* <ClearRefinements className={classes.clearBtn} /> */}
+      <RefineBar tagNames={tagNames} classes={classes} />
+    </Paper>
+  </div>
 );
 
 export default withStyles(styles)(RefinementMenu);
