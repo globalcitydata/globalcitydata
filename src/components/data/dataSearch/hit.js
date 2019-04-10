@@ -44,7 +44,7 @@ const Tags = ({ classes, tags }) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <div>
-      <Collapse expanded={expanded}>
+      <Collapse expanded={expanded.toString()}>
         {Object.entries(tags).map((tag, i) => (
           <div key={i}>
             {Object.entries(tag[1]).map(attribute => (
@@ -69,7 +69,7 @@ const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <div>
-      <Collapse expanded={expanded}>
+      <Collapse expanded={expanded.toString()}>
         <Typography variant="body2">{summary}</Typography>
       </Collapse>
     </div>
