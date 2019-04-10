@@ -1,100 +1,150 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 
 // General Components
 import {
-  Grid,
   Divider,
+  Grid,
   Button,
   Typography,
   Card,
   CardContent,
   CardActions,
   Chip,
+  IconButton,
   Collapse,
 } from '@material-ui/core';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import classnames from 'classnames';
 import { getDataObjFromHit } from '../dataUtils';
 
-const styles = {
-  card: {
-    height: '100%',
-    position: 'relative',
+const styles = theme => ({
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
-  title: {
-    marginBottom: '1rem',
+  expandOpen: {
+    transform: 'rotate(180deg)',
   },
-  content: {
-    paddingTop: '1rem',
-    paddingBottom: '4rem',
+  expandBtn: {
+    color: 'red',
+    fontSize: '1rem',
+    justifyContent: 'end',
+    '&:hover': {
+      backgroundColor: 'white',
+      textDecoration: 'underline',
+    },
   },
   chip: {
     margin: '0 10px 10px 0',
+  },
+  actionWrapper: {
+    paddingTop: '3rem',
   },
   action: {
     position: 'absolute',
     bottom: '0.6rem',
   },
+});
+
+const colors = {
+  dataType: 'primary',
+  determinants: 'secondary',
+  sectors: 'default',
+  spatialScales: 'primary',
+  temporalScales: 'secondary',
+  worldRegions: 'default',
 };
 
-const colors = ['primary', 'secondary', 'default'];
+const ExpandBtn = ({ expanded, setExpanded, classes }) => (
+  <IconButton
+    className={classnames(classes.expand, {
+      [classes.expandOpen]: expanded,
+    })}
+    onClick={() => setExpanded(prev => !prev)}
+    aria-expanded={expanded}
+    aria-label="Show more"
+  >
+    <ExpandMoreIcon />
+  </IconButton>
+);
+
+const Title = ({
+ title, expanded, setExpanded, classes 
+}) => (
+  <Typography variant="subtitle1">
+    {title}
+    <ExpandBtn
+      setExpanded={setExpanded}
+      classes={classes}
+      expanded={expanded}
+    />
+  </Typography>
+);
 
 const Tags = ({ classes, tags }) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const tagList = [];
+  Object.entries(tags).forEach(tag => Object.entries(tag[1]).forEach(
+      attribute => tagList.push([tag[0], attribute[1]]), // ex: ['determinants', 'environment']
+    ),);
   return (
-    <div>
-      {/* <Collapse expanded={expanded.toString()}> */}
-      <>
-        {Object.entries(tags).map((tag, i) => (
-          <div key={i}>
-            {Object.entries(tag[1]).map(attribute => (
-              <Chip
-                color={colors[i % colors.length]}
-                label={attribute[1]}
-                className={classes.chip}
-                key={attribute[1]}
-              />
-            ))}
-          </div>
+    <CardContent>
+      <Title
+        title="Tags"
+        setExpanded={setExpanded}
+        classes={classes}
+        expanded={expanded}
+      />
+      <Collapse in={expanded} collapsedHeight="80px">
+        {tagList.map(chipTag => (
+          <Chip
+            color={colors[chipTag[0]]}
+            label={chipTag[1]}
+            className={classes.chip}
+            key={chipTag[1]}
+          />
         ))}
-        {/* <Chip label="Example tag" className={classes.chip} />
-    <Chip color="primary" label="Another one" className={classes.chip} />
-    <Chip color="secondary" label="one more baby" /> */}
-        {/* </Collapse> */}
-      </>
-    </div>
+      </Collapse>
+    </CardContent>
   );
 };
 
 const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div>
-      <Collapse expanded={expanded.toString()}>
-        <Typography variant="body2">{summary}</Typography>
+    <CardContent>
+      <Title
+        title="Summary"
+        setExpanded={setExpanded}
+        classes={classes}
+        expanded={expanded}
+      />
+      <Collapse in={expanded} collapsedHeight="100px">
+        <Typography variant="caption">{summary}</Typography>
       </Collapse>
-    </div>
+    </CardContent>
   );
 };
 
 const Hit = ({ hit, classes }) => {
   const dataObj = getDataObjFromHit(hit);
-  // console.log(dataObj);
   return (
     <Grid item xs={12} md={6}>
       <Card className={`${classes.card} lift`}>
         <CardContent>
-          <Typography variant="h6" className={classes.title}>
-            {dataObj.title}
-          </Typography>
-          <Divider />
-          <div className={classes.content}>
-            <Tags tags={dataObj.tags} classes={classes} />
-            <Summary summary={dataObj.summary} classes={classes} />
-          </div>
+          <Typography variant="h6">{dataObj.title}</Typography>
         </CardContent>
-        <CardActions>
+        <Divider />
+        <Summary summary={dataObj.summary} classes={classes} />
+        <Divider />
+        <Tags tags={dataObj.tags} classes={classes} />
+        <Divider />
+        <CardActions className={classes.actionWrapper}>
           <Button
             color="primary"
             component={Link}

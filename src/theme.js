@@ -48,7 +48,7 @@ const theme = createMuiTheme({
         lineHeight: '1.4',
       },
       subtitle2: {
-        marginBottom: '1.5rem',
+        // marginBottom: '1.5rem',
       },
     },
   },
