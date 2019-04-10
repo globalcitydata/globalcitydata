@@ -41,10 +41,11 @@ const styles = {
 const colors = ['primary', 'secondary', 'default'];
 
 const Tags = ({ classes, tags }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   return (
     <div>
-      <Collapse expanded={expanded}>
+      {/* <Collapse expanded={expanded.toString()}> */}
+      <>
         {Object.entries(tags).map((tag, i) => (
           <div key={i}>
             {Object.entries(tag[1]).map(attribute => (
@@ -60,7 +61,8 @@ const Tags = ({ classes, tags }) => {
         {/* <Chip label="Example tag" className={classes.chip} />
     <Chip color="primary" label="Another one" className={classes.chip} />
     <Chip color="secondary" label="one more baby" /> */}
-      </Collapse>
+        {/* </Collapse> */}
+      </>
     </div>
   );
 };
@@ -69,7 +71,7 @@ const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <div>
-      <Collapse expanded={expanded}>
+      <Collapse expanded={expanded.toString()}>
         <Typography variant="body2">{summary}</Typography>
       </Collapse>
     </div>
