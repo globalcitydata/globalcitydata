@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 
 // General Components
 import { withStyles } from '@material-ui/core/styles';
@@ -19,16 +20,37 @@ const styles = {
   },
 };
 
-const Data = ({ classes, showProgress }) => (
-  <>
-    <Layout showProgress={showProgress}>
-      <SEO title="Explore Data" />
-      <Hero title="Explore the Data" />
-      <div className={classes.data}>
-        <DataSearch />
-      </div>
-    </Layout>
-  </>
-);
+const Data = ({ classes, showProgress, data }) => {
+  const { name, backgroundImage } = data.contentfulPage;
+  return (
+    <>
+      <Layout showProgress={showProgress}>
+        <SEO title="Explore Data" img={backgroundImage} />
+        <Hero title={name} />
+        <div className={classes.data}>
+          <DataSearch />
+        </div>
+      </Layout>
+    </>
+  );
+};
 
 export default withRoot(withStyles(styles)(Data));
+
+export const query = graphql`
+  query {
+    contentfulPage(identifier: { eq: "data" }) {
+      name
+      body {
+        childMarkdownRemark {
+          html
+        }
+      }
+      backgroundImage {
+        fixed(width: 2000, height: 200) {
+          ...GatsbyContentfulFixed_withWebp
+        }
+      }
+    }
+  }
+`;
