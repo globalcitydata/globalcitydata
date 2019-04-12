@@ -37,7 +37,6 @@ const Data = ({ data, classes, showProgress }) => {
     determinants,
     worldRegions,
   } = data.contentfulData;
-  const highlights = [keyHighlight1, keyHighlight2, keyHighlight3];
   const tags = {
     dataType,
     determinants,
@@ -47,6 +46,7 @@ const Data = ({ data, classes, showProgress }) => {
     temporalScales,
     worldRegions,
   };
+  const highlights = [keyHighlight1, keyHighlight2, keyHighlight3];
   return (
     <Layout showProgress={showProgress}>
       <SEO title={title} />
