@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import withRoot from '../withRoot';
+import withRoot from '../utils/withRoot';
 import Markdown from '../components/markdown';
 import Container from '../components/container';
 import Hero from '../components/hero';

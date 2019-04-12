@@ -9,7 +9,7 @@
 const React = require('react');
 const { renderToString } = require('react-dom/server');
 const JssProvider = require('react-jss/lib/JssProvider').default;
-const getPageContext = require('./src/getPageContext').default;
+const getPageContext = require('./src/utils/getPageContext').default;
 
 function replaceRenderer({
   bodyComponent,

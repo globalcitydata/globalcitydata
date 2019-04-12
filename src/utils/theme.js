@@ -47,8 +47,10 @@ const theme = createMuiTheme({
         fontWeight: '550',
         lineHeight: '1.4',
       },
-      subtitle2: {
-        // marginBottom: '1.5rem',
+    },
+    MuiListItem: {
+      root: {
+        paddingBottom: '0',
       },
     },
   },

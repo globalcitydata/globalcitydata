@@ -3,6 +3,7 @@ export const tagNames = [
   'determinants',
   'sectors',
   'spatialScales',
+  'sustainabilityOutcomes',
   'temporalScales',
   'worldRegions',
 ];

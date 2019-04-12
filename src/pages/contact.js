@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../withRoot';
+import withRoot from '../utils/withRoot';
 
 // Components
 import Container from '../components/container';

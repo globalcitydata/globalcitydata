@@ -1,72 +1,24 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 // Components
-import { withStyles } from '@material-ui/core/styles';
-import { Typography, List, ListItem } from '@material-ui/core';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Container from '../components/container';
-import withRoot from '../withRoot';
+import withRoot from '../utils/withRoot';
 import Markdown from '../components/markdown';
 import ContentPaper from '../components/contentPaper';
 import Hero from '../components/hero';
 
-const styles = {
-  section: {
-    paddingTop: '2rem',
-  },
-  title: {
-    // paddingBottom: '0',
-  },
-  body: {
-    paddingLeft: '1rem',
-  },
-  listItem: {
-    paddingBottom: 0,
-  },
-};
+// Page Components
+import Section from '../components/dataInstance/section';
+import Tags from '../components/dataInstance/tags';
+import Authors from '../components/dataInstance/authors';
+import KeyHighlights from '../components/dataInstance/keyHighlights';
 
-const Title = ({ children, classes }) => (
-  <Typography variant="h6" className={classes.title}>
-    {children}
-  </Typography>
-);
-
-const Body = ({ children, classes }) => (
-  <Typography paragraph className={classes.body}>
-    {children}
-  </Typography>
-);
-
-const KeyHighlights = ({ highlights, classes }) => (
-  <div className={classes.section}>
-    <Title classes={classes}>Key Highlights</Title>
-    <List>
-      {highlights.map((h, i) => (
-        <ListItem key={i} className={classes.listItem}>
-          {h && <Body classes={classes}>{`${i + 1}. ${h}`}</Body>}
-        </ListItem>
-      ))}
-    </List>
-  </div>
-);
-
-const Authors = ({ authors, classes }) => (
-  <div className={classes.section}>
-    <Title classes={classes}>Authors</Title>
-    <List style={{ margin: 0 }}>
-      {authors.map(({ name, email }) => {
-        const item = `${name}: ${email}`;
-        return (
-          <ListItem key={name} className={classes.listItem}>
-            <Body classes={classes}>{item}</Body>
-          </ListItem>
-        );
-      })}
-    </List>
-  </div>
-);
+const styles = {};
 
 const Data = ({ data, classes, showProgress }) => {
   const {
@@ -77,8 +29,24 @@ const Data = ({ data, classes, showProgress }) => {
     keyHighlight2,
     keyHighlight3,
     authors,
+    dataType,
+    spatialScales,
+    temporalScales,
+    sectors,
+    sustainabilityOutcomes,
+    determinants,
+    worldRegions,
   } = data.contentfulData;
   const highlights = [keyHighlight1, keyHighlight2, keyHighlight3];
+  const tags = {
+    dataType,
+    determinants,
+    sectors,
+    spatialScales,
+    sustainabilityOutcomes,
+    temporalScales,
+    worldRegions,
+  };
   return (
     <Layout showProgress={showProgress}>
       <SEO title={title} />
@@ -86,9 +54,12 @@ const Data = ({ data, classes, showProgress }) => {
       <Container>
         <ContentPaper>
           <Typography variant="h5">{longTitle}</Typography>
-          <Markdown>{body.childMarkdownRemark.html}</Markdown>
-          <KeyHighlights highlights={highlights} classes={classes} />
-          <Authors authors={authors} classes={classes} />
+          <Tags tags={tags} />
+          <Section>
+            <Markdown>{body.childMarkdownRemark.html}</Markdown>
+          </Section>
+          <KeyHighlights highlights={highlights} />
+          <Authors authors={authors} />
         </ContentPaper>
       </Container>
     </Layout>

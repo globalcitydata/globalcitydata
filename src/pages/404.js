@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { Typography } from '@material-ui/core';
-import withRoot from '../withRoot';
+import withRoot from '../utils/withRoot';
 
 // Components
 import Layout from '../components/layout';

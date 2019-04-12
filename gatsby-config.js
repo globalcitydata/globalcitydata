@@ -16,7 +16,7 @@ module.exports = {
     title: 'Global City Data',
     siteUrl: 'https://globalcitydata.com',
     description:
-      'Thinking in systems to link urban infrastructure and sustainability.',
+      'Global City Data. Thinking in Systems to Link Urban Infrastructure with Multiple Sustainability Outcomes.',
   },
   plugins: [
     {

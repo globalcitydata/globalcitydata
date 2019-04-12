@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -11,12 +11,12 @@ import {
   Card,
   CardContent,
   CardActions,
-  Chip,
   IconButton,
   Collapse,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import classnames from 'classnames';
+import TagChips from '../../tagChips';
 import { getDataObjFromHit } from '../dataUtils';
 
 const styles = theme => ({
@@ -39,9 +39,6 @@ const styles = theme => ({
       textDecoration: 'underline',
     },
   },
-  chip: {
-    margin: '0 10px 10px 0',
-  },
   actionWrapper: {
     paddingTop: '3rem',
   },
@@ -50,15 +47,6 @@ const styles = theme => ({
     bottom: '0.6rem',
   },
 });
-
-const colors = {
-  dataType: 'primary',
-  determinants: 'secondary',
-  sectors: 'default',
-  spatialScales: 'primary',
-  temporalScales: 'secondary',
-  worldRegions: 'default',
-};
 
 const ExpandBtn = ({ expanded, setExpanded, classes }) => (
   <IconButton
@@ -88,10 +76,6 @@ const Title = ({
 
 const Tags = ({ classes, tags }) => {
   const [expanded, setExpanded] = useState(false);
-  const tagList = [];
-  Object.entries(tags).forEach(tag => Object.entries(tag[1]).forEach(
-      attribute => tagList.push([tag[0], attribute[1]]), // ex: ['determinants', 'environment']
-    ),);
   return (
     <CardContent>
       <Title
@@ -101,14 +85,7 @@ const Tags = ({ classes, tags }) => {
         expanded={expanded}
       />
       <Collapse in={expanded} collapsedHeight="80px">
-        {tagList.map(chipTag => (
-          <Chip
-            color={colors[chipTag[0]]}
-            label={chipTag[1]}
-            className={classes.chip}
-            key={chipTag[1]}
-          />
-        ))}
+        <TagChips tags={tags} />
       </Collapse>
     </CardContent>
   );

@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
-import withRoot from '../withRoot';
+import withRoot from '../utils/withRoot';
 import Hero from '../components/hero';
 
 // Page Components
