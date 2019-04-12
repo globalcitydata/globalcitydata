@@ -25,8 +25,8 @@ const Data = ({ classes, showProgress, data }) => {
   return (
     <>
       <Layout showProgress={showProgress}>
-        <SEO title="Explore Data"  />
-        <Hero title={name} img={backgroundImage}/>
+        <SEO title="Explore Data" />
+        <Hero title={name} img={backgroundImage} />
         <div className={classes.data}>
           <DataSearch />
         </div>
