@@ -35,7 +35,7 @@ const styles = {
 
 const RefinementList = (props) => {
   const {
- items, tagName, refine, classes 
+ items, currentRefinementm, refine, tagName, classes 
 } = props;
   const checked = [];
   useEffect(() => {
@@ -86,30 +86,35 @@ const RefinementList = (props) => {
 
 const CustomRefinement = connectRefinementList(RefinementList);
 
-const RefineBar = ({ tagNames, classes }) => (
-  <>
-    {tagNames.map(tag => {
-      const attribute = `fields.${tag}.en-US`;
-      return (
-        <CustomRefinement
-          classes={classes}
-          attribute={attribute}
-          transformItems={items =>
-            orderBy(items, ["label", "count"], ["asc", "desc"])
-          }
-          tagName={tag}
-          key={tag}
-        />
-      );
-    })}
-  </>
-);
-
-const RefinementMenu = ({ tagNames, classes }) => (
-  <Paper className={classes.root}>
-    {/* <ClearRefinements className={classes.clearBtn} /> */}
-    <RefineBar tagNames={tagNames} classes={classes} />
-  </Paper>
-);
+const RefinementMenu = ({ tagNames, classes, refinementState }) => {
+  let refinement = [];
+  let attr = "";
+  if (refinementState) {
+    let { refinement, attr } = refinementState;
+  }
+  return (
+    <Paper className={classes.root}>
+      {/* <ClearRefinements className={classes.clearBtn} /> */}
+      {tagNames.map(tag => {
+        const attribute = `fields.${tag}.en-US`;
+        if (!refinement || attr != tag) {
+          refinement = [];
+        }
+        return (
+          <CustomRefinement
+            classes={classes}
+            attribute={attribute}
+            transformItems={items =>
+              orderBy(items, ["label", "count"], ["asc", "desc"])
+            }
+            defaultRefinement={refinement}
+            tagName={tag}
+            key={tag}
+          />
+        );
+      })}
+    </Paper>
+  );
+};
 
 export default withStyles(styles)(RefinementMenu);
