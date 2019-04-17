@@ -7,8 +7,8 @@ const styles = {
   },
 };
 
-const Container = ({ children, classes }) => (
+const Section = ({ children, classes }) => (
   <div className={classes.root}>{children}</div>
 );
 
-export default withStyles(styles)(Container);
+export default withStyles(styles)(Section);

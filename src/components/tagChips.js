@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 import { Chip } from '@material-ui/core';
 
@@ -25,6 +26,37 @@ const styles = {
   },
 };
 
+// const RefinementLink = ({ refinement, attr, children }) => (
+//   <Link to="/data/" state={{ attr, refinement }}>
+//     {children}
+//   </Link>
+// );
+
+const TagChip = ({ tag, attribute, classes }) => {
+  // const renderLink = itemProps => (
+  //   <RefinementLink attr={tag} refinement={[attribute]} />
+  // );
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate('/data/', {
+      replace: true,
+      state: {
+        attr: tag,
+        refinement: [attribute],
+      },
+    });
+  };
+  return (
+    <Chip
+      color={colors[tag]}
+      label={attribute}
+      onClick={handleClick}
+      className={classes.chip}
+      key={attribute}
+    />
+  );
+};
+
 /**
  * Tags param must be in following form
  *
@@ -39,10 +71,10 @@ const TagChips = ({ tags, classes }) => {
   return (
     <div>
       {tagList.map(tag => (
-        <Chip
-          color={colors[tag[0]]}
-          label={tag[1]}
-          className={classes.chip}
+        <TagChip
+          tag={tag[0]}
+          attribute={tag[1]}
+          classes={classes}
           key={tag[1]}
         />
       ))}
