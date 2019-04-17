@@ -53,12 +53,15 @@ const Hits = ({ hits, classes }) => (
 
 const CustomHits = connectHits(Hits);
 
-const Search = ({ classes }) => (
+const Search = ({ classes, refinementState }) => (
   <>
     <Hidden smDown>
       <div className={classes.root}>
         <div className={classes.sidebar}>
-          <RefinementMenu tagNames={tagNames} />
+          <RefinementMenu
+            tagNames={tagNames}
+            refinementState={refinementState}
+          />
         </div>
         <div className={classes.main}>
           <CustomSearchBox />
@@ -83,13 +86,13 @@ const Search = ({ classes }) => (
   </>
 );
 
-const DataSearch = ({ classes }) => (
+const DataSearch = ({ classes, refinementState }) => (
   <InstantSearch
     appId="S8S302ERM8"
     apiKey="cc2815f16dd85b0b135372395b8fed44"
     indexName="dataList"
   >
-    <Search classes={classes} />
+    <Search classes={classes} refinementState={refinementState} />
   </InstantSearch>
 );
 
