@@ -14,18 +14,30 @@ import {
   IconButton,
   Collapse,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import classnames from 'classnames';
 import TagChips from '../../tagChips';
 import { getDataObjFromHit } from '../dataUtils';
 
 const styles = theme => ({
+  content: {
+    position: 'relative',
+  },
   expand: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
+    position: 'absolute',
+    bottom: '-5px',
+    right: '-5px',
+    color: 'red',
+    '&:hover': {
+      color: 'maroon',
+      background: 'none',
+    },
   },
   expandOpen: {
     transform: 'rotate(180deg)',
@@ -57,35 +69,28 @@ const ExpandBtn = ({ expanded, setExpanded, classes }) => (
     aria-expanded={expanded}
     aria-label="Show more"
   >
-    <ExpandMoreIcon />
+    {!expanded ? <AddIcon fontSize="small" /> : <RemoveIcon fontSize="small" />}
   </IconButton>
 );
 
-const Title = ({
- title, expanded, setExpanded, classes 
-}) => (
-  <Typography variant="subtitle1">
+const Title = ({ title, classes }) => (
+  <Typography variant="subtitle1" gutterBottom>
     {title}
-    <ExpandBtn
-      setExpanded={setExpanded}
-      classes={classes}
-      expanded={expanded}
-    />
   </Typography>
 );
 
 const Tags = ({ classes, tags }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <CardContent>
-      <Title
-        title="Tags"
-        setExpanded={setExpanded}
-        classes={classes}
-        expanded={expanded}
-      />
+    <CardContent className={classes.content}>
+      <Title title="Tags" />
       <Collapse in={expanded} collapsedHeight="80px">
         <TagChips tags={tags} />
+        <ExpandBtn
+          setExpanded={setExpanded}
+          classes={classes}
+          expanded={expanded}
+        />
       </Collapse>
     </CardContent>
   );
@@ -94,7 +99,7 @@ const Tags = ({ classes, tags }) => {
 const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <CardContent>
+    <CardContent className={classes.content}>
       <Title
         title="Summary"
         setExpanded={setExpanded}
@@ -103,6 +108,11 @@ const Summary = ({ classes, summary }) => {
       />
       <Collapse in={expanded} collapsedHeight="100px">
         <Typography variant="caption">{summary}</Typography>
+        <ExpandBtn
+          setExpanded={setExpanded}
+          classes={classes}
+          expanded={expanded}
+        />
       </Collapse>
     </CardContent>
   );
