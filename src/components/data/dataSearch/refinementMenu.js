@@ -25,6 +25,7 @@ const styles = {
   formLabel: {
     fontWeight: '550',
     color: 'black',
+    paddingTop: '1rem',
     marginBottom: '0.5rem',
   },
   checkbox: {
@@ -142,53 +143,56 @@ const RefinementList = ({
   });
   // console.log(currentRefinement);
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend" className={classes.formLabel}>
-        {startCase(tagName)}
-      </FormLabel>
-      <FormGroup>
-        {items.map((item, i) => (
-          <div key={item.label}>
-            <FormControlLabel
-              control={
-                /* eslint-disable */
-                <Checkbox
-                  color="primary"
-                  className={classes.checkbox}
-                  onClick={e => {
-                    // make sure page doesn't reload
-                    e.preventDefault();
-                    // update checkedItems state
-                    setCheckedItems(prevArray => {
-                      let newArray = [];
-                      if (prevArray.includes(item.label)) {
-                        // prevArray includes item. filter out item
-                        newArray = prevArray.filter(
-                          prevItem => prevItem !== item.label
-                        );
-                      } else {
-                        // prevArray doesn't include item, so add to list
-                        newArray = [...prevArray, item.label];
-                      }
-                      return newArray;
-                    });
-                    // don't forget to refine hits
-                    refine(item.value);
-                  }}
-                  checked={checkedItems.includes(item.label)}
-                />
-                /* eslint-disable */
-              }
-              label={
-                <Typography variant="caption">{`${item.label} (${
-                  item.count
-                })`}</Typography>
-              }
-            />
-          </div>
-        ))}
-      </FormGroup>
-    </FormControl>
+    <div>
+      <FormControl component="fieldset">
+        <FormLabel component="legend" className={classes.formLabel}>
+          {startCase(tagName)}
+        </FormLabel>
+        <FormGroup>
+          {items.map((item, i) => (
+            <div key={item.label}>
+              <FormControlLabel
+                control={
+                  /* eslint-disable */
+                  <Checkbox
+                    color="primary"
+                    className={classes.checkbox}
+                    onClick={e => {
+                      // make sure page doesn't reload
+                      e.preventDefault();
+                      // update checkedItems state
+                      setCheckedItems(prevArray => {
+                        let newArray = [];
+                        if (prevArray.includes(item.label)) {
+                          // prevArray includes item. filter out item
+                          newArray = prevArray.filter(
+                            prevItem => prevItem !== item.label
+                          );
+                        } else {
+                          // prevArray doesn't include item, so add to list
+                          newArray = [...prevArray, item.label];
+                        }
+                        return newArray;
+                      });
+                      // don't forget to refine hits
+                      refine(item.value);
+                    }}
+                    checked={checkedItems.includes(item.label)}
+                  />
+                  /* eslint-disable */
+                }
+                label={
+                  <Typography variant="caption">{`${item.label} (${
+                    item.count
+                  })`}</Typography>
+                }
+              />
+            </div>
+          ))}
+        </FormGroup>
+      </FormControl>
+      <br />
+    </div>
   );
 };
 
