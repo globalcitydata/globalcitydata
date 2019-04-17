@@ -20,7 +20,9 @@ const styles = {
   },
 };
 
-const Data = ({ classes, showProgress, data }) => {
+const Data = ({
+ classes, showProgress, data, location 
+}) => {
   const { name, backgroundImage } = data.contentfulPage;
   return (
     <>
@@ -28,7 +30,7 @@ const Data = ({ classes, showProgress, data }) => {
         <SEO title="Explore Data" />
         <Hero title={name} img={backgroundImage} />
         <div className={classes.data}>
-          <DataSearch />
+          <DataSearch refinementState={location.state} />
         </div>
       </Layout>
     </>

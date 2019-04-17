@@ -1,5 +1,7 @@
 import React, { Component, useState } from 'react';
+import { navigate } from 'gatsby';
 import Img from 'gatsby-image';
+import { camelCase } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import {
  Typography, Grid, Tabs, Tab, Hidden 
@@ -63,17 +65,38 @@ const styles = theme => ({
   },
 });
 
-const TagPicture = ({ instance, classes }) => {
+const TagPicture = ({ instance, tagTitle, classes }) => {
   const [hover, setHover] = useState(false);
   const { title, description, fixed } = instance;
+  // const formattedTitle = title
+  //   .split('_')
+  //   .shift()
+  //   .join();
+  let formattedTitle = title.split('_');
+  formattedTitle.shift();
+  formattedTitle = formattedTitle.join(' ');
+  // handle click event
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate('/data/', {
+      replace: true,
+      state: {
+        attr: camelCase(tagTitle),
+        refinement: [formattedTitle],
+      },
+    });
+  };
   // console.log(instance);
   return (
     <Grid item s={12} m={6} l={4}>
+      {/* eslint-disable */}
       <div
         className={`${classes.heroWrapper} lift`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        // onClick={handleClick}
       >
+        {/* eslint-disable */}
         <div className={classes.imgWrapper}>
           <Img fixed={fixed} className={classes.img} />
         </div>
@@ -105,6 +128,7 @@ const TagSection = ({ tag, classes }) => {
         {associatedPictures.map(instance => (
           <TagPicture
             instance={instance}
+            tagTitle={title}
             key={instance.title}
             classes={classes}
           />
