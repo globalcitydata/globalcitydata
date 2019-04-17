@@ -46,7 +46,7 @@ const TagChip = ({ tag, attribute, classes }) => {
   return (
     <Chip
       color={colors[tag]}
-      variant="outlined"
+      // variant="outlined"
       label={attribute}
       onClick={handleClick}
       className={classes.chip}
