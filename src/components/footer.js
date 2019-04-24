@@ -18,8 +18,7 @@ const Footer = ({ classes }) => (
   <Paper className={classes.root}>
     <div className={classes.content}>
       <Typography variant="body2" gutterBottom>
-        Lots of additional styling needs to be added but will continue working
-        after Spring Break :)
+        Placeholder for actual footer content
       </Typography>
     </div>
   </Paper>

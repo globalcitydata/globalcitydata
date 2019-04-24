@@ -71,6 +71,9 @@ const ContactForm = props => {
       .catch(error => alert(error));
 
     e.preventDefault();
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   return (
