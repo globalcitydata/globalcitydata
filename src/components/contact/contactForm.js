@@ -79,7 +79,7 @@ const ContactForm = props => {
         <Typography component="h1" variant="h5" style={{ marginBottom: 0 }}>
           Contact Us
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit} netlify>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="username">Your Name</InputLabel>
             <Input
