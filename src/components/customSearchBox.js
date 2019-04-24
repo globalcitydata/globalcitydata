@@ -24,11 +24,13 @@ const styles = {
   },
 };
 
-const SearchBox = ({ currentRefinement, refine, classes }) => (
+const SearchBox = ({
+ currentRefinement, refine, classes, msg 
+}) => (
   <Paper className={classes.root}>
     <InputBase
       value={currentRefinement}
-      placeholder="Search here..."
+      placeholder={msg}
       onChange={e => refine(e.target.value)}
       style={{ width: '100%' }}
     />

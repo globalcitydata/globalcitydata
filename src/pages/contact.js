@@ -10,11 +10,15 @@ import Hero from '../components/hero';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Markdown from '../components/markdown';
+import ContactForm from '../components/contact/contactForm';
 
-const styles = {};
+const styles = {
+  msg: {
+    textAlign: 'center',
+  },
+};
 
-const Contact = ({ data, showProgress }) => {
-  // get info from contentful
+const Contact = ({ data, showProgress, classes }) => {
   const { name, body, backgroundImage } = data.contentfulPage;
   const { html } = body ? body.childMarkdownRemark : null;
   return (
@@ -23,9 +27,10 @@ const Contact = ({ data, showProgress }) => {
       <Hero title={name} img={backgroundImage} />
       {html && (
         <Container>
-          <Markdown>{html}</Markdown>
+          <Markdown className={classes.msg}>{html}</Markdown>
         </Container>
       )}
+      <ContactForm />
     </Layout>
   );
 };

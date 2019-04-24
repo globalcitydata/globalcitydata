@@ -21,6 +21,7 @@ import TagChips from '../../tagChips';
 import { getDataObjFromHit } from '../dataUtils';
 
 const styles = theme => ({
+  card: {},
   content: {
     position: 'relative',
   },

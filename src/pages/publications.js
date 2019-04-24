@@ -12,7 +12,7 @@ import PublicationSearch from '../components/publications/publicationSearch';
 const styles = theme => ({
   description: {
     textAlign: 'center',
-    background: 'white',
+    marginBottom: theme.spacing.unit * 8,
   },
 });
 
@@ -29,14 +29,12 @@ const Publications = ({ data, showProgress, classes }) => {
     <Layout showProgress={showProgress}>
       <SEO title="Publications" />
       <Hero title={name} img={backgroundImage} />
-      {html && (
-        <div className={classes.description}>
-          <Container>
-            <Markdown>{html}</Markdown>
-          </Container>
-        </div>
-      )}
       <Container>
+        {html && (
+          <div className={classes.description}>
+            <Markdown>{html}</Markdown>
+          </div>
+        )}
         <PublicationSearch dataList={dataList} />
       </Container>
     </Layout>
