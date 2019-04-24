@@ -57,7 +57,6 @@ const ContactForm = props => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = e => {
-    e.preventDefault();
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -68,6 +67,8 @@ const ContactForm = props => {
     })
       .then(() => alert(`Nice submission, ${name}. You said ${message}`))
       .catch(error => alert(error));
+
+    e.preventDefault();
   };
 
   return (
@@ -79,7 +80,15 @@ const ContactForm = props => {
         <Typography component="h1" variant="h5" style={{ marginBottom: 0 }}>
           Contact Us
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} netlify>
+        <form
+          name="contact"
+          method="post"
+          className={classes.form}
+          onSubmit={handleSubmit}
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact" />
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="username">Your Name</InputLabel>
             <Input
