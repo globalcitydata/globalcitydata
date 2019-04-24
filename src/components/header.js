@@ -31,6 +31,9 @@ const styles = theme => ({
   },
   toolbar: {
     padding: '0 6%',
+    [theme.breakpoints.up('xl')]: {
+      padding: '0 20%',
+    },
   },
   list: {
     [theme.breakpoints.up('md')]: {

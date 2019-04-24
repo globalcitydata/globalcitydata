@@ -9,6 +9,9 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   imgWrapper: {
+    width: '100%',
+    maxWidth: '2000px',
+    margin: '0 auto',
     filter: 'brightness(30%)',
     background: {
       size: 'cover',
