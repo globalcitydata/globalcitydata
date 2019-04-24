@@ -9,10 +9,12 @@ const styles = theme => ({
   },
   background: {
     filter: 'brightness(30%)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
   bgGradient: {
     height: '200px',
-    width: '100%',
+    // width: '100%',
     background: 'linear-gradient(to left, #00c9ff, #92fe9d)',
   },
   content: {
@@ -37,7 +39,7 @@ const HeroContent = ({ title, classes }) => (
 );
 
 const Background = ({ img, classes }) => (
-  <>
+  <div>
     {img ? (
       <div className={classes.background}>
         <Img fixed={img.fixed} />
@@ -45,7 +47,7 @@ const Background = ({ img, classes }) => (
     ) : (
       <div className={classes.bgGradient} />
     )}
-  </>
+  </div>
 );
 
 const Hero = ({ img, title, classes }) => (
