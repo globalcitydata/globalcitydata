@@ -52,7 +52,7 @@ const styles = theme => ({
     width: 'fit-content',
   },
   link: {
-    paddingBottom: '10px',
+    padding: '10px 12px',
   },
 });
 
