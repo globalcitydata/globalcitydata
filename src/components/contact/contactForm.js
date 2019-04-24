@@ -65,7 +65,9 @@ const ContactForm = props => {
         ...{ name: name, email: email, message: message },
       }),
     })
-      .then(() => alert(`Nice submission, ${name}. You said ${message}`))
+      .then(() =>
+        alert(`Thank you for your submission, ${name}. We will be in touch.`)
+      )
       .catch(error => alert(error));
 
     e.preventDefault();

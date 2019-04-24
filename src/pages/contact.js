@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../utils/withRoot';
 
@@ -15,6 +14,9 @@ import ContactForm from '../components/contact/contactForm';
 const styles = {
   msg: {
     textAlign: 'center',
+    fontSize: '1.25rem',
+    margin: '0 auto',
+    maxWidth: '800px',
   },
 };
 

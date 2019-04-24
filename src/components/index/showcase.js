@@ -17,10 +17,14 @@ const styles = {
   },
   imagesWrapper: {
     // height: '610px',
-    // width: '100%',
+    width: '100%',
     maxWidth: '2500px',
     margin: '0 auto',
     filter: 'brightness(50%)',
+    background: {
+      size: 'cover',
+      position: 'center',
+    },
   },
   contentWrapper: {
     position: 'absolute',
