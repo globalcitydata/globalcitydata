@@ -33,7 +33,7 @@ const DownButton = ({ id, classes }) => (
       smooth
       offset={-50}
       duration={700}
-      color="white"
+      color="inherit"
       aria-label="Down"
     >
       <ExpandMoreIcon fontSize="large" />

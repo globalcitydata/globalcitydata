@@ -13,11 +13,12 @@ import {
   Divider,
   AppBar,
   Toolbar,
-  Button,
+  Typography,
   IconButton,
+  Link as MuiLink,
 } from '@material-ui/core';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 0,
     backgroundColor: 'white',
@@ -31,6 +32,12 @@ const styles = {
   toolbar: {
     padding: '0 6%',
   },
+  list: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+    padding: '0',
+  },
   drawer: {
     width: 240,
     flexShrink: 0,
@@ -42,81 +49,83 @@ const styles = {
     flexGrow: 1,
   },
   headerTitle: {
-    fontSize: '1.6rem',
-    '@media (max-width: 540px)': {
-      fontSize: '1.4rem',
-    },
+    width: 'fit-content',
   },
   link: {
-    fontSize: '1.3rem',
+    paddingBottom: '10px',
   },
-};
+});
+
+const links = [
+  // { url: '/', name: 'Global City Data', local: true },
+  { url: '/', name: 'Home', local: true },
+  { url: '/data/', name: 'Data', local: true },
+  { url: '/publications/', name: 'Publications', local: true },
+  { url: '/about/', name: 'About', local: true },
+  { url: '/contact/', name: 'Contact', local: true },
+  {
+    url: 'https://forms.gle/B2HhrekHMpt1ZSv17',
+    name: 'Submit Data',
+    local: false,
+  },
+];
 
 const NavLink = (props) => {
   const {
- to, children, list, external 
+ url, local, classes, children, title 
 } = props;
   return (
-    <>
-      {list ? (
-        <ListItem>
-          <Button component={Link} to={to} {...props}>
-            {children}
-          </Button>
+    <div>
+      {local ? (
+        <ListItem // Local link
+          button
+          component={Link}
+          to={url}
+          className={classNames(classes.link, title && classes.headerTitle)}
+        >
+          {children}
         </ListItem>
       ) : (
-        <Button component={Link} to={to} {...props}>
+        <ListItem // External Link
+          button
+          component={MuiLink}
+          href={url}
+          className={classes.link}
+          target="_blank"
+          rel="noopener"
+        >
           {children}
-        </Button>
+        </ListItem>
       )}
-    </>
+    </div>
   );
 };
 
-const NavLinkList = ({ classes, list }) => (
-  <List>
-    {list && (
-      <>
-        <NavLink to="/" className={classes.headerTitle} list={list}>
-          Global City Data
-        </NavLink>
-        <Divider />
-      </>
-    )}
-    <NavLink to="/" className={classes.link} list={list}>
-      Home
-    </NavLink>
-    <NavLink to="/data" className={classes.link} list={list}>
-      Data
-    </NavLink>
-    <NavLink to="/publications" className={classes.link} list={list}>
-      Publications
-    </NavLink>
-    <NavLink to="/about/" className={classes.link} list={list}>
-      About
-    </NavLink>
-    <NavLink to="/contact/" className={classes.link} list={list}>
-      Contact
-    </NavLink>
-    {/* <NavLink
-      to="https://forms.gle/Jmzy3WNU2twitsmG8"
-      className={classes.link}
-      list={list}
-      external
-    >
-      Submit Data
-    </NavLink> */}
-  </List>
-);
+const NavLinkList = (props) => {
+  const { classes } = props;
+  return (
+    <List className={classes.list}>
+      {links.map((link) => {
+        const { url, name, local } = link;
+        return (
+          <NavLink url={url} local={local} key={name} classes={classes}>
+            <Typography variant="subtitle1">{name}</Typography>
+          </NavLink>
+        );
+      })}
+    </List>
+  );
+};
 
 const Header = ({ classes }) => {
   const [open, setOpen] = useState(false);
-
   return (
     <div className={classes.root}>
       <AppBar position="fixed" color="inherit">
         <Toolbar className={classes.toolbar}>
+          {/* Display menu and drawer only on small devices */}
           <Hidden mdUp>
+            {/* Drawer Icon */}
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -125,36 +134,48 @@ const Header = ({ classes }) => {
             >
               <MenuIcon />
             </IconButton>
-          </Hidden>
-          <div className={classes.grow}>
-            <NavLink
-              to="/"
-              className={classNames(classes.headerTitle, open && classes.hide)}
+            {/* Drawer Component */}
+            <Drawer
+              className={classes.drawer}
+              anchor="left"
+              open={open}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
             >
-              Global City Data
+              {/* Close Icon */}
+              <div className={classes.drawerHeader}>
+                <IconButton onClick={() => setOpen(false)}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </div>
+              <Divider />
+              {/* Header Title */}
+              <NavLink url="/" local classes={classes}>
+                <Typography component="h1" variant="subtitle1">
+                  Global City Data
+                </Typography>
+              </NavLink>
+              <Divider />
+              {/* Nav Link List */}
+              <NavLinkList classes={classes} />
+            </Drawer>
+          </Hidden>
+          {/* Display header on all devices */}
+          <div className={classes.grow}>
+            {/* Header Title */}
+            <NavLink url="/" local classes={classes} title>
+              <Typography component="h1" variant="h6">
+                Global City Data
+              </Typography>
             </NavLink>
           </div>
+          {/* Display normal link list only on medium and larger devices */}
           <Hidden smDown>
-            <NavLinkList classes={classes} list={false} />
+            <NavLinkList classes={classes} />
           </Hidden>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={() => setOpen(false)}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <NavLinkList classes={classes} list />
-      </Drawer>
     </div>
   );
 };
