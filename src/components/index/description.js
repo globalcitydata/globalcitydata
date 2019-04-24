@@ -16,6 +16,8 @@ const styles = {
   },
   intro: {
     paddingBottom: '8px',
+    // fontWeight: 'bold',
+    fontSize: '1.2rem',
   },
   btn: {
     margin: '0 auto',

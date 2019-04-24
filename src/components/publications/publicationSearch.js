@@ -67,7 +67,7 @@ const CustomHits = connectHits(Hits);
 
 const Search = ({ classes, dataList }) => (
   <>
-    <CustomSearchBox />
+    <CustomSearchBox msg="Search publications by author or title..." />
     <Configure hitsPerPage={7} />
     <CustomHits classes={classes} dataList={dataList} />
     <Pagination />

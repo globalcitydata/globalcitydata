@@ -64,7 +64,7 @@ const Search = ({ classes, refinementState }) => (
           />
         </div>
         <div className={classes.main}>
-          <CustomSearchBox />
+          <CustomSearchBox msg="Search datasets here..." />
           <Configure hitsPerPage={6} />
           <CustomHits classes={classes} />
         </div>
