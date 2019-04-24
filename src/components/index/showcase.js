@@ -16,9 +16,8 @@ const styles = {
     marginTop: '1rem',
   },
   imagesWrapper: {
-    // height: '610px',
     width: '100%',
-    maxWidth: '2500px',
+    maxWidth: '2000px',
     margin: '0 auto',
     filter: 'brightness(50%)',
     background: {
