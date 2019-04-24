@@ -6,15 +6,18 @@ import { Typography } from '@material-ui/core';
 const styles = theme => ({
   root: {
     position: 'relative',
+    overflow: 'hidden',
   },
-  background: {
+  imgWrapper: {
     filter: 'brightness(30%)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    background: {
+      size: 'cover',
+      position: 'center',
+    },
   },
   bgGradient: {
     height: '200px',
-    // width: '100%',
+    width: '100%',
     background: 'linear-gradient(to left, #00c9ff, #92fe9d)',
   },
   content: {
@@ -41,7 +44,7 @@ const HeroContent = ({ title, classes }) => (
 const Background = ({ img, classes }) => (
   <div>
     {img ? (
-      <div className={classes.background}>
+      <div className={classes.imgWrapper}>
         <Img fixed={img.fixed} />
       </div>
     ) : (

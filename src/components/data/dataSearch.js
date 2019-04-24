@@ -75,7 +75,7 @@ const Search = ({ classes, refinementState }) => (
     </Hidden>
     <Hidden mdUp>
       <div>
-        <CustomSearchBox />
+        <CustomSearchBox msg="Search datasets here..." />
         <Configure hitsPerPage={6} />
         <CustomHits classes={classes} />
       </div>
