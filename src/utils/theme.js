@@ -41,11 +41,13 @@ const theme = createMuiTheme({
         marginBottom: '2rem',
       },
       h5: {
-        marginBottom: '1.5rem',
+        // marginBottom: '1.5rem',
+        fontSize: '1.7rem',
       },
       h6: {
-        fontWeight: '550',
-        lineHeight: '1.4',
+        fontWeight: '500',
+        // lineHeight: '1.4',
+        color: blue[500],
       },
     },
     MuiListItem: {

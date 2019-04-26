@@ -34,23 +34,14 @@ const styles = theme => ({
     position: 'absolute',
     bottom: '-5px',
     right: '-5px',
-    color: 'red',
+    color: theme.palette.primary.dark,
     '&:hover': {
-      color: 'maroon',
+      color: theme.palette.secondary.dark,
       background: 'none',
     },
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
-  expandBtn: {
-    color: 'red',
-    fontSize: '1rem',
-    justifyContent: 'end',
-    '&:hover': {
-      backgroundColor: 'white',
-      textDecoration: 'underline',
-    },
   },
   actionWrapper: {
     paddingTop: '3rem',
@@ -107,7 +98,7 @@ const Summary = ({ classes, summary }) => {
         classes={classes}
         expanded={expanded}
       />
-      <Collapse in={expanded} collapsedHeight="100px">
+      <Collapse in={expanded} collapsedHeight="95px">
         <Typography variant="caption">{summary}</Typography>
         <ExpandBtn
           setExpanded={setExpanded}
@@ -125,7 +116,7 @@ const Hit = ({ hit, classes }) => {
     <Grid item xs={12} md={6}>
       <Card className={`${classes.card} lift`}>
         <CardContent>
-          <Typography variant="h6">{dataObj.title}</Typography>
+          <Typography variant="h5">{dataObj.title}</Typography>
         </CardContent>
         <Divider />
         <Summary summary={dataObj.summary} classes={classes} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import classNames from 'classnames';
 
 const styles = {
   title: {
@@ -8,8 +9,8 @@ const styles = {
   },
 };
 
-const Title = ({ children, classes }) => (
-  <Typography variant="h6" className={classes.title}>
+const Title = ({ children, className }) => (
+  <Typography variant="h6" className={classNames(className)}>
     {children}
   </Typography>
 );

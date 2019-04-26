@@ -15,10 +15,17 @@ import Hero from '../components/hero';
 // Page Components
 import Section from '../components/dataInstance/section';
 import Tags from '../components/dataInstance/tags';
+import FullName from '../components/dataInstance/fullname';
+import Citation from '../components/dataInstance/citation';
 import Authors from '../components/dataInstance/authors';
 import KeyHighlights from '../components/dataInstance/keyHighlights';
+import TechnicalDetails from '../components/dataInstance/technicalDetails';
 
-const styles = {};
+const styles = {
+  longTitle: {
+    marginBottom: '20px',
+  },
+};
 
 const Data = ({ data, classes, showProgress }) => {
   const {
@@ -28,6 +35,8 @@ const Data = ({ data, classes, showProgress }) => {
     keyHighlight1,
     keyHighlight2,
     keyHighlight3,
+    citation,
+    technicalDetails,
     authors,
     dataType,
     spatialScales,
@@ -53,12 +62,17 @@ const Data = ({ data, classes, showProgress }) => {
       <Hero title={title} />
       <Container>
         <ContentPaper>
-          <Typography variant="h5">{longTitle}</Typography>
+          <Typography variant="h5" className={classes.longTitle}>
+            {longTitle}
+          </Typography>
           <Tags tags={tags} />
           <Section>
-            <Markdown>{body.childMarkdownRemark.html}</Markdown>
+            <Markdown>{body.body}</Markdown>
           </Section>
+          {/* <FullName fullname={longTitle} /> */}
+          <Citation citation={citation.citation} />
           <KeyHighlights highlights={highlights} />
+          <TechnicalDetails details={technicalDetails.technicalDetails} />
           <Authors authors={authors} />
         </ContentPaper>
       </Container>
@@ -83,22 +97,16 @@ export const query = graphql`
         }
       }
       summary {
-        childMarkdownRemark {
-          html
-        }
+        summary
       }
       keyHighlight1
       keyHighlight2
       keyHighlight3
       body {
-        childMarkdownRemark {
-          html
-        }
+        body
       }
       citation {
-        childMarkdownRemark {
-          html
-        }
+        citation
       }
       usesAndVisualizations
       sampleUsevisualization {
@@ -107,16 +115,12 @@ export const query = graphql`
         }
       }
       technicalDetails {
-        childMarkdownRemark {
-          html
-        }
+        technicalDetails
       }
       relatedData
       publications {
         body {
-          childMarkdownRemark {
-            html
-          }
+          body
         }
       }
       dataType

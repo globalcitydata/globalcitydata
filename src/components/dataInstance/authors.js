@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { List, ListItem } from '@material-ui/core';
+import {
+ List, ListItem, Link, Typography 
+} from '@material-ui/core';
 import Section from './section';
 import Title from './title';
 import Body from './body';
@@ -11,14 +13,18 @@ const Authors = ({ authors, classes }) => (
   <Section>
     <Title classes={classes}>Authors</Title>
     <List style={{ margin: 0 }}>
-      {authors.map(({ name, email }) => {
-        const item = `${name}: ${email}`;
-        return (
-          <ListItem key={name} className={classes.listItem}>
-            <Body classes={classes}>{item}</Body>
-          </ListItem>
-        );
-      })}
+      {authors.map(({ name, email }) => (
+        <ListItem key={name} className={classes.listItem}>
+          <Body classes={classes}>
+            <Typography variant="body2">
+              {`${name}: `}
+              <Link href={`mailto: ${email}`} target="_blank" rel="noopener">
+                {`${email}`}
+              </Link>
+            </Typography>
+          </Body>
+        </ListItem>
+      ))}
     </List>
   </Section>
 );
