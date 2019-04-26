@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 
 const styles = {
   body: {
@@ -9,9 +8,7 @@ const styles = {
 };
 
 const Body = ({ children, classes }) => (
-  <Typography paragraph className={classes.body}>
-    {children}
-  </Typography>
+  <div className={classes.body}>{children}</div>
 );
 
 export default withStyles(styles)(Body);
