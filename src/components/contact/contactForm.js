@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
+import {
+  Avatar,
+  Button,
+  FormControl,
+  Input,
+  InputLabel,
+  Paper,
+  Typography,
+  Snackbar,
+  SnackbarContent,
+  IconButton,
+} from "@material-ui/core";
 import EmailIcon from "@material-ui/icons/Email";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import ErrorIcon from "@material-ui/icons/Error";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = theme => ({
@@ -41,7 +48,26 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
+  success: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  error: {
+    backgroundColor: theme.palette.error.main,
+  },
+  icon: {
+    marginRight: "10px",
+    // fontSize: "20px",
+  },
+  message: {
+    display: "flex",
+    alignItems: "center",
+  },
 });
+
+const variantIcon = {
+  success: CheckCircleIcon,
+  error: ErrorIcon,
+};
 
 const encode = data => {
   return Object.keys(data)
@@ -55,6 +81,8 @@ const ContactForm = props => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(true);
 
   const handleSubmit = e => {
     fetch("/", {
@@ -65,16 +93,79 @@ const ContactForm = props => {
         ...{ name: name, email: email, message: message },
       }),
     })
-      .then(() =>
-        alert(`Thank you for your submission, ${name}. We will be in touch.`)
-      )
-      .catch(error => alert(error));
+      .then(() => {
+        setSuccess(true);
+        setOpen(true);
+      })
+      .catch(error => {
+        setSuccess(false);
+        setOpen(true);
+        alert(error);
+      });
 
     e.preventDefault();
     setName("");
     setEmail("");
     setMessage("");
   };
+
+  const Submit = () => (
+    <Button
+      type="submit"
+      fullWidth
+      variant="contained"
+      color="primary"
+      className={classes.submit}
+    >
+      Submit
+    </Button>
+  );
+
+  const CustomSnackbar = ({ variant, msg, openBool }) => {
+    const Icon = variantIcon[variant];
+    return (
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={openBool}
+        variant={variant}
+        autoHideDuration={5000}
+        onClose={() => setOpen(false)}
+        ContentProps={{
+          "aria-describedby": "message-id",
+        }}
+      >
+        <SnackbarContent
+          className={classes[variant]}
+          message={
+            <span id="message-id" className={classes.message}>
+              <Icon className={classes.icon} />
+              {msg}
+            </span>
+          }
+        />
+      </Snackbar>
+    );
+  };
+
+  const SnackbarSuccess = () => (
+    <CustomSnackbar
+      variant="success"
+      msg="Thank you for your submission. We will be in touch."
+      openBool={open && success}
+    />
+  );
+
+  const SnackbarError = () => (
+    <CustomSnackbar
+      variant="error"
+      msg={`We are having trouble processing your message. Please email
+    us instead.`}
+      openBool={open && !success}
+    />
+  );
 
   return (
     <main className={classes.main}>
@@ -85,6 +176,7 @@ const ContactForm = props => {
         <Typography component="h1" variant="h5" style={{ marginBottom: 0 }}>
           Contact Us
         </Typography>
+        {/* Main Contact Form */}
         <form
           name="contact"
           method="post"
@@ -93,7 +185,9 @@ const ContactForm = props => {
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
+          {/* Dummy input for Netlify */}
           <input type="hidden" name="form-name" value="contact" />
+          {/* Name */}
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="username">Your Name</InputLabel>
             <Input
@@ -106,6 +200,7 @@ const ContactForm = props => {
               onChange={e => setName(e.target.value)}
             />
           </FormControl>
+          {/* Email */}
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input
@@ -117,6 +212,7 @@ const ContactForm = props => {
               onChange={e => setEmail(e.target.value)}
             />
           </FormControl>
+          {/* Message */}
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="message">Message</InputLabel>
             <Input
@@ -128,17 +224,11 @@ const ContactForm = props => {
               onChange={e => setMessage(e.target.value)}
             />
           </FormControl>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Submit
-          </Button>
+          <Submit />
         </form>
       </Paper>
+      <SnackbarSuccess />
+      <SnackbarError />
     </main>
   );
 };
