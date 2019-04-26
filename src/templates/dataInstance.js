@@ -72,7 +72,9 @@ const Data = ({ data, classes, showProgress }) => {
           {/* <FullName fullname={longTitle} /> */}
           <Citation citation={citation.citation} />
           <KeyHighlights highlights={highlights} />
-          <TechnicalDetails details={technicalDetails.technicalDetails} />
+          {technicalDetails && (
+            <TechnicalDetails details={technicalDetails.technicalDetails} />
+          )}
           <Authors authors={authors} />
         </ContentPaper>
       </Container>
