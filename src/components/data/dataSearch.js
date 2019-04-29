@@ -1,16 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-
-// General Components
+import { Element } from 'react-scroll';
 import { Grid, Hidden } from '@material-ui/core';
-
 import {
   InstantSearch,
   Configure,
   connectHits,
   Pagination,
 } from 'react-instantsearch-dom';
-
 import CustomSearchBox from '../customSearchBox';
 import RefinementMenu from './dataSearch/refinementMenu';
 import Hit from './dataSearch/hit';
@@ -54,7 +51,7 @@ const Hits = ({ hits, classes }) => (
 const CustomHits = connectHits(Hits);
 
 const Search = ({ classes, refinementState }) => (
-  <>
+  <Element name="dataExplore">
     <Hidden smDown>
       <div className={classes.root}>
         <div className={classes.sidebar}>
@@ -83,7 +80,7 @@ const Search = ({ classes, refinementState }) => (
         <Pagination />
       </div>
     </Hidden>
-  </>
+  </Element>
 );
 
 const DataSearch = ({ classes, refinementState }) => (

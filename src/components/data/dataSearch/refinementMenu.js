@@ -16,6 +16,7 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-scroll';
 import { startCase, orderBy } from 'lodash';
 
 const styles = {
@@ -141,7 +142,6 @@ const RefinementList = ({
   useEffect(() => {
     setCheckedItems(currentRefinement);
   });
-  // console.log(currentRefinement);
   return (
     <div>
       <FormControl component="fieldset">
@@ -157,6 +157,12 @@ const RefinementList = ({
                   <Checkbox
                     color="primary"
                     className={classes.checkbox}
+                    component={Link}
+                    to={"dataExplore"}
+                    spy
+                    smooth
+                    offset={-100}
+                    duration={500}
                     onClick={e => {
                       // make sure page doesn't reload
                       e.preventDefault();
