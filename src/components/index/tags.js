@@ -104,7 +104,7 @@ const TagPicture = ({ instance, tagTitle, classes }) => {
         className={`${classes.heroWrapper} lift`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        // onClick={handleClick}
+        onClick={handleClick}
       >
         {/* eslint-disable */}
         <div className={classes.imgWrapper}>
