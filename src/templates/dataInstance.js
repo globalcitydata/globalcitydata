@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
@@ -11,6 +12,7 @@ import withRoot from '../utils/withRoot';
 import Markdown from '../components/markdown';
 import ContentPaper from '../components/contentPaper';
 import Hero from '../components/hero';
+import FluidImage from '../components/fluidImage';
 
 // Page Components
 import Section from '../components/dataInstance/section';
@@ -26,12 +28,16 @@ const styles = {
   longTitle: {
     marginBottom: '20px',
   },
+  imgWrapper: {
+    paddingBottom: '20px',
+  },
 };
 
 const Data = ({ data, classes, showProgress }) => {
   const {
     title,
     longTitle,
+    summaryImage,
     body,
     publications,
     keyHighlight1,
@@ -75,6 +81,12 @@ const Data = ({ data, classes, showProgress }) => {
           <Section>
             <Markdown>{body.body}</Markdown>
           </Section>
+          {/* Summary Image */}
+          {summaryImage && (
+            <div className={classes.imgWrapper}>
+              <FluidImage fluid={summaryImage.fluid} width="600px" />
+            </div>
+          )}
           <KeyHighlights highlights={highlights} />
           {/* Uses and Visualizations w/optional img */}
           {usesAndVisualizations && (
@@ -97,6 +109,10 @@ const Data = ({ data, classes, showProgress }) => {
 
 export default withRoot(withStyles(styles)(Data));
 
+// fixed(width: 500, height: 378) {
+//   ...GatsbyContentfulFixed_withWebp
+// }
+
 export const query = graphql`
   query DataInstanceBySlug($slug: String!) {
     contentfulData(slug: { eq: $slug }) {
@@ -107,8 +123,8 @@ export const query = graphql`
         email
       }
       summaryImage {
-        fixed(width: 265, height: 200) {
-          ...GatsbyContentfulFixed_withWebp
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       summary {
@@ -125,8 +141,8 @@ export const query = graphql`
       }
       usesAndVisualizations
       sampleUsevisualization {
-        fixed(width: 500, height: 378) {
-          ...GatsbyContentfulFixed_withWebp
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       technicalDetails {

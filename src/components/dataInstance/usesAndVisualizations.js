@@ -5,6 +5,7 @@ import Section from './section';
 import Title from './title';
 import Body from './body';
 import Markdown from '../markdown';
+import FluidImage from '../fluidImage';
 
 const styles = {
   title: {
@@ -17,7 +18,7 @@ const UsesAndVisualizations = ({ uav, img, classes }) => (
     <Title className={classes.title}>Uses and Visualizations</Title>
     <Body>
       <Markdown>{uav}</Markdown>
-      {img && <Img fixed={img.fixed} />}
+      {img && <FluidImage fluid={img.fluid} width="500px" />}
     </Body>
   </Section>
 );
