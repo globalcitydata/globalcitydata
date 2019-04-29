@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from 'gatsby-image';
 import { withStyles } from '@material-ui/core/styles';
 import Section from './section';
 import Title from './title';
@@ -11,13 +12,14 @@ const styles = {
   },
 };
 
-const TechnicalDetails = ({ details, classes }) => (
+const UsesAndVisualizations = ({ uav, img, classes }) => (
   <Section>
-    <Title className={classes.title}>Technical Details</Title>
+    <Title className={classes.title}>Uses and Visualizations</Title>
     <Body>
-      <Markdown>{details}</Markdown>
+      <Markdown>{uav}</Markdown>
+      {img && <Img fixed={img.fixed} />}
     </Body>
   </Section>
 );
 
-export default withStyles(styles)(TechnicalDetails);
+export default withStyles(styles)(UsesAndVisualizations);

@@ -15,11 +15,12 @@ import Hero from '../components/hero';
 // Page Components
 import Section from '../components/dataInstance/section';
 import Tags from '../components/dataInstance/tags';
-import FullName from '../components/dataInstance/fullname';
 import Citation from '../components/dataInstance/citation';
 import Authors from '../components/dataInstance/authors';
 import KeyHighlights from '../components/dataInstance/keyHighlights';
 import TechnicalDetails from '../components/dataInstance/technicalDetails';
+import Publications from '../components/dataInstance/publications';
+import UsesAndVisualizations from '../components/dataInstance/usesAndVisualizations';
 
 const styles = {
   longTitle: {
@@ -32,11 +33,14 @@ const Data = ({ data, classes, showProgress }) => {
     title,
     longTitle,
     body,
+    publications,
     keyHighlight1,
     keyHighlight2,
     keyHighlight3,
     citation,
     technicalDetails,
+    usesAndVisualizations,
+    sampleUsevisualization,
     authors,
     dataType,
     spatialScales,
@@ -62,19 +66,28 @@ const Data = ({ data, classes, showProgress }) => {
       <Hero title={title} />
       <Container>
         <ContentPaper>
+          {/* Long Title */}
           <Typography variant="h4" className={classes.longTitle}>
             {longTitle}
           </Typography>
           <Tags tags={tags} />
+          {/* Detailed Body */}
           <Section>
             <Markdown>{body.body}</Markdown>
           </Section>
-          {/* <FullName fullname={longTitle} /> */}
-          <Citation citation={citation.citation} />
           <KeyHighlights highlights={highlights} />
+          {/* Uses and Visualizations w/optional img */}
+          {usesAndVisualizations && (
+            <UsesAndVisualizations
+              uav={usesAndVisualizations}
+              img={sampleUsevisualization}
+            />
+          )}
           {technicalDetails && (
             <TechnicalDetails details={technicalDetails.technicalDetails} />
           )}
+          <Citation citation={citation.citation} />
+          <Publications publications={publications} />
           <Authors authors={authors} />
         </ContentPaper>
       </Container>
@@ -94,8 +107,8 @@ export const query = graphql`
         email
       }
       summaryImage {
-        fixed {
-          base64
+        fixed(width: 265, height: 200) {
+          ...GatsbyContentfulFixed_withWebp
         }
       }
       summary {
@@ -112,8 +125,8 @@ export const query = graphql`
       }
       usesAndVisualizations
       sampleUsevisualization {
-        fixed {
-          base64
+        fixed(width: 500, height: 378) {
+          ...GatsbyContentfulFixed_withWebp
         }
       }
       technicalDetails {
