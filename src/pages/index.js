@@ -58,7 +58,7 @@ export const query = graphql`
       }
       sponsors {
         title
-        fixed(width: 200, height: 150) {
+        fixed(width: 185, height: 140) {
           ...GatsbyContentfulFixed_withWebp
         }
       }

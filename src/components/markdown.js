@@ -32,7 +32,9 @@ const options = {
         <Typography gutterBottom variant="caption" paragraph {...props} />
       ),
     },
-    p: { component: props => <Typography paragraph {...props} /> },
+    p: {
+      component: props => <Typography variant="body2" paragraph {...props} />,
+    },
     span: { component: props => <Typography paragraph {...props} /> },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (

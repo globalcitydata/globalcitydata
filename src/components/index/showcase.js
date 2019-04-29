@@ -19,7 +19,7 @@ const styles = {
     width: '100%',
     maxWidth: '2000px',
     margin: '0 auto',
-    filter: 'brightness(50%)',
+    filter: 'brightness(45%)',
     background: {
       size: 'cover',
       position: 'center',
@@ -45,7 +45,7 @@ const styles = {
     },
   },
   welcomeHeader: {
-    paddingBottom: '10px',
+    paddingBottom: '30px',
     '@media (max-width: 1000px)': {
       fontSize: '30px',
     },
@@ -84,14 +84,15 @@ const Showcase = ({ showcaseData, classes }) => {
       <WelcomeImages images={welcomeImages} classes={classes} />
       <div className={classes.contentWrapper}>
         <Typography
-          variant="h4"
+          component="h2"
+          variant="h3"
           color="inherit"
           className={classes.welcomeHeader}
         >
           {primaryMessage}
         </Typography>
         <Typography
-          variant="body2"
+          variant="body1"
           color="inherit"
           className={classes.welcomeMessage}
         >

@@ -99,7 +99,7 @@ const Summary = ({ classes, summary }) => {
         expanded={expanded}
       />
       <Collapse in={expanded} collapsedHeight="95px">
-        <Typography variant="caption">{summary}</Typography>
+        <Typography paragraph>{summary}</Typography>
         <ExpandBtn
           setExpanded={setExpanded}
           classes={classes}
@@ -116,7 +116,7 @@ const Hit = ({ hit, classes }) => {
     <Grid item xs={12} md={6}>
       <Card className={`${classes.card} lift`}>
         <CardContent>
-          <Typography variant="h5">{dataObj.title}</Typography>
+          <Typography variant="h6">{dataObj.title}</Typography>
         </CardContent>
         <Divider />
         <Summary summary={dataObj.summary} classes={classes} />

@@ -35,9 +35,12 @@ const styles = theme => ({
   },
   intro: {
     textAlign: 'center',
-    fontSize: '1.25rem',
+    fontSize: '1.1rem',
     maxWidth: '800px',
     margin: '25px auto',
+  },
+  tagTitle: {
+    marginBottom: '30px',
   },
   tagDescription: {
     maxWidth: '800px',
@@ -80,10 +83,6 @@ const styles = theme => ({
 const TagPicture = ({ instance, tagTitle, classes }) => {
   const [hover, setHover] = useState(false);
   const { title, description, fixed } = instance;
-  // const formattedTitle = title
-  //   .split('_')
-  //   .shift()
-  //   .join();
   let formattedTitle = title.split('_');
   formattedTitle.shift();
   formattedTitle = formattedTitle.join(' ');
@@ -98,7 +97,6 @@ const TagPicture = ({ instance, tagTitle, classes }) => {
       },
     });
   };
-  // console.log(instance);
   return (
     <Grid item s={12} m={6} l={4}>
       {/* eslint-disable */}
@@ -132,8 +130,10 @@ const TagSection = ({ tag, classes }) => {
   const { title, description, associatedPictures } = tag;
   return (
     <div className={classes.section}>
-      <Typography variant="h4">{title}</Typography>
-      <Typography variant="subtitle2" className={classes.tagDescription}>
+      <Typography variant="h3" className={classes.tagTitle}>
+        {title}
+      </Typography>
+      <Typography variant="body2" className={classes.tagDescription}>
         {description}
       </Typography>
       <Grid container spacing={32}>

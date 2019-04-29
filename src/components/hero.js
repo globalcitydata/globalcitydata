@@ -38,7 +38,7 @@ const styles = theme => ({
 
 const HeroContent = ({ title, classes }) => (
   <div>
-    <Typography variant="h3" color="inherit" className={classes.content}>
+    <Typography variant="h1" color="inherit" className={classes.content}>
       {title}
     </Typography>
   </div>

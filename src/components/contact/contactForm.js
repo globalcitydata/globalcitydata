@@ -173,7 +173,7 @@ const ContactForm = props => {
         <Avatar className={classes.avatar}>
           <EmailIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{ marginBottom: 0 }}>
+        <Typography component="h2" variant="h4">
           Contact Us
         </Typography>
         {/* Main Contact Form */}
