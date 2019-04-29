@@ -10,14 +10,11 @@ import Container from '../container';
 
 const styles = {
   root: {
-    padding: '10px 0',
-    fontSize: '1.2rem',
     textAlign: 'center',
   },
   intro: {
     paddingBottom: '8px',
-    // fontWeight: 'bold',
-    fontSize: '1.2rem',
+    fontSize: '1.1rem',
   },
   btn: {
     margin: '0 auto',

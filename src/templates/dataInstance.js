@@ -62,7 +62,7 @@ const Data = ({ data, classes, showProgress }) => {
       <Hero title={title} />
       <Container>
         <ContentPaper>
-          <Typography variant="h5" className={classes.longTitle}>
+          <Typography variant="h4" className={classes.longTitle}>
             {longTitle}
           </Typography>
           <Tags tags={tags} />

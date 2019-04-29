@@ -6,14 +6,14 @@ import Container from '../container';
 
 const styles = {
   title: {
-    paddingBottom: '1rem',
+    paddingBottom: '30px',
   },
 };
 
 const Sponsors = ({ sponsors, classes }) => (
   // console.log(sponsors);
   <Container>
-    <Typography variant="h4" className={classes.title}>
+    <Typography variant="h3" className={classes.title}>
       Developed With Support From
     </Typography>
     <Grid container spacing={24}>

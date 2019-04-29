@@ -18,7 +18,7 @@ const theme = createMuiTheme({
   },
   typography: {
     htmlFontSize: 10,
-    fontSize: 11,
+    fontSize: 10,
     useNextVariants: true,
     fontFamily: ['Lato', 'Rosario', 'Roboto', 'Arial', 'sans-serif'].join(','),
   },
@@ -26,28 +26,40 @@ const theme = createMuiTheme({
     MuiButton: {
       label: {
         textTransform: 'none',
+        fontSize: '1.1rem',
       },
     },
     MuiFab: {
       label: {
         textTransform: 'none',
+        fontSize: '1.2rem',
+      },
+    },
+    MuiTab: {
+      label: {
+        fontSize: '1.04rem',
       },
     },
     MuiTypography: {
+      h1: { fontSize: '3.5rem' }, // page headers
+      h2: { fontSize: '3rem' }, // secondary headers
       h3: {
-        marginBottom: '3rem',
+        fontSize: '2.5rem',
       },
       h4: {
-        marginBottom: '2rem',
+        fontSize: '1.65rem',
       },
       h5: {
-        // marginBottom: '1.5rem',
-        fontSize: '1.7rem',
+        // primary titles
+        fontSize: '1.5rem',
+        color: blue[500],
       },
       h6: {
-        fontWeight: '500',
-        // lineHeight: '1.4',
-        color: blue[500],
+        // secondary titles
+        fontSize: '1.35rem',
+      },
+      body2: {
+        fontSize: '1.02rem',
       },
     },
     MuiListItem: {

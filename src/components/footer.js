@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Paper } from '@material-ui/core';
+import { Typography, Paper, Link } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -17,8 +17,22 @@ const styles = {
 const Footer = ({ classes }) => (
   <Paper className={classes.root}>
     <div className={classes.content}>
-      <Typography variant="body2" gutterBottom>
-        Placeholder for actual footer content
+      <Typography variant="body1" gutterBottom>
+        We
+        {'  '}
+        <span role="img" aria-label="love">
+          ❤️
+        </span>
+        {'  '}
+        <Link
+          href="https://github.com/globalcitydata/globalcitydata"
+          target="_blank"
+          rel="noopener"
+        >
+          open code
+        </Link>
+        {'  '}
+        as well as open data.
       </Typography>
     </div>
   </Paper>

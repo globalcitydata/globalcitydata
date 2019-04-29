@@ -10,7 +10,7 @@ const styles = {
 };
 
 const Title = ({ children, className }) => (
-  <Typography variant="h6" className={classNames(className)}>
+  <Typography variant="h5" className={classNames(className)}>
     {children}
   </Typography>
 );

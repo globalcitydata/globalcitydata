@@ -168,7 +168,7 @@ const Header = ({ classes }) => {
           <div className={classes.grow}>
             {/* Header Title */}
             <NavLink url="/" local classes={classes} title>
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h4">
                 Global City Data
               </Typography>
             </NavLink>

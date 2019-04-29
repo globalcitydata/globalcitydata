@@ -12,7 +12,7 @@ import PublicationSearch from '../components/publications/publicationSearch';
 const styles = theme => ({
   description: {
     textAlign: 'center',
-    fontSize: '1.25rem',
+    fontSize: '1.1rem',
     margin: '0 auto',
     marginBottom: theme.spacing.unit * 8,
     maxWidth: '800px',
