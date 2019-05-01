@@ -3,19 +3,18 @@ import Img from 'gatsby-image';
 
 const FluidImage = (props) => {
   let normalizedProps = props;
-  const { fluid, style, width } = props;
-  if (fluid && fluid.presentationWidth) {
+  const { fluid, style, maxWidth } = props;
+  if (fluid) {
     normalizedProps = {
       ...props,
       style: {
         ...(style || {}),
-        maxWidth: fluid.presentationWidth,
-        margin: '0 auto', // Used to center the image
+        maxWidth,
       },
     };
   }
 
-  return <Img {...normalizedProps} style={{ width }} />;
+  return <Img {...normalizedProps} />;
 };
 
 export default FluidImage;

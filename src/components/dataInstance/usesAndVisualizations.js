@@ -17,8 +17,8 @@ const UsesAndVisualizations = ({ uav, img, classes }) => (
   <Section>
     <Title className={classes.title}>Uses and Visualizations</Title>
     <Body>
-      <Markdown>{uav}</Markdown>
-      {img && <FluidImage fluid={img.fluid} width="500px" />}
+      <Markdown style={{ overflowWrap: 'break-word' }}>{uav}</Markdown>
+      {img && <FluidImage fluid={img.fluid} maxWidth="500px" />}
     </Body>
   </Section>
 );

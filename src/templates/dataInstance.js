@@ -82,7 +82,7 @@ const Data = ({ data, classes, showProgress }) => {
           {/* Summary Image */}
           {summaryImage && (
             <div className={classes.imgWrapper}>
-              <FluidImage fluid={summaryImage.fluid} width="600px" />
+              <FluidImage fluid={summaryImage.fluid} maxWidth="500px" />
             </div>
           )}
           <KeyHighlights highlights={highlights} />
