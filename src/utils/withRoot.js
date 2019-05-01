@@ -30,6 +30,8 @@ function withRoot(Component) {
 
     render() {
       const { showProgress } = this.state;
+      // shows user feedback widget on every page
+      const userFeedback = require('./userFeedback'); // eslint-disable-line
       return (
         <JssProvider generateClassName={this.muiPageContext.generateClassName}>
           {/* MuiThemeProvider makes the theme available down the React

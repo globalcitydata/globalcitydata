@@ -29,7 +29,7 @@ const Footer = ({ classes }) => (
           target="_blank"
           rel="noopener"
         >
-          open code
+          open source code
         </Link>
         {'  '}
         as well as open data.
