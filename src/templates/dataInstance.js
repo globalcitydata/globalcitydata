@@ -48,7 +48,6 @@ const Data = ({ data, classes, showProgress }) => {
     usesAndVisualizations,
     sampleUsevisualization,
     authors,
-    dataType,
     spatialScales,
     temporalScales,
     sectors,
@@ -57,7 +56,6 @@ const Data = ({ data, classes, showProgress }) => {
     worldRegions,
   } = data.contentfulData;
   const tags = {
-    dataType,
     determinants,
     sectors,
     spatialScales,
@@ -154,7 +152,6 @@ export const query = graphql`
           body
         }
       }
-      dataType
       spatialScales
       temporalScales
       sectors
