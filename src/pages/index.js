@@ -65,8 +65,8 @@ export const query = graphql`
       }
       sponsors {
         title
-        fixed(width: 185, height: 140) {
-          ...GatsbyContentfulFixed_withWebp
+        fluid(maxWidth: 1000) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
     }
