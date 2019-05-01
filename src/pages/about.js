@@ -14,7 +14,7 @@ const styles = theme => ({});
 
 const About = ({ data, classes, showProgress }) => {
   const { name, body, backgroundImage } = data.contentfulPage;
-  const { html } = body.childMarkdownRemark;
+  // const { html } = body.childMarkdownRemark;
   return (
     <Layout showProgress={showProgress}>
       <SEO title="About" description="About page for Global City Data" />
@@ -22,7 +22,7 @@ const About = ({ data, classes, showProgress }) => {
       <Container>
         <ContentPaper>
           {/* Display Contentful Our Story markdown body as html */}
-          <Markdown>{html}</Markdown>
+          <Markdown>{body.body}</Markdown>
         </ContentPaper>
       </Container>
     </Layout>
@@ -39,6 +39,7 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+        body
       }
       backgroundImage {
         fixed(width: 2000, height: 200) {

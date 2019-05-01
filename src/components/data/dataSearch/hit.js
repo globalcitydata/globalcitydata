@@ -116,7 +116,7 @@ const Hit = ({ hit, classes }) => {
     <Grid item xs={12} md={6}>
       <Card className={`${classes.card} lift`}>
         <CardContent>
-          <Typography variant="h6">{dataObj.title}</Typography>
+          <Typography variant="h6" style={{ fontWeight: 'bold' }}>{dataObj.title}</Typography>
         </CardContent>
         <Divider />
         <Summary summary={dataObj.summary} classes={classes} />

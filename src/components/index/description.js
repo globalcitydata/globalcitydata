@@ -2,49 +2,30 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
-import { IconButton } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Link } from 'react-scroll';
+import { Divider } from '@material-ui/core';
+import { Element } from 'react-scroll';
 import Markdown from '../markdown';
 import Container from '../container';
 
 const styles = {
   root: {
+    maxWidth: '720px',
     textAlign: 'center',
+    padding: '2rem 1rem',
   },
   intro: {
-    paddingBottom: '8px',
     fontSize: '1.1rem',
-  },
-  btn: {
-    margin: '0 auto',
+    margin: '25px auto',
   },
 };
 
-const DownButton = ({ id, classes }) => (
-  <div>
-    <IconButton
-      component={Link}
-      to={id}
-      spy
-      smooth
-      offset={-50}
-      duration={700}
-      color="inherit"
-      aria-label="Down"
-    >
-      <ExpandMoreIcon fontSize="large" />
-    </IconButton>
-  </div>
-);
-
 const Description = ({ intro, classes }) => (
-  <div className={classes.root}>
-    <Container>
+  <Element name="tagsDescription">
+    <Container className={classes.root}>
       <Markdown className={classes.intro}>{intro}</Markdown>
-      <DownButton id="tagSections" classes={classes} />
     </Container>
-  </div>
+    <Divider />
+  </Element>
 );
 
 export default withStyles(styles)(Description);

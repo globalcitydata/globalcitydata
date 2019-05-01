@@ -7,11 +7,16 @@ import Layout from '../components/layout';
 
 // Page Components
 import Showcase from '../components/index/showcase';
+import LearnMore from '../components/index/learnMore';
 import Description from '../components/index/description';
 import Tags from '../components/index/tags';
 import Sponsors from '../components/index/sponsors';
 
-const styles = {};
+const styles = theme => ({
+  tags: {
+    background: theme.palette.background.paper,
+  },
+});
 
 const Index = ({ data, classes, showProgress }) => {
   const showcaseData = data.contentfulHomePage;
@@ -22,11 +27,13 @@ const Index = ({ data, classes, showProgress }) => {
       <SEO title="Home" />
       <Layout showProgress={showProgress}>
         <Showcase showcaseData={showcaseData} />
-        <Description intro={tagsIntro.childMarkdownRemark.html} />
-        <Tags
-          sections={tagSections}
-          intro={tagsIntro2.childMarkdownRemark.html}
-        />
+        <LearnMore intro={tagsIntro.childMarkdownRemark.html} />
+        <div className={classes.tags}>
+          <Description intro={tagsIntro2.childMarkdownRemark.html} />
+          <Tags
+            sections={tagSections}
+          />
+        </div>
         <Sponsors sponsors={sponsors} />
       </Layout>
     </>

@@ -1,21 +1,19 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 
 const styles = {
-  root: {
+  container: {
     margin: '0 auto',
     maxWidth: '1000px',
     padding: '4rem 1rem',
   },
 };
 
-const Container = (props) => {
-  const { children, classes } = props;
-  return (
-    <div className={classes.root} {...props}>
-      {children}
-    </div>
-  );
-};
+const Container = ({ children, classes, className }) => (
+  <div className={classNames(classes.container, className)}>
+    {children}
+  </div>
+);
 
 export default withStyles(styles)(Container);

@@ -30,9 +30,6 @@ const transformText = (oldTitle) => {
 };
 
 const styles = theme => ({
-  tagSections: {
-    background: theme.palette.background.paper,
-  },
   intro: {
     textAlign: 'center',
     fontSize: '1.1rem',
@@ -150,7 +147,7 @@ const TagSection = ({ tag, classes }) => {
   );
 };
 
-class TagSections extends Component {
+class Tags extends Component {
   state = {
     tab: 0,
   };
@@ -163,7 +160,7 @@ class TagSections extends Component {
     const { sections, classes } = this.props;
     const { tab } = this.state;
     return (
-      <>
+      <Container>
         {/* Dumb Trick to display responsive tabs */}
         <Hidden smUp>
           <Tabs
@@ -199,27 +196,9 @@ class TagSections extends Component {
             </div>
           ))}
         </>
-      </>
+      </Container>
     );
   }
 }
-
-const Intro = ({ intro, classes }) => (
-  <Markdown className={classes.intro}>{intro}</Markdown>
-);
-
-const Tags = ({ intro, sections, classes }) => (
-  <Element name="tagSections">
-    <div className={classes.tagSections}>
-      <Container>
-        <Intro intro={intro} classes={classes} />
-      </Container>
-      <Divider />
-      <Container>
-        <TagSections sections={sections} classes={classes} />
-      </Container>
-    </div>
-  </Element>
-);
 
 export default withStyles(styles)(Tags);

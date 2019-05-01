@@ -15,7 +15,7 @@ import ContactForm from '../components/contact/contactForm';
 const styles = {
   msg: {
     textAlign: 'center',
-    fontSize: '1.1rem',
+    fontSize: '1.3rem',
     margin: '0 auto',
     maxWidth: '700px',
   },
