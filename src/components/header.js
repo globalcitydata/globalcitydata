@@ -66,6 +66,7 @@ const links = [
   { url: '/publications/', name: 'Publications', local: true },
   { url: '/about/', name: 'About', local: true },
   { url: '/contact/', name: 'Contact', local: true },
+  { url: 'https://medium.com/@globalcitydata', name: 'Blog', local: false },
   {
     url: 'https://forms.gle/B2HhrekHMpt1ZSv17',
     name: 'Submit Data',
@@ -75,8 +76,8 @@ const links = [
 
 const NavLink = (props) => {
   const {
- url, local, classes, children, title 
-} = props;
+    url, local, classes, children, title,
+  } = props;
   return (
     <div>
       {local ? (
