@@ -1,5 +1,5 @@
 export const tagNames = [
-  'dataType',
+  // 'dataType',
   'determinants',
   'sectors',
   'spatialScales',
