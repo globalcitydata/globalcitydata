@@ -26,12 +26,13 @@ function withRoot(Component) {
       if (jssStyles && jssStyles.parentNode) {
         jssStyles.parentNode.removeChild(jssStyles);
       }
+      // // shows user feedback widget on every page
+      const userFeedback = require('./userFeedback'); // eslint-disable-line
     }
 
     render() {
       const { showProgress } = this.state;
-      // shows user feedback widget on every page
-      const userFeedback = require('./userFeedback'); // eslint-disable-line
+
       return (
         <JssProvider generateClassName={this.muiPageContext.generateClassName}>
           {/* MuiThemeProvider makes the theme available down the React
