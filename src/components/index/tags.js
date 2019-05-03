@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { navigate } from 'gatsby';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { camelCase } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,7 +11,6 @@ import {
   Hidden,
   Divider,
 } from '@material-ui/core';
-import { Element } from 'react-scroll';
 import Container from '../container';
 import Markdown from '../markdown';
 
@@ -83,42 +82,37 @@ const TagPicture = ({ instance, tagTitle, classes }) => {
   let formattedTitle = title.split('_');
   formattedTitle.shift();
   formattedTitle = formattedTitle.join(' ');
-  // handle click event
-  const handleClick = (e) => {
-    e.preventDefault();
-    navigate('/data/', {
-      replace: true,
-      state: {
-        attr: camelCase(tagTitle),
-        refinement: [formattedTitle],
-      },
-    });
-  };
   return (
     <Grid item s={12} m={6} l={4}>
-      {/* eslint-disable */}
-      <div
-        className={`${classes.heroWrapper} lift`}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onClick={handleClick}
+      <Link
+        to="/data/"
+        state={{
+          attr: camelCase(tagTitle),
+          refinement: [formattedTitle],
+        }}
       >
-        {/* eslint-disable */}
-        <div className={classes.imgWrapper}>
-          <Img fixed={fixed} className={classes.img} />
+        <div
+          className={`${classes.heroWrapper} lift`}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          <div className={classes.imgWrapper}>
+            <Img fixed={fixed} className={classes.img} />
+          </div>
+          <div className={classes.contentWrapper}>
+            {hover && description ? (
+              <Typography variant="body2" color="inherit">
+                {description}
+              </Typography>
+            ) : (
+              <Typography variant="body1" color="inherit">
+                {transformText(title)}
+              </Typography>
+            )}
+          </div>
         </div>
-        <div className={classes.contentWrapper}>
-          {hover && description ? (
-            <Typography variant="body2" color="inherit">
-              {description}
-            </Typography>
-          ) : (
-            <Typography variant="body1" color="inherit">
-              {transformText(title)}
-            </Typography>
-          )}
-        </div>
-      </div>
+
+      </Link>
     </Grid>
   );
 };
