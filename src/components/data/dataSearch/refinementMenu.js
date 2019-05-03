@@ -14,6 +14,7 @@ import {
   FormLabel,
   FormGroup,
   FormControlLabel,
+  Chip,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-scroll';
@@ -47,65 +48,50 @@ const styles = {
   },
 };
 
+const colors = {
+  dataType: 'primary',
+  determinants: 'secondary',
+  sectors: 'default',
+  spatialScales: 'primary',
+  temporalScales: 'secondary',
+  worldRegions: 'default',
+};
+
+/**
+ * @brief All refinement tag chips for a given tag
+ */
+const RefineTagChips = ({ tag, refine }) => {
+  const tagName = tag.label.split('.')[1];
+  return (
+    <>
+      {tag.items.map((refinement) => {
+        const { label, value } = refinement;
+        const handleClick = (e) => {
+          e.preventDefault();
+          refine(value);
+        };
+        return (
+          <Chip
+            label={label}
+            color={colors[tagName]}
+            onClick={handleClick}
+            key={label}
+            style={{ margin: '0 10px 10px 0' }}
+          />
+        );
+      })}
+    </>
+  );
+};
+
 /**
  * List all the current refinements
  * @param items: object[] of current refinements
  */
 const CurrentRefinements = ({ items, refine, classes }) => (
-  // <div className={classes.refineWrapper}>
-  //   {items.length > 0 && (
-  //     <>
-  //       <Typography variant="h6" className={classes.refineTitle}>
-  //         Current Refinements
-  //       </Typography>
-  //       {items.map((item) => {
-  //         const tag = item.label.split('.')[1]; // get name of tag
-  //         const refinements = item.currentRefinement.join(', '); // get comma seperated refinements
-  //         return (
-  //           <Typography paragraph className={classes.refineBody}>
-  //             {`${tag}: ${refinements}`}
-  //           </Typography>
-  //         );
-  //       })}
-  //     </>
-  //   )}
-  // </div>
-  <ul>
-    {items.map(item => (
-      <li key={item.label}>
-        {item.items ? (
-          <React.Fragment>
-            {item.label}
-            <ul>
-              {item.items.map(nested => (
-                <li key={nested.label}>
-                  <a
-                    href="#"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      refine(nested.value);
-                    }}
-                  >
-                    {nested.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </React.Fragment>
-        ) : (
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              refine(item.value);
-            }}
-          >
-            {item.label}
-          </a>
-        )}
-      </li>
-    ))}
-  </ul>
+  <>
+    {items.map(tag => <RefineTagChips tag={tag} refine={refine} key={tag.label} />)}
+  </>
 );
 
 // Connect Current Refinements
@@ -212,7 +198,8 @@ const RefinementMenu = ({ tagNames, classes, refinementState }) => {
   return (
     <Paper className={classes.root}>
       <CustomClearRefinements classes={classes} />
-      {/* <CustomCurrentRefinements classes={classes} /> */}
+      <br />
+      <CustomCurrentRefinements classes={classes} />
       {tagNames.map(tag => {
         const attribute = `fields.${tag}.en-US`;
         // if tag == attribute, set refinement, else set to blank array

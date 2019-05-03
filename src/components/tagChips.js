@@ -6,8 +6,8 @@ import { Chip } from '@material-ui/core';
 const tagObjToTagList = (tags) => {
   const tagList = [];
   Object.entries(tags).forEach(tag => Object.entries(tag[1]).forEach(
-      attribute => tagList.push([tag[0], attribute[1]]), // ex: ['determinants', 'environment']
-    ),);
+    attribute => tagList.push([tag[0], attribute[1]]), // ex: ['determinants', 'environment']
+  ));
   return tagList;
 };
 
@@ -26,13 +26,9 @@ const styles = {
   },
 };
 
-// const RefinementLink = ({ refinement, attr, children }) => (
-//   <Link to="/data/" state={{ attr, refinement }}>
-//     {children}
-//   </Link>
-// );
-
-const TagChip = ({ tag, attribute, classes }) => {
+const TagChip = ({
+  tag, attribute, classes,
+}) => {
   const handleClick = (e) => {
     e.preventDefault();
     navigate('/data/', {
@@ -46,7 +42,6 @@ const TagChip = ({ tag, attribute, classes }) => {
   return (
     <Chip
       color={colors[tag]}
-      // variant="outlined"
       label={attribute}
       onClick={handleClick}
       className={classes.chip}

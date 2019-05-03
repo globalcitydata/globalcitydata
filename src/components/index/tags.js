@@ -81,27 +81,6 @@ const styles = theme => ({
   },
 });
 
-// const makeMoveUp = (Target, hover) => class extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { moveTop: false };
-//   }
-
-//       onClick = () => {
-//         this.setState({ moveTop: !this.state.moveTop });
-//       };
-
-//       render() {
-//         return (
-//           <Target
-//             isOpen
-//             onClick={this.onClick}
-//             additionalStyles={{ text: {}, frame: this.state.moveTop ? animationStyle : {} }}
-//           />
-//         );
-//       }
-// };
-
 const TagPicture = ({ instance, tagTitle, classes }) => {
   const [hover, setHover] = useState(false);
   const { title, description, fixed } = instance;
