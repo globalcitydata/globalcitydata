@@ -9,6 +9,7 @@ import {
   Tabs,
   Tab,
   Hidden,
+  Grow,
   Divider,
 } from '@material-ui/core';
 import Container from '../container';
@@ -74,7 +75,32 @@ const styles = theme => ({
       fontSize: '0.6rem',
     },
   },
+  animate: {
+    transform: 'translateY(-150px)',
+    transition: 'transform 1s ease',
+  },
 });
+
+// const makeMoveUp = (Target, hover) => class extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { moveTop: false };
+//   }
+
+//       onClick = () => {
+//         this.setState({ moveTop: !this.state.moveTop });
+//       };
+
+//       render() {
+//         return (
+//           <Target
+//             isOpen
+//             onClick={this.onClick}
+//             additionalStyles={{ text: {}, frame: this.state.moveTop ? animationStyle : {} }}
+//           />
+//         );
+//       }
+// };
 
 const TagPicture = ({ instance, tagTitle, classes }) => {
   const [hover, setHover] = useState(false);
@@ -82,6 +108,23 @@ const TagPicture = ({ instance, tagTitle, classes }) => {
   let formattedTitle = title.split('_');
   formattedTitle.shift();
   formattedTitle = formattedTitle.join(' ');
+
+  const Description = () => (
+    <div>
+      <Typography variant="body2" color="inherit">
+        {description}
+      </Typography>
+    </div>
+  );
+
+  const Title = () => (
+    <div>
+      <Typography variant="body1" color="inherit">
+        {transformText(title)}
+      </Typography>
+    </div>
+  );
+
   return (
     <Grid item s={12} m={6} l={4}>
       <Link
@@ -100,18 +143,10 @@ const TagPicture = ({ instance, tagTitle, classes }) => {
             <Img fixed={fixed} className={classes.img} />
           </div>
           <div className={classes.contentWrapper}>
-            {hover && description ? (
-              <Typography variant="body2" color="inherit">
-                {description}
-              </Typography>
-            ) : (
-              <Typography variant="body1" color="inherit">
-                {transformText(title)}
-              </Typography>
-            )}
+            <Title />
+            {hover && description && <Description />}
           </div>
         </div>
-
       </Link>
     </Grid>
   );
