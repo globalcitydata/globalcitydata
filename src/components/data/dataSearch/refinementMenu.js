@@ -50,8 +50,8 @@ const styles = {
 
 const colors = {
   dataType: 'primary',
-  determinants: 'secondary',
-  sectors: 'default',
+  contextualCityLevelData: 'secondary',
+  keyProvisioningSectors: 'default',
   spatialScales: 'primary',
   temporalScales: 'secondary',
   worldRegions: 'default',

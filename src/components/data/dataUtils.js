@@ -1,7 +1,7 @@
 export const tagNames = [
-  // 'dataType',
-  'determinants',
-  'sectors',
+  'dataType',
+  'contextualCityLevelData',
+  'keyProvisioningSectors',
   'spatialScales',
   'sustainabilityOutcomes',
   'temporalScales',
@@ -9,11 +9,16 @@ export const tagNames = [
 ];
 
 export const getDataObjFromHit = (hit) => {
-  const tags = {};
+  let tags = {};
   // Get Tags from hit
-  tagNames.forEach((tag) => {
-    tags[tag] = hit.fields[tag]['en-US'];
-  });
+  try {
+    tagNames.forEach((tag) => {
+      console.log(hit.fields[tag]);
+      tags[tag] = hit.fields[tag]['en-US'];
+    });
+  } catch (error) {
+    tags = {};
+  }
   // Create data object
   const dataObj = {
     tags,

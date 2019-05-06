@@ -48,16 +48,18 @@ const Data = ({ data, classes, showProgress }) => {
     usesAndVisualizations,
     sampleUsevisualization,
     authors,
+    dataType,
     spatialScales,
     temporalScales,
-    sectors,
+    keyProvisioningSectors,
     sustainabilityOutcomes,
-    determinants,
+    contextualCityLevelData,
     worldRegions,
   } = data.contentfulData;
   const tags = {
-    determinants,
-    sectors,
+    dataType,
+    contextualCityLevelData,
+    keyProvisioningSectors,
     spatialScales,
     sustainabilityOutcomes,
     temporalScales,
@@ -152,11 +154,12 @@ export const query = graphql`
           body
         }
       }
+      dataType
       spatialScales
       temporalScales
-      sectors
+      keyProvisioningSectors
       sustainabilityOutcomes
-      determinants
+      contextualCityLevelData
       worldRegions
     }
   }

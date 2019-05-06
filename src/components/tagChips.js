@@ -6,15 +6,15 @@ import { Chip } from '@material-ui/core';
 const tagObjToTagList = (tags) => {
   const tagList = [];
   Object.entries(tags).forEach(tag => Object.entries(tag[1]).forEach(
-    attribute => tagList.push([tag[0], attribute[1]]), // ex: ['determinants', 'environment']
+    attribute => tagList.push([tag[0], attribute[1]]), // ex: ['contextualCityLevelData', 'environment']
   ));
   return tagList;
 };
 
 const colors = {
   dataType: 'primary',
-  determinants: 'secondary',
-  sectors: 'default',
+  contextualCityLevelData: 'secondary',
+  keyProvisioningSectors: 'default',
   spatialScales: 'primary',
   temporalScales: 'secondary',
   worldRegions: 'default',
