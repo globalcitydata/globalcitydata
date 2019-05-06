@@ -27,7 +27,7 @@ function withRoot(Component) {
         jssStyles.parentNode.removeChild(jssStyles);
       }
       // // shows user feedback widget on every page
-      const userFeedback = require('./userFeedback'); // eslint-disable-line
+      // const userFeedback = require('./userFeedback'); // eslint-disable-line
     }
 
     render() {

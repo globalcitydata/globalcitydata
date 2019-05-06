@@ -1,7 +1,7 @@
 export const tagNames = [
   'dataType',
   // 'contextualCityLevelData',
-  // 'keyProvisioningSectors',
+  'keyProvisioningSectors',
   'spatialScales',
   'sustainabilityOutcomes',
   'temporalScales',

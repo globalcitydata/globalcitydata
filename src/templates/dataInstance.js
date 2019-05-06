@@ -59,7 +59,7 @@ const Data = ({ data, classes, showProgress }) => {
   const tags = {
     dataType,
     // contextualCityLevelData,
-    // keyProvisioningSectors,
+    keyProvisioningSectors,
     spatialScales,
     sustainabilityOutcomes,
     temporalScales,
@@ -69,7 +69,7 @@ const Data = ({ data, classes, showProgress }) => {
   return (
     <Layout showProgress={showProgress}>
       <SEO title={title} />
-      <Hero title={title} />
+      <Hero title={title} h="270px" />
       <Container>
         <ContentPaper>
           {/* Long Title */}

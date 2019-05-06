@@ -18,11 +18,6 @@ const styles = theme => ({
       position: 'center',
     },
   },
-  bgGradient: {
-    height: '200px',
-    width: '100%',
-    background: 'linear-gradient(to left, #00c9ff, #92fe9d)',
-  },
   content: {
     position: 'absolute',
     width: '900px',
@@ -30,8 +25,17 @@ const styles = theme => ({
     top: '24%',
     transform: 'translate(-50%, 0)',
     color: 'white',
-    '@media (max-width: 1200px)': {
+    [theme.breakpoints.down('md')]: {
       width: '80%',
+      fontSize: '3rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      fontSize: '2.5rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
+      fontSize: '1.9rem',
     },
   },
 });
@@ -44,21 +48,31 @@ const HeroContent = ({ title, classes }) => (
   </div>
 );
 
-const Background = ({ img, classes }) => (
-  <div>
-    {img ? (
-      <div className={classes.imgWrapper}>
-        <Img fixed={img.fixed} />
-      </div>
-    ) : (
-      <div className={classes.bgGradient} />
-    )}
-  </div>
-);
+const Background = ({ img, classes, h }) => {
+  const height = h || '200px';
+  return (
+    <div>
+      {img ? (
+        <div className={classes.imgWrapper}>
+          <Img fixed={img.fixed} />
+        </div>
+      ) : (
+        <div style={{
+          height,
+          width: '100%',
+          background: 'linear-gradient(to left, #00c9ff, #92fe9d)',
+        }}
+        />
+      )}
+    </div>
+  );
+};
 
-const Hero = ({ img, title, classes }) => (
+const Hero = ({
+  img, title, h, classes,
+}) => (
   <div className={classes.root}>
-    <Background img={img} classes={classes} />
+    <Background img={img} classes={classes} h={h} />
     <HeroContent title={title} classes={classes} />
   </div>
 );
