@@ -58,8 +58,8 @@ const Data = ({ data, classes, showProgress }) => {
   } = data.contentfulData;
   const tags = {
     dataType,
-    contextualCityLevelData,
-    keyProvisioningSectors,
+    // contextualCityLevelData,
+    // keyProvisioningSectors,
     spatialScales,
     sustainabilityOutcomes,
     temporalScales,
