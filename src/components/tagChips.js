@@ -5,9 +5,25 @@ import { Chip } from '@material-ui/core';
 
 const tagObjToTagList = (tags) => {
   const tagList = [];
-  Object.entries(tags).forEach(tag => Object.entries(tag[1]).forEach(
-    attribute => tagList.push([tag[0], attribute[1]]), // ex: ['contextualCityLevelData', 'environment']
-  ));
+  try {
+    Object.entries(tags).forEach((tag) => {
+      // tag -> ["dataType", ["Dataset"]]
+      // tag -> ["spatialScales", ["Whole City", "National Urban"]]
+      // etc...
+      const tagName = tag[0];
+      const attributes = tag[1];
+      if (attributes) { // if any associated attributes
+        Object.entries(attributes).forEach((attribute) => {
+          // attribute -> [0, "environment"]
+          // etc...
+          const attributeName = attribute[1]; // disregard attribute[0]
+          tagList.push([tagName, attributeName]); // ex: ['spatialScales', 'Whole City']
+        });
+      }
+    });
+  } catch (error) {
+    return tagList;
+  }
   return tagList;
 };
 

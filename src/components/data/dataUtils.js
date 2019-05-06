@@ -1,6 +1,6 @@
 export const tagNames = [
   'dataType',
-  // 'contextualCityLevelData',
+  'contextualCityLevelData',
   'keyProvisioningSectors',
   'spatialScales',
   'sustainabilityOutcomes',
@@ -13,8 +13,9 @@ export const getDataObjFromHit = (hit) => {
   // Get Tags from hit
   try {
     tagNames.forEach((tag) => {
-      // console.log(hit.fields[tag]);
-      tags[tag] = hit.fields[tag]['en-US'];
+      if (hit.fields[tag]) {
+        tags[tag] = hit.fields[tag]['en-US'];
+      }
     });
   } catch (error) {
     tags = {};
