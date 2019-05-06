@@ -15,8 +15,8 @@ module.exports = {
   siteMetadata: {
     title: 'Global City Data',
     siteUrl: 'https://globalcitydata.com',
-    description:
-      'Global City Data. Thinking in Systems to Link Urban Infrastructure with Multiple Sustainability Outcomes.',
+    description: `Global City Data is an open platform to showcase peer-reviewed urban datasets 
+      and models using a consistent socio-ecological-infrastructural systems framework.`,
   },
   plugins: [
     {

@@ -17,7 +17,7 @@ const About = ({ data, classes, showProgress }) => {
   // const { html } = body.childMarkdownRemark;
   return (
     <Layout showProgress={showProgress}>
-      <SEO title="About" description="About page for Global City Data" />
+      <SEO title="About" />
       <Hero title={name} img={backgroundImage} />
       <Container>
         <ContentPaper>
