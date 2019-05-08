@@ -171,7 +171,7 @@ const Hit = ({ hit, classes }) => {
         <Summary summary={dataObj.summary} classes={classes} />
         <Divider />
         <Tags tags={dataObj.tags} classes={classes} />
-        {/* <Divider />
+        <Divider />
         <CardActions className={classes.actionWrapper}>
           <Button
             color="primary"
@@ -181,7 +181,7 @@ const Hit = ({ hit, classes }) => {
           >
             View Details
           </Button>
-        </CardActions> */}
+        </CardActions>
       </Card>
     </Grid>
   );

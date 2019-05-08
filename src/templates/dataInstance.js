@@ -37,6 +37,7 @@ const Data = ({ data, classes, showProgress }) => {
   const {
     title,
     longTitle,
+    backgroundImage,
     summaryImage,
     body,
     publications,
@@ -69,7 +70,7 @@ const Data = ({ data, classes, showProgress }) => {
   return (
     <Layout showProgress={showProgress}>
       <SEO title={title} />
-      <Hero title={title} h="270px" />
+      <Hero title={title} bg={backgroundImage} h="270px" />
       <Container>
         <ContentPaper>
           {/* Long Title */}

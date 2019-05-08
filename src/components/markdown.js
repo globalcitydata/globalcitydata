@@ -24,7 +24,7 @@ const options = {
     },
     h3: {
       component: props => (
-        <Typography gutterBottom variant="subtitle1" {...props} />
+        <Typography gutterBottom variant="h6" {...props} />
       ),
     },
     h4: {
