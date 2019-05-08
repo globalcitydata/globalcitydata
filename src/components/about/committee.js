@@ -12,11 +12,11 @@ const styles = theme => ({
   },
   title: {
     fontWeight: 'bold',
-    paddingBottom: '15px',
+    paddingBottom: '12px',
   },
   description: {
     paddingBottom: '15px',
-    maxWidth: '600px',
+    maxWidth: '700px',
   },
   members: {
     maxWidth: '600px',

@@ -26,6 +26,9 @@ const styles = {
   hit: {
     padding: '1rem',
   },
+  pagination: {
+    paddingTop: '2rem',
+  },
 };
 
 const HitContent = ({ slug, body, classes }) => (
@@ -70,7 +73,9 @@ const Search = ({ classes, dataList }) => (
     <CustomSearchBox msg="Search publications by author or title..." />
     <Configure hitsPerPage={7} />
     <CustomHits classes={classes} dataList={dataList} />
-    <Pagination />
+    <div className={classes.pagination}>
+      <Pagination />
+    </div>
   </>
 );
 

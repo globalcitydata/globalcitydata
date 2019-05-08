@@ -10,7 +10,6 @@ import Showcase from '../components/index/showcase';
 import LearnMore from '../components/index/learnMore';
 import Description from '../components/index/description';
 import Tags from '../components/index/tags';
-import Sponsors from '../components/index/sponsors';
 
 const styles = theme => ({
   tags: {
@@ -21,7 +20,7 @@ const styles = theme => ({
 const Index = ({ data, classes, showProgress }) => {
   const showcaseData = data.contentfulHomePage;
   const tagSections = data.allContentfulHomeTagSection.edges;
-  const { sponsors, tagsIntro, tagsIntro2 } = data.contentfulHomePage;
+  const { tagsIntro, tagsIntro2 } = data.contentfulHomePage;
   return (
     <>
       <SEO title="Home" />
@@ -30,11 +29,10 @@ const Index = ({ data, classes, showProgress }) => {
         <LearnMore intro={tagsIntro.childMarkdownRemark.html} />
         <div className={classes.tags}>
           <Description intro={tagsIntro2.childMarkdownRemark.html} />
-          <Tags
-            sections={tagSections}
-          />
         </div>
-        <Sponsors sponsors={sponsors} />
+        <Tags
+          sections={tagSections}
+        />
       </Layout>
     </>
   );
@@ -61,12 +59,6 @@ export const query = graphql`
       tagsIntro2 {
         childMarkdownRemark {
           html
-        }
-      }
-      sponsors {
-        title
-        fluid(maxWidth: 1000) {
-          ...GatsbyContentfulFluid_withWebp
         }
       }
     }

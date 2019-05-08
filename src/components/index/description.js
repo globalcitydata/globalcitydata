@@ -24,7 +24,7 @@ const Description = ({ intro, classes }) => (
     <Container className={classes.root}>
       <Markdown className={classes.intro}>{intro}</Markdown>
     </Container>
-    <Divider />
+    {/* <Divider /> */}
   </Element>
 );
 

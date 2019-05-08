@@ -32,7 +32,7 @@ const styles = {
   contentWrap: {
     position: 'relative',
     marginTop: '65px',
-    minHeight: '70vh',
+    minHeight: '80vh',
     '@media (max-width: 720px)': {
       marginTop: '50px',
     },
