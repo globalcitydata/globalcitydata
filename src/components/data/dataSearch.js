@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
-import { Grid, Hidden } from '@material-ui/core';
+import { Grid, Hidden, Typography } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
 import {
   InstantSearch,
   Configure,
@@ -38,7 +39,36 @@ const styles = {
     margin: '0 auto',
     paddingTop: '2rem',
   },
+  smallDevice: {
+    background: blue[600],
+    padding: '2rem',
+    textAlign: 'center',
+    marginBottom: '25px',
+    borderRadius: '5px',
+    color: 'white',
+  },
+  smallDeviceTitle: {
+    fontWeight: 'bold',
+    color: 'inherit',
+  },
+  smallDeviceMsg: {
+    maxWidth: '500px',
+    margin: '0 auto',
+    color: 'inherit',
+  },
 };
+
+const SmallDeviceMessage = ({ classes }) => (
+  <div className={classes.smallDevice}>
+    <Typography variant="h6" gutterBottom className={classes.smallDeviceTitle}>
+    *** Small Device Message ***
+    </Typography>
+    <Typography paragraph className={classes.smallDeviceMsg}>
+    Some features are disabled on smaller devices.
+    Please use a larger device to fully experience the Data Explore page.
+    </Typography>
+  </div>
+);
 
 const Hits = ({ hits, classes }) => (
   <Grid container spacing={24}>
@@ -52,6 +82,7 @@ const CustomHits = connectHits(Hits);
 
 const Search = ({ classes, refinementState }) => (
   <Element name="dataExplore">
+    {/* Show following only on medium+ devices */}
     <Hidden smDown>
       <div className={classes.root}>
         <div className={classes.sidebar}>
@@ -66,20 +97,17 @@ const Search = ({ classes, refinementState }) => (
           <CustomHits classes={classes} />
         </div>
       </div>
-      <div className={classes.pagination}>
-        <Pagination />
-      </div>
     </Hidden>
+    {/* Show following only on small devices */}
     <Hidden mdUp>
-      <div>
-        <CustomSearchBox msg="Search datasets here..." />
-        <Configure hitsPerPage={6} />
-        <CustomHits classes={classes} />
-      </div>
-      <div className={classes.pagination}>
-        <Pagination />
-      </div>
+      <SmallDeviceMessage classes={classes} />
+      <CustomSearchBox msg="Search datasets here..." />
+      <Configure hitsPerPage={6} />
+      <CustomHits classes={classes} />
     </Hidden>
+    <div className={classes.pagination}>
+      <Pagination />
+    </div>
   </Element>
 );
 
