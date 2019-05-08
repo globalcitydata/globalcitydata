@@ -14,6 +14,7 @@ import {
   IconButton,
   Collapse,
 } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import classnames from 'classnames';
@@ -21,8 +22,20 @@ import TagChips from '../../tagChips';
 import { getDataObjFromHit } from '../dataUtils';
 
 const styles = theme => ({
-  card: {},
+  card: {
+  },
+  // cardHover: {
+  //   color: blue[500],
+  // },
+  cardTitle: {
+    fontWeight: 'bold',
+    textDecoration: 'none',
+    '&:hover': {
+      color: blue[500],
+    },
+  },
   content: {
+    cursor: 'pointer',
     position: 'relative',
   },
   expand: {
@@ -42,6 +55,13 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
+  },
+  fadeOut: {
+    height: '95px',
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    background: 'linear-gradient( rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 100% )',
   },
   actionWrapper: {
     paddingTop: '3rem',
@@ -74,15 +94,22 @@ const Title = ({ title, classes }) => (
 const Tags = ({ classes, tags }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <CardContent className={classes.content}>
+    <CardContent
+      onClick={() => setExpanded(!expanded)}
+      className={classes.content}
+    >
       <Title title="Tags" />
-      <Collapse in={expanded} collapsedHeight="80px">
+      <Collapse
+        in={expanded}
+        collapsedHeight="80px"
+      >
         <TagChips tags={tags} />
-        <ExpandBtn
+        {/* <ExpandBtn
           setExpanded={setExpanded}
           classes={classes}
           expanded={expanded}
-        />
+        /> */}
+        <div className={classnames({ [classes.fadeOut]: !expanded })} />
       </Collapse>
     </CardContent>
   );
@@ -91,20 +118,26 @@ const Tags = ({ classes, tags }) => {
 const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <CardContent className={classes.content}>
+    <CardContent className={classes.content} onClick={() => setExpanded(!expanded)}>
       <Title
         title="Summary"
         setExpanded={setExpanded}
         classes={classes}
         expanded={expanded}
       />
-      <Collapse in={expanded} collapsedHeight="95px">
-        <Typography paragraph>{summary}</Typography>
-        <ExpandBtn
+      <Collapse
+        in={expanded}
+        collapsedHeight="95px"
+      >
+        <Typography paragraph>
+          {summary}
+        </Typography>
+        {/* <ExpandBtn
           setExpanded={setExpanded}
           classes={classes}
           expanded={expanded}
-        />
+        /> */}
+        <div className={classnames({ [classes.fadeOut]: !expanded })} />
       </Collapse>
     </CardContent>
   );
@@ -112,17 +145,32 @@ const Summary = ({ classes, summary }) => {
 
 const Hit = ({ hit, classes }) => {
   const dataObj = getDataObjFromHit(hit);
+  const [hover, setHover] = useState(false);
   return (
     <Grid item xs={12} md={6}>
-      <Card className={`${classes.card} lift`}>
+      <Card
+        className={`${classes.card} lift`}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
         <CardContent>
-          <Typography variant="h6" style={{ fontWeight: 'bold' }}>{dataObj.title}</Typography>
+          {/* <Link to={`/data/${dataObj.slug}/`}> */}
+          <Typography
+            variant="h6"
+            className={classnames(classes.cardTitle, { [classes.cardHover]: hover })}
+            component={Link}
+            to={`/data/${dataObj.slug}/`}
+          >
+            {dataObj.title}
+          </Typography>
+
+          {/* </Link> */}
         </CardContent>
         <Divider />
         <Summary summary={dataObj.summary} classes={classes} />
         <Divider />
         <Tags tags={dataObj.tags} classes={classes} />
-        <Divider />
+        {/* <Divider />
         <CardActions className={classes.actionWrapper}>
           <Button
             color="primary"
@@ -132,7 +180,7 @@ const Hit = ({ hit, classes }) => {
           >
             View Details
           </Button>
-        </CardActions>
+        </CardActions> */}
       </Card>
     </Grid>
   );
