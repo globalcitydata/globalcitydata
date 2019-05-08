@@ -35,7 +35,7 @@ const styles = theme => ({
     },
   },
   content: {
-    cursor: 'pointer',
+    // cursor: 'pointer',
     position: 'relative',
   },
   expand: {
@@ -94,22 +94,21 @@ const Title = ({ title, classes }) => (
 const Tags = ({ classes, tags }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <CardContent
-      onClick={() => setExpanded(!expanded)}
-      className={classes.content}
-    >
+    <CardContent className={classes.content}>
+      {/* onClick={() => setExpanded(!expanded)}
+       */}
       <Title title="Tags" />
       <Collapse
         in={expanded}
         collapsedHeight="80px"
       >
         <TagChips tags={tags} />
-        {/* <ExpandBtn
+        <ExpandBtn
           setExpanded={setExpanded}
           classes={classes}
           expanded={expanded}
-        /> */}
-        <div className={classnames({ [classes.fadeOut]: !expanded })} />
+        />
+        {/* <div className={classnames({ [classes.fadeOut]: !expanded })} /> */}
       </Collapse>
     </CardContent>
   );
@@ -118,7 +117,9 @@ const Tags = ({ classes, tags }) => {
 const Summary = ({ classes, summary }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <CardContent className={classes.content} onClick={() => setExpanded(!expanded)}>
+    <CardContent className={classes.content}>
+      {/*
+      onClick={() => setExpanded(!expanded)} */}
       <Title
         title="Summary"
         setExpanded={setExpanded}
@@ -132,12 +133,12 @@ const Summary = ({ classes, summary }) => {
         <Typography paragraph>
           {summary}
         </Typography>
-        {/* <ExpandBtn
+        <ExpandBtn
           setExpanded={setExpanded}
           classes={classes}
           expanded={expanded}
-        /> */}
-        <div className={classnames({ [classes.fadeOut]: !expanded })} />
+        />
+        {/* <div className={classnames({ [classes.fadeOut]: !expanded })} /> */}
       </Collapse>
     </CardContent>
   );

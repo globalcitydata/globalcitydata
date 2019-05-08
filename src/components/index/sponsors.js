@@ -16,7 +16,7 @@ const styles = {
 
 const Sponsors = ({ sponsors, classes }) => (
   <Container>
-    <Typography variant="h3" className={classes.title}>
+    <Typography variant="h6" className={classes.title}>
       Developed With Support From
     </Typography>
     <Grid container spacing={32} justify="center">

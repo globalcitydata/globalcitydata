@@ -69,7 +69,7 @@ const links = [
   { url: 'https://medium.com/@globalcitydata', name: 'Blog', local: false },
   {
     url: 'https://forms.gle/B2HhrekHMpt1ZSv17',
-    name: 'Submit Data',
+    name: 'Contribute Data',
     local: false,
   },
 ];

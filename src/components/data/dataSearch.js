@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
 import { Grid, Hidden, Typography } from '@material-ui/core';
@@ -8,6 +8,7 @@ import {
   Configure,
   connectHits,
   Pagination,
+  connectInfiniteHits,
 } from 'react-instantsearch-dom';
 import CustomSearchBox from '../customSearchBox';
 import RefinementMenu from './dataSearch/refinementMenu';
@@ -70,15 +71,27 @@ const SmallDeviceMessage = ({ classes }) => (
   </div>
 );
 
-const Hits = ({ hits, classes }) => (
+const Hits = ({ hits, classes, setSentinel }) => (
   <Grid container spacing={24}>
     {hits.map((hit, i) => (
       <Hit key={hit.objectID} hit={hit} />
     ))}
+    {/* <div ref={c => (setSentinel(c))} /> */}
   </Grid>
 );
 
 const CustomHits = connectHits(Hits);
+
+// const InfiniteHits = ({ hits, classes }) => {
+//   const [sentinel, setSentinel] = useState(null);
+//   return (
+//     <div>
+//       <CustomHits hits={hits} classes={classes} setSentinel={setSentinel} />
+//     </div>
+//   );
+// };
+
+// const CustomInfiniteHits = connectInfiniteHits(InfiniteHits);
 
 const Search = ({ classes, refinementState }) => (
   <Element name="dataExplore">
@@ -94,6 +107,7 @@ const Search = ({ classes, refinementState }) => (
         <div className={classes.main}>
           <CustomSearchBox msg="Search datasets here..." />
           <Configure hitsPerPage={6} />
+          {/* <CustomInfiniteHits classes={classes} /> */}
           <CustomHits classes={classes} />
         </div>
       </div>
@@ -103,6 +117,7 @@ const Search = ({ classes, refinementState }) => (
       <SmallDeviceMessage classes={classes} />
       <CustomSearchBox msg="Search datasets here..." />
       <Configure hitsPerPage={6} />
+      {/* <CustomInfiniteHits classes={classes} /> */}
       <CustomHits classes={classes} />
     </Hidden>
     <div className={classes.pagination}>
