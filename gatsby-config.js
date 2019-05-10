@@ -44,7 +44,20 @@ module.exports = {
       },
     },
     'gatsby-plugin-sitemap', // generates sitemap with build
-    'gatsby-transformer-remark', // transforming markdown to html
+    {
+      resolve: `gatsby-transformer-remark`, // transforming markdown to html
+      options: {
+        plugins: [
+        {
+          resolve: "gatsby-remark-external-links",
+          options: {
+            target: "_blank",
+            rel: "noopener"
+          }
+        }
+        ]
+      }
+    },
     'gatsby-plugin-styled-components', // styled-components (css-in-js)
     'gatsby-plugin-sharp', // compress images
     'gatsby-transformer-sharp', // assist gatsby-plugin-sharp in processing images

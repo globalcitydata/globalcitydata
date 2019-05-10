@@ -2,7 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Typography, Paper, Link as MuiLink, Grid, Divider, Button,
+  Typography, Paper, Link as MuiLink, Grid, Button,
 } from '@material-ui/core';
 import FluidImage from './fluidImage';
 
@@ -11,7 +11,8 @@ const styles = {
     padding: '2.5rem 1rem',
   },
   container: {
-    maxWidth: '1050px',
+    width: '100%',
+    maxWidth: '900px',
     margin: '0 auto',
     textAlign: 'center',
   },

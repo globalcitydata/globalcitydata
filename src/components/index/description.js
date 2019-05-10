@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 // Components
-import { Divider } from '@material-ui/core';
 import { Element } from 'react-scroll';
 import Markdown from '../markdown';
 import Container from '../container';
@@ -22,7 +21,9 @@ const styles = {
 const Description = ({ intro, classes }) => (
   <Element name="tagsDescription">
     <Container className={classes.root}>
-      <Markdown className={classes.intro}>{intro}</Markdown>
+      <Markdown className={classes.intro}>
+        {intro}
+      </Markdown>
     </Container>
     {/* <Divider /> */}
   </Element>
