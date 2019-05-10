@@ -46,6 +46,7 @@ const styles = {
   },
   welcomeHeader: {
     paddingBottom: '30px',
+    textShadow: '2px 5px 3px rgba(0, 0, 0, 0.2)',
     '@media (max-width: 1000px)': {
       fontSize: '30px',
     },

@@ -8,7 +8,7 @@ import FluidImage from './fluidImage';
 
 const styles = {
   root: {
-    padding: '3rem 1rem',
+    padding: '2.5rem 1rem',
   },
   container: {
     maxWidth: '1050px',
@@ -20,6 +20,7 @@ const styles = {
   },
   openSource: {
     paddingBottom: '20px',
+    paddingTop: '5px',
   },
 };
 
@@ -100,7 +101,7 @@ const Footer = ({ classes }) => (
       container
       className={classes.container}
       justify="space-between"
-      alignItems="center"
+      alignItems="flex-start"
       spacing={40}
     >
       <Left classes={classes} />

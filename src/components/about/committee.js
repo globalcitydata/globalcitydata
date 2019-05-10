@@ -55,8 +55,8 @@ const Committee = ({ classes, committee }) => {
       <Typography paragraph className={classes.description}>{description}</Typography>
       <Grid
         container
-        justify="center"
-        alignItems="center"
+        justify="space-around"
+        // alignItems="center"
         spacing={40}
         className={classes.members}
       >
