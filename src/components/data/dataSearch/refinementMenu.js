@@ -19,6 +19,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-scroll';
 import { startCase, orderBy } from 'lodash';
+import { colors } from '../dataUtils';
 
 const styles = {
   root: {
@@ -48,15 +49,6 @@ const styles = {
   },
 };
 
-const colors = {
-  dataType: 'primary',
-  contextualCityLevelData: 'secondary',
-  keyProvisioningSectors: 'default',
-  spatialScales: 'primary',
-  temporalScales: 'secondary',
-  worldRegions: 'default',
-};
-
 /**
  * @brief All refinement tag chips for a given tag
  */
@@ -73,10 +65,10 @@ const RefineTagChips = ({ tag, refine }) => {
         return (
           <Chip
             label={label}
-            color={colors[tagName]}
+            style={{ backgroundColor: colors[tagName], margin: '0 10px 10px 0' }}
+            // color="primary"
             onClick={handleClick}
             key={label}
-            style={{ margin: '0 10px 10px 0' }}
           />
         );
       })}
@@ -131,7 +123,7 @@ const RefinementList = ({
   return (
     <div>
       <FormControl component="fieldset">
-        <FormLabel component="legend" className={classes.formLabel}>
+        <FormLabel component="legend" className={classes.formLabel} style={{ color: colors[tagName] }}>
           {startCase(tagName)}
         </FormLabel>
         <FormGroup>

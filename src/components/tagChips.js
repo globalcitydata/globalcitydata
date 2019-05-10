@@ -2,6 +2,7 @@ import React from 'react';
 import { navigate } from 'gatsby';
 import { withStyles } from '@material-ui/core/styles';
 import { Chip } from '@material-ui/core';
+import { colors } from './data/dataUtils';
 
 const tagObjToTagList = (tags) => {
   const tagList = [];
@@ -27,15 +28,6 @@ const tagObjToTagList = (tags) => {
   return tagList;
 };
 
-const colors = {
-  dataType: 'primary',
-  contextualCityLevelData: 'secondary',
-  keyProvisioningSectors: 'default',
-  spatialScales: 'primary',
-  temporalScales: 'secondary',
-  worldRegions: 'default',
-};
-
 const styles = {
   chip: {
     margin: '0 10px 10px 0',
@@ -57,7 +49,8 @@ const TagChip = ({
   };
   return (
     <Chip
-      color={colors[tag]}
+      // color="primary"
+      style={{ backgroundColor: colors[tag] }}
       label={attribute}
       onClick={handleClick}
       className={classes.chip}
