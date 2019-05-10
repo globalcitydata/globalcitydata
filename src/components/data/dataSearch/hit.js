@@ -144,8 +144,8 @@ const Summary = ({ classes, summary }) => {
   );
 };
 
-const Hit = ({ hit, classes }) => {
-  const dataObj = getDataObjFromHit(hit);
+const Hit = ({ hit, classes, authors }) => {
+  const dataObj = getDataObjFromHit(hit, authors);
   const [hover, setHover] = useState(false);
   return (
     <Grid item xs={12} md={6}>
@@ -161,10 +161,11 @@ const Hit = ({ hit, classes }) => {
             className={classnames(classes.cardTitle, { [classes.cardHover]: hover })}
             component={Link}
             to={`/data/${dataObj.slug}/`}
+            gutterBottom
           >
             {dataObj.title}
           </Typography>
-
+          {dataObj.author && <i><Typography variant="subtitle2">{dataObj.author}</Typography></i>}
           {/* </Link> */}
         </CardContent>
         <Divider />

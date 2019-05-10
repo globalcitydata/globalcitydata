@@ -71,12 +71,11 @@ const SmallDeviceMessage = ({ classes }) => (
   </div>
 );
 
-const Hits = ({ hits, classes, setSentinel }) => (
+const Hits = ({ hits, classes, authors }) => (
   <Grid container spacing={24}>
     {hits.map((hit, i) => (
-      <Hit key={hit.objectID} hit={hit} />
+      <Hit key={hit.objectID} hit={hit} authors={authors} />
     ))}
-    {/* <div ref={c => (setSentinel(c))} /> */}
   </Grid>
 );
 
@@ -93,7 +92,7 @@ const CustomHits = connectHits(Hits);
 
 // const CustomInfiniteHits = connectInfiniteHits(InfiniteHits);
 
-const Search = ({ classes, refinementState }) => (
+const Search = ({ classes, refinementState, authors }) => (
   <Element name="dataExplore">
     {/* Show following only on medium+ devices */}
     <Hidden smDown>
@@ -108,7 +107,7 @@ const Search = ({ classes, refinementState }) => (
           <CustomSearchBox msg="Search datasets here..." />
           <Configure hitsPerPage={6} />
           {/* <CustomInfiniteHits classes={classes} /> */}
-          <CustomHits classes={classes} />
+          <CustomHits classes={classes} authors={authors} />
         </div>
       </div>
     </Hidden>
@@ -118,7 +117,7 @@ const Search = ({ classes, refinementState }) => (
       <CustomSearchBox msg="Search datasets here..." />
       <Configure hitsPerPage={6} />
       {/* <CustomInfiniteHits classes={classes} /> */}
-      <CustomHits classes={classes} />
+      <CustomHits classes={classes} authors={authors} />
     </Hidden>
     <div className={classes.pagination}>
       <Pagination />
@@ -126,13 +125,13 @@ const Search = ({ classes, refinementState }) => (
   </Element>
 );
 
-const DataSearch = ({ classes, refinementState }) => (
+const DataSearch = ({ classes, refinementState, authors }) => (
   <InstantSearch
     appId="S8S302ERM8"
     apiKey="cc2815f16dd85b0b135372395b8fed44"
     indexName="dataList"
   >
-    <Search classes={classes} refinementState={refinementState} />
+    <Search classes={classes} refinementState={refinementState} authors={authors} />
   </InstantSearch>
 );
 

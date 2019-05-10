@@ -24,6 +24,7 @@ const Data = ({
   classes, showProgress, data, location,
 }) => {
   const { name, backgroundImage } = data.contentfulPage;
+  const { edges: authors } = data.allContentfulData;
   return (
     <>
       <Layout showProgress={showProgress}>
@@ -31,7 +32,7 @@ const Data = ({
         <Hero title={name} img={backgroundImage} />
         <div>
           <div className={classes.data}>
-            <DataSearch refinementState={location.state} />
+            <DataSearch refinementState={location.state} authors={authors} />
           </div>
         </div>
       </Layout>
@@ -53,6 +54,16 @@ export const query = graphql`
       backgroundImage {
         fixed(width: 2000, height: 200) {
           ...GatsbyContentfulFixed_withWebp
+        }
+      }
+    }
+    allContentfulData {
+      edges {
+        node {
+          authors {
+            contentful_id
+            name
+          }
         }
       }
     }
