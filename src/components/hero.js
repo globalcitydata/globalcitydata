@@ -10,13 +10,9 @@ const styles = theme => ({
   },
   imgWrapper: {
     width: '100%',
-    maxWidth: '2000px',
+    maxWidth: '3000px',
     margin: '0 auto',
     filter: 'brightness(30%)',
-    background: {
-      size: 'cover',
-      position: 'center',
-    },
   },
   content: {
     position: 'absolute',
@@ -48,13 +44,33 @@ const HeroContent = ({ title, classes }) => (
   </div>
 );
 
+const NonStretchedImage = (props) => {
+  let normalizedProps = props;
+  const height = props.h || 200;
+  const maxWidth = props.maxWidth || 3000;
+  if (props.fluid) {
+    normalizedProps = {
+      ...props,
+      style: {
+        ...(props.style || {}),
+        maxWidth,
+        height,
+        margin: '0 auto', // Used to center the image
+      },
+    };
+  }
+
+  return <Img {...normalizedProps} />;
+};
+
 const Background = ({ img, classes, h }) => {
   const height = h || '200px';
   return (
     <div>
       {img ? (
         <div className={classes.imgWrapper}>
-          <Img fixed={img.fixed} />
+          {img.fixed && <Img fixed={img.fixed} style={{ height }} />}
+          {img.fluid && <Img fluid={img.fluid} style={{ height }} />}
         </div>
       ) : (
         <div style={{
