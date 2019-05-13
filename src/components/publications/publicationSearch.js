@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 
 // General Components
@@ -9,7 +9,6 @@ import {
   ListItem,
   Paper,
   Link as MuiLink,
-  CircularProgress,
 } from '@material-ui/core';
 import {
   InstantSearch,
@@ -18,6 +17,8 @@ import {
   Pagination,
 } from 'react-instantsearch-dom';
 import CustomSearchBox from '../customSearchBox';
+
+import LoadingIndicator from '../loadingIndicator';
 
 const styles = {
   hits: {
@@ -64,27 +65,20 @@ const Hit = ({ hit, classes, dataList }) => {
 };
 
 const Hits = ({ hits, classes, dataList }) => (
-  <>
-    {hits.length === 0 ? (
-      <div className={classes.progress}>
-        <CircularProgress />
-      </div>
-    ) : (
-      <List className={classes.hits}>
-        {hits.map(hit => (
-          <Hit key={hit.objectID} hit={hit} classes={classes} dataList={dataList} />
-        ))}
-      </List>
-    )}
-  </>
-
+  <List className={classes.hits}>
+    {hits.map(hit => (
+      <Hit key={hit.objectID} hit={hit} classes={classes} dataList={dataList} />
+    ))}
+  </List>
 );
+
 
 const CustomHits = connectHits(Hits);
 
 const Search = ({ classes, dataList }) => (
   <>
     <CustomSearchBox msg="Search publications by author or title..." />
+    <LoadingIndicator />
     <Configure hitsPerPage={7} />
     <CustomHits classes={classes} dataList={dataList} />
     <div className={classes.pagination}>

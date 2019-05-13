@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
 import {
@@ -15,6 +15,7 @@ import {
 import CustomSearchBox from '../customSearchBox';
 import RefinementMenu from './dataSearch/refinementMenu';
 import Hit from './dataSearch/hit';
+import LoadingIndicator from '../loadingIndicator';
 
 import { tagNames } from './dataUtils';
 
@@ -61,7 +62,7 @@ const styles = {
   },
   progress: {
     textAlign: 'center',
-    margin: '25px auto 0',
+    marginTop: '25px',
   },
 };
 
@@ -78,19 +79,11 @@ const SmallDeviceMessage = ({ classes }) => (
 );
 
 const Hits = ({ hits, classes, authors }) => (
-  <>
-    {hits.length === 0 ? (
-      <div className={classes.progress}>
-        <CircularProgress />
-      </div>
-    ) : (
-      <Grid container spacing={24}>
-        {hits.map((hit, i) => (
-          <Hit key={hit.objectID} hit={hit} authors={authors} />
-        ))}
-      </Grid>
-    )}
-  </>
+  <Grid container spacing={24}>
+    {hits.map((hit, i) => (
+      <Hit key={hit.objectID} hit={hit} authors={authors} />
+    ))}
+  </Grid>
 );
 
 const CustomHits = connectHits(Hits);
@@ -119,6 +112,7 @@ const Search = ({ classes, refinementState, authors }) => (
         </div>
         <div className={classes.main}>
           <CustomSearchBox msg="Search datasets by keyword..." />
+          <LoadingIndicator />
           <Configure hitsPerPage={6} />
           {/* <CustomInfiniteHits classes={classes} /> */}
           <CustomHits classes={classes} authors={authors} />
