@@ -20,16 +20,15 @@ const styles = theme => ({
 const Index = ({ data, classes, showProgress }) => {
   const showcaseData = data.contentfulHomePage;
   const tagSections = data.allContentfulHomeTagSection.edges;
-  const { tagsIntro, tagsIntro2 } = data.contentfulHomePage;
+  const { tagsIntro } = data.contentfulHomePage;
   return (
     <>
       <SEO title="Home" />
       <Layout showProgress={showProgress}>
         <Showcase showcaseData={showcaseData} />
-        <LearnMore intro={tagsIntro.childMarkdownRemark.html} />
+        <LearnMore />
         <div className={classes.tags}>
-          <Description intro={tagsIntro2.childMarkdownRemark.html} />
-          {/* <Description intro={tagsIntro2.tagsIntro2} /> */}
+          <Description intro={tagsIntro.childMarkdownRemark.html} />
         </div>
         <Tags
           sections={tagSections}
@@ -56,12 +55,6 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
-      }
-      tagsIntro2 {
-        childMarkdownRemark {
-          html
-        }
-        tagsIntro2
       }
     }
 

@@ -165,7 +165,13 @@ const Hit = ({ hit, classes, authors }) => {
           >
             {dataObj.title}
           </Typography>
-          {dataObj.author && <i><Typography variant="subtitle2">{dataObj.author}</Typography></i>}
+          {dataObj.author && (
+          <Typography variant="subtitle2">
+            Data contact:
+            {' '}
+            <i>{dataObj.author}</i>
+          </Typography>
+          )}
           {/* </Link> */}
         </CardContent>
         <Divider />

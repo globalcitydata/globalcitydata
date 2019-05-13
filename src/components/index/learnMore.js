@@ -35,9 +35,8 @@ const DownButton = ({ id, classes }) => (
   </div>
 );
 
-const LearnMore = ({ intro, classes }) => (
+const LearnMore = ({ classes }) => (
   <Container className={classes.root}>
-    {/* <Markdown className={classes.intro}>{intro}</Markdown> */}
     <Typography variant="body1" className={classes.learn}>Learn more</Typography>
     <DownButton id="tagsDescription" classes={classes} />
   </Container>
