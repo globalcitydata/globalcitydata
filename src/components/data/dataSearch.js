@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
-import { Grid, Hidden, Typography } from '@material-ui/core';
+import {
+  Grid, Hidden, Typography, CircularProgress,
+} from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
 import {
   InstantSearch,
@@ -57,6 +59,10 @@ const styles = {
     margin: '0 auto',
     color: 'inherit',
   },
+  progress: {
+    textAlign: 'center',
+    margin: '25px auto 0',
+  },
 };
 
 const SmallDeviceMessage = ({ classes }) => (
@@ -72,11 +78,19 @@ const SmallDeviceMessage = ({ classes }) => (
 );
 
 const Hits = ({ hits, classes, authors }) => (
-  <Grid container spacing={24}>
-    {hits.map((hit, i) => (
-      <Hit key={hit.objectID} hit={hit} authors={authors} />
-    ))}
-  </Grid>
+  <>
+    {hits.length === 0 ? (
+      <div className={classes.progress}>
+        <CircularProgress />
+      </div>
+    ) : (
+      <Grid container spacing={24}>
+        {hits.map((hit, i) => (
+          <Hit key={hit.objectID} hit={hit} authors={authors} />
+        ))}
+      </Grid>
+    )}
+  </>
 );
 
 const CustomHits = connectHits(Hits);

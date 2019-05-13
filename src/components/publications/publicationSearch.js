@@ -9,6 +9,7 @@ import {
   ListItem,
   Paper,
   Link as MuiLink,
+  CircularProgress,
 } from '@material-ui/core';
 import {
   InstantSearch,
@@ -28,6 +29,10 @@ const styles = {
   },
   pagination: {
     paddingTop: '2rem',
+  },
+  progress: {
+    textAlign: 'center',
+    margin: '25px auto 0',
   },
 };
 
@@ -59,11 +64,20 @@ const Hit = ({ hit, classes, dataList }) => {
 };
 
 const Hits = ({ hits, classes, dataList }) => (
-  <List className={classes.hits}>
-    {hits.map(hit => (
-      <Hit key={hit.objectID} hit={hit} classes={classes} dataList={dataList} />
-    ))}
-  </List>
+  <>
+    {hits.length === 0 ? (
+      <div className={classes.progress}>
+        <CircularProgress />
+      </div>
+    ) : (
+      <List className={classes.hits}>
+        {hits.map(hit => (
+          <Hit key={hit.objectID} hit={hit} classes={classes} dataList={dataList} />
+        ))}
+      </List>
+    )}
+  </>
+
 );
 
 const CustomHits = connectHits(Hits);
