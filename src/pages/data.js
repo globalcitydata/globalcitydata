@@ -52,8 +52,8 @@ export const query = graphql`
         }
       }
       backgroundImage {
-        fixed(width: 2000, height: 200) {
-          ...GatsbyContentfulFixed_withWebp
+        fluid(maxWidth: 2000) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
     }

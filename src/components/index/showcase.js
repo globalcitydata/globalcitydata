@@ -17,13 +17,12 @@ const styles = {
   },
   imagesWrapper: {
     width: '100%',
-    maxWidth: '2000px',
+    maxWidth: '3000px',
     margin: '0 auto',
     filter: 'brightness(45%)',
-    background: {
-      size: 'cover',
-      position: 'center',
-    },
+  },
+  img: {
+    height: '500px',
   },
   contentWrapper: {
     position: 'absolute',
@@ -72,9 +71,10 @@ const WelcomeImages = ({ images, classes }) => (
   <div className={classes.imagesWrapper}>
     <Carousel fill play={6000}>
       {images.map((img, i) => (
-        <Img fixed={img.fixed} key={i} />
+        <Img fluid={img.fluid} className={classes.img} key={i} />
       ))}
     </Carousel>
+
   </div>
 );
 
