@@ -104,7 +104,7 @@ const Search = ({ classes, refinementState, authors }) => (
           />
         </div>
         <div className={classes.main}>
-          <CustomSearchBox msg="Search datasets here..." />
+          <CustomSearchBox msg="Search datasets by keyword..." />
           <Configure hitsPerPage={6} />
           {/* <CustomInfiniteHits classes={classes} /> */}
           <CustomHits classes={classes} authors={authors} />
@@ -114,7 +114,7 @@ const Search = ({ classes, refinementState, authors }) => (
     {/* Show following only on small devices */}
     <Hidden mdUp>
       <SmallDeviceMessage classes={classes} />
-      <CustomSearchBox msg="Search datasets here..." />
+      <CustomSearchBox msg="Search datasets by keyword..." />
       <Configure hitsPerPage={6} />
       {/* <CustomInfiniteHits classes={classes} /> */}
       <CustomHits classes={classes} authors={authors} />

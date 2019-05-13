@@ -1,5 +1,5 @@
 import {
-  blue, pink, purple, green, orange, yellow, cyan,
+  blue, indigo, lightBlue, green, orange, lightGreen, cyan, deepPurple,
 } from '@material-ui/core/colors';
 
 // const colors = {
@@ -11,16 +11,16 @@ import {
 //   worldRegions: 'default',
 // };
 
-const hue = 500;
+const hue = 300;
 
 export const colors = {
   dataType: blue[hue],
-  contextualCityLevelData: green[hue],
-  keyProvisioningSectors: pink[hue],
-  spatialScales: purple[hue],
-  sustainabilityOutcomes: cyan[hue],
-  temporalScales: yellow[hue],
-  worldRegions: orange[hue],
+  contextualCityLevelData: lightGreen.A700,
+  keyProvisioningSectors: lightBlue.A200,
+  spatialScales: green[hue],
+  sustainabilityOutcomes: indigo.A200,
+  temporalScales: deepPurple.A100,
+  worldRegions: cyan.A200,
 };
 
 export const tagNames = [

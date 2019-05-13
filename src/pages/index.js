@@ -29,6 +29,7 @@ const Index = ({ data, classes, showProgress }) => {
         <LearnMore intro={tagsIntro.childMarkdownRemark.html} />
         <div className={classes.tags}>
           <Description intro={tagsIntro2.childMarkdownRemark.html} />
+          {/* <Description intro={tagsIntro2.tagsIntro2} /> */}
         </div>
         <Tags
           sections={tagSections}
@@ -60,6 +61,7 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+        tagsIntro2
       }
     }
 

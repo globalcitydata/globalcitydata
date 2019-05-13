@@ -7,12 +7,9 @@ import {
 const styles = theme => ({
   root: {
     paddingTop: '10px',
-
-
   },
   title: {
     fontWeight: 'bold',
-    paddingBottom: '12px',
   },
   description: {
     paddingBottom: '15px',
@@ -51,7 +48,7 @@ const Committee = ({ classes, committee }) => {
   const { title, description, members } = committee;
   return (
     <div className={classes.root}>
-      <Typography variant="h6" className={classes.title}>{title}</Typography>
+      <Typography variant="h6" gutterBottom className={classes.title}>{title}</Typography>
       <Typography paragraph className={classes.description}>{description}</Typography>
       <Grid
         container

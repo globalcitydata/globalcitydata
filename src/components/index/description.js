@@ -1,10 +1,20 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import ReactMarkdown from 'markdown-to-jsx';
+import Typography from '@material-ui/core/Typography';
 
 // Components
 import { Element } from 'react-scroll';
-import Markdown from '../markdown';
 import Container from '../container';
+
+const options = {
+  overrides: {
+    p: {
+      component: props => <Typography variant="body1" paragraph {...props} />,
+    },
+    span: { component: props => <Typography paragraph variant="body1" {...props} /> },
+  },
+};
 
 const styles = {
   root: {
@@ -13,19 +23,21 @@ const styles = {
     padding: '2rem 1rem',
   },
   intro: {
-    fontSize: '1.1rem',
     margin: '25px auto',
+    fontSize: '1.5rem',
   },
 };
 
 const Description = ({ intro, classes }) => (
   <Element name="tagsDescription">
     <Container className={classes.root}>
-      <Markdown className={classes.intro}>
+      <ReactMarkdown
+        className={classes.intro}
+        options={options}
+      >
         {intro}
-      </Markdown>
+      </ReactMarkdown>
     </Container>
-    {/* <Divider /> */}
   </Element>
 );
 

@@ -35,7 +35,7 @@ const options = {
     p: {
       component: props => <Typography variant="body2" paragraph {...props} />,
     },
-    span: { component: props => <Typography paragraph {...props} /> },
+    span: { component: props => <Typography paragraph variant="body2" {...props} /> },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (
         <li className={classes.listItem}>

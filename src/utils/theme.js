@@ -58,6 +58,9 @@ const theme = createMuiTheme({
         // secondary titles
         fontSize: '1.35rem',
       },
+      body1: {
+        fontSize: '1.1rem',
+      },
       body2: {
         fontSize: '1.02rem',
       },
