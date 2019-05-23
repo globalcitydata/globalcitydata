@@ -70,7 +70,7 @@ const Data = ({ data, classes, showProgress }) => {
   return (
     <Layout showProgress={showProgress}>
       <SEO title={title} />
-      <Hero title={title} bg={backgroundImage} h="270px" />
+      <Hero title={title} img={backgroundImage} h="270px" />
       <Container>
         <ContentPaper>
           {/* Long Title */}
@@ -110,10 +110,6 @@ const Data = ({ data, classes, showProgress }) => {
 
 export default withRoot(withStyles(styles)(Data));
 
-// fixed(width: 500, height: 378) {
-//   ...GatsbyContentfulFixed_withWebp
-// }
-
 export const query = graphql`
   query DataInstanceBySlug($slug: String!) {
     contentfulData(slug: { eq: $slug }) {
@@ -122,6 +118,11 @@ export const query = graphql`
       authors {
         name
         email
+      }
+      backgroundImage {
+        fluid(maxWidth: 2000) {
+          ...GatsbyContentfulFluid_withWebp
+        }
       }
       summaryImage {
         fluid {
