@@ -36,7 +36,7 @@
     "grommet": "^2.6.5",
     "grommet-icons": "^4.2.0",
     "jss": "^9.8.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "markdown-to-jsx": "^6.9.3",
     "polished": "^3.1.0",
     "prop-types": "^15.7.2",
