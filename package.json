@@ -31,7 +31,7 @@
     "gatsby-plugin-typography": "^2.2.10",
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-source-contentful": "^2.0.43",
-    "gatsby-transformer-remark": "^2.3.8",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^2.1.17",
     "grommet": "^2.6.5",
     "grommet-icons": "^4.2.0",
